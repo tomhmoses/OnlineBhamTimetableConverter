@@ -1,0 +1,1032 @@
+{
+  "id": "d98ae5d2-401c-41ae-9cee-2f57002d85e7",
+  "version": "1.1",
+  "name": "Bham Calendar",
+  "url": "https://www.my.bham.ac.uk",
+  "tests": [{
+    "id": "82acdbb9-e7a3-4e08-bf48-ec49ab1f0d8e",
+    "name": "goto calendar v1",
+    "commands": [{
+      "id": "39525fca-a34b-4614-a510-536b1b98dfbb",
+      "comment": "",
+      "command": "open",
+      "target": "/cp/home/displaylogin",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3fd834cc-b684-4c35-baea-ecb9f988a9b0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1708x920",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1ec365d4-55dc-4b98-8876-485674b1897f",
+      "comment": "",
+      "command": "click",
+      "target": "name=user",
+      "targets": [
+        ["name=user", "name"],
+        ["css=input[name=\"user\"]", "css"],
+        ["css=tr:nth-child(2) .textform", "css:finder"],
+        ["xpath=//input[@name='user']", "xpath:attributes"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]/form/font/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "081dc32f-7b7f-4664-9a9c-3b3c1ebc0870",
+      "comment": "",
+      "command": "type",
+      "target": "name=user",
+      "targets": [
+        ["name=user", "name"],
+        ["css=input[name=\"user\"]", "css"],
+        ["css=tr:nth-child(2) .textform", "css:finder"],
+        ["xpath=//input[@name='user']", "xpath:attributes"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]/form/font/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "thm837"
+    }, {
+      "id": "39921fb0-6de4-47da-9205-661aaee3baba",
+      "comment": "",
+      "command": "click",
+      "target": "name=pass",
+      "targets": [
+        ["name=pass", "name"],
+        ["css=input[name=\"pass\"]", "css"],
+        ["css=tr:nth-child(3) .textform", "css:finder"],
+        ["xpath=//input[@name='pass']", "xpath:attributes"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[3]/td[2]/form/font/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/form/font/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "52f08e19-123b-4138-836d-d1bc2259e5bd",
+      "comment": "",
+      "command": "type",
+      "target": "name=pass",
+      "targets": [
+        ["name=pass", "name"],
+        ["css=input[name=\"pass\"]", "css"],
+        ["css=tr:nth-child(3) .textform", "css:finder"],
+        ["xpath=//input[@name='pass']", "xpath:attributes"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[3]/td[2]/form/font/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/form/font/input", "xpath:position"]
+      ],
+      "value": "Divine-09"
+    }, {
+      "id": "981fc02d-007e-49e8-a462-9cd82a56362c",
+      "comment": "",
+      "command": "click",
+      "target": "css=img[alt=\"Login\"]",
+      "targets": [
+        ["css=img[alt=\"Login\"]", "css"],
+        ["css=td > a:nth-child(1) > img", "css:finder"],
+        ["xpath=//img[@alt='Login']", "xpath:img"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[4]/td/a/img", "xpath:idRelative"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "30b8b130-59ae-4611-93b3-7ed723da74f3",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=my.timetables",
+      "targets": [
+        ["linkText=my.timetables", "linkText"],
+        ["css=.taboff:nth-child(3) #tab", "css:finder"],
+        ["xpath=//a[contains(text(),'my.timetables')]", "xpath:link"],
+        ["xpath=(//a[@id='tab'])[3]", "xpath:attributes"],
+        ["xpath=//table[@id='tabs_tda']/tbody/tr/td[3]/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'tag.9deb2f49e947373a.render.userLayoutRootNode.uP?uP_root=root&uP_sparam=activeTab&activeTab=u12l1s5459&uP_tparam=frm&frm=')]", "xpath:href"],
+        ["xpath=//td[3]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7fe64394-d77c-4b3c-8303-353c58748fc5",
+      "comment": "",
+      "command": "click",
+      "target": "css=strong > span",
+      "targets": [
+        ["css=strong > span", "css"],
+        ["css=strong > span", "css:finder"],
+        ["xpath=//a[@id='webtimetableslink']/strong/span", "xpath:idRelative"],
+        ["xpath=//strong/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2432787-4a14-4795-9bf8-49bd8fa271a6",
+      "comment": "",
+      "command": "selectFrame",
+      "target": "index=0",
+      "targets": [
+        ["index=0"]
+      ],
+      "value": ""
+    }, {
+      "id": "21a0c5c8-8cc9-4d03-81d7-9b3b01bcfe0e",
+      "comment": "",
+      "command": "click",
+      "target": "id=LinkBtn_mystudentset",
+      "targets": [
+        ["id=LinkBtn_mystudentset", "id"],
+        ["css=#LinkBtn_mystudentset", "css"],
+        ["css=#LinkBtn_mystudentset", "css:finder"],
+        ["xpath=//a[contains(text(),'My Timetable')]", "xpath:link"],
+        ["xpath=//a[@id='LinkBtn_mystudentset']", "xpath:attributes"],
+        ["xpath=//div[@id='pLinkPanel']/div[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, \"javascript:__doPostBack('LinkBtn_mystudentset','')\")]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1f98c200-068b-4b73-bbd2-06cd0c5899ad",
+      "comment": "",
+      "command": "removeSelection",
+      "target": "id=lbWeeks",
+      "targets": [
+        ["id=lbWeeks", "id"],
+        ["name=lbWeeks", "name"],
+        ["css=#lbWeeks", "css"],
+        ["css=#lbWeeks", "css:finder"],
+        ["xpath=//select[@id='lbWeeks']", "xpath:attributes"],
+        ["xpath=//div[@id='pWeeks']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "label=This Week"
+    }, {
+      "id": "1ba14d3b-1b19-483f-890c-525ca93c1d53",
+      "comment": "",
+      "command": "addSelection",
+      "target": "id=lbWeeks",
+      "targets": [
+        ["id=lbWeeks", "id"],
+        ["name=lbWeeks", "name"],
+        ["css=#lbWeeks", "css"],
+        ["css=#lbWeeks", "css:finder"],
+        ["xpath=//select[@id='lbWeeks']", "xpath:attributes"],
+        ["xpath=//div[@id='pWeeks']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "label=*All Term Time"
+    }, {
+      "id": "26e20dd4-2ed9-4619-9944-1532733c0f28",
+      "comment": "",
+      "command": "click",
+      "target": "css=option[value=\"6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43\"]",
+      "targets": [
+        ["css=option[value=\"6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43\"]", "css"],
+        ["css=#lbWeeks > option:nth-child(4)", "css:finder"],
+        ["xpath=//option[@value='6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43']", "xpath:attributes"],
+        ["xpath=//select[@id='lbWeeks']/option[4]", "xpath:idRelative"],
+        ["xpath=//option[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e228b810-6091-4e00-b761-f2fca91e52b6",
+      "comment": "",
+      "command": "removeSelection",
+      "target": "id=lbDays",
+      "targets": [
+        ["id=lbDays", "id"],
+        ["name=lbDays", "name"],
+        ["css=#lbDays", "css"],
+        ["css=#lbDays", "css:finder"],
+        ["xpath=//select[@id='lbDays']", "xpath:attributes"],
+        ["xpath=//div[@id='pDays']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": "label=All Weekdays"
+    }, {
+      "id": "e81e4cf9-c1db-481b-a181-f0f7302b890e",
+      "comment": "",
+      "command": "addSelection",
+      "target": "id=lbDays",
+      "targets": [
+        ["id=lbDays", "id"],
+        ["name=lbDays", "name"],
+        ["css=#lbDays", "css"],
+        ["css=#lbDays", "css:finder"],
+        ["xpath=//select[@id='lbDays']", "xpath:attributes"],
+        ["xpath=//div[@id='pDays']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": "label=All Week"
+    }, {
+      "id": "c422504a-3669-4b25-ba54-c6f7bcd1aaa6",
+      "comment": "",
+      "command": "click",
+      "target": "css=option[value=\"1-7\"]",
+      "targets": [
+        ["css=option[value=\"1-7\"]", "css"],
+        ["css=#lbDays > option:nth-child(2)", "css:finder"],
+        ["xpath=//option[@value='1-7']", "xpath:attributes"],
+        ["xpath=//select[@id='lbDays']/option[2]", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[2]/select/option[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d04b3e0b-e18e-46c0-b072-e51376f3dba5",
+      "comment": "",
+      "command": "click",
+      "target": "id=dlPeriod",
+      "targets": [
+        ["id=dlPeriod", "id"],
+        ["name=dlPeriod", "name"],
+        ["css=#dlPeriod", "css"],
+        ["css=#dlPeriod", "css:finder"],
+        ["xpath=//select[@id='dlPeriod']", "xpath:attributes"],
+        ["xpath=//div[@id='pPeriod']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b0008d48-3797-4315-bcbe-edbd44b379e2",
+      "comment": "",
+      "command": "select",
+      "target": "id=dlPeriod",
+      "targets": [],
+      "value": "label=All Day (08:00 - 22:00)"
+    }, {
+      "id": "2b729a5b-7f65-4666-ac67-ec1ef4b40b5a",
+      "comment": "",
+      "command": "click",
+      "target": "id=dlPeriod",
+      "targets": [
+        ["id=dlPeriod", "id"],
+        ["name=dlPeriod", "name"],
+        ["css=#dlPeriod", "css"],
+        ["css=#dlPeriod", "css:finder"],
+        ["xpath=//select[@id='dlPeriod']", "xpath:attributes"],
+        ["xpath=//div[@id='pPeriod']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a6f84f41-52d8-49b7-a3f0-771480f8ce40",
+      "comment": "",
+      "command": "click",
+      "target": "id=dlType",
+      "targets": [
+        ["id=dlType", "id"],
+        ["name=dlType", "name"],
+        ["css=#dlType", "css"],
+        ["css=#dlType", "css:finder"],
+        ["xpath=//select[@id='dlType']", "xpath:attributes"],
+        ["xpath=//div[@id='pType']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[6]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d450e1ec-3c0a-4388-b58b-eab8d35ceff6",
+      "comment": "",
+      "command": "select",
+      "target": "id=dlType",
+      "targets": [],
+      "value": "label=List Timetable (with calendar dates)"
+    }, {
+      "id": "e301403d-087f-4bc4-8135-e819e821a878",
+      "comment": "",
+      "command": "click",
+      "target": "id=dlType",
+      "targets": [
+        ["id=dlType", "id"],
+        ["name=dlType", "name"],
+        ["css=#dlType", "css"],
+        ["css=#dlType", "css:finder"],
+        ["xpath=//select[@id='dlType']", "xpath:attributes"],
+        ["xpath=//div[@id='pType']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[6]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "371458da-4ba4-4a21-9f91-8a0efd01d6f8",
+      "comment": "",
+      "command": "click",
+      "target": "id=bGetTimetable",
+      "targets": [
+        ["id=bGetTimetable", "id"],
+        ["name=bGetTimetable", "name"],
+        ["css=#bGetTimetable", "css"],
+        ["css=#bGetTimetable", "css:finder"],
+        ["xpath=//input[@id='bGetTimetable']", "xpath:attributes"],
+        ["xpath=//div[@id='pButton']/input", "xpath:idRelative"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "29849564-d681-4e42-bc97-5d4a773b1381",
+    "name": "goto calendar v2",
+    "commands": [{
+      "id": "b88f7b66-9cb7-4a00-8d40-257e247fa23d",
+      "comment": "",
+      "command": "open",
+      "target": "/cp/home/displaylogin",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2d84eb9c-4492-4d2b-b8f6-6cb084d45d36",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1708x920",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c8d105fc-7e94-4652-a006-feb9cf42a648",
+      "comment": "",
+      "command": "click",
+      "target": "name=user",
+      "targets": [
+        ["name=user", "name"],
+        ["css=input[name=\"user\"]", "css"],
+        ["css=tr:nth-child(2) .textform", "css:finder"],
+        ["xpath=//input[@name='user']", "xpath:attributes"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]/form/font/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dd901f1d-d212-4365-84bf-eafd21f294ed",
+      "comment": "",
+      "command": "type",
+      "target": "name=user",
+      "targets": [
+        ["name=user", "name"],
+        ["css=input[name=\"user\"]", "css"],
+        ["css=tr:nth-child(2) .textform", "css:finder"],
+        ["xpath=//input[@name='user']", "xpath:attributes"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]/form/font/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "thm837"
+    }, {
+      "id": "b82dc11c-40c1-4a51-a37b-43918e6d10b4",
+      "comment": "",
+      "command": "type",
+      "target": "name=pass",
+      "targets": [
+        ["name=pass", "name"],
+        ["css=input[name=\"pass\"]", "css"],
+        ["css=tr:nth-child(3) .textform", "css:finder"],
+        ["xpath=//input[@name='pass']", "xpath:attributes"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[3]/td[2]/form/font/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/form/font/input", "xpath:position"]
+      ],
+      "value": "Divine-09"
+    }, {
+      "id": "0ce9a59e-86e9-44ab-8967-7d3a3a500c82",
+      "comment": "",
+      "command": "click",
+      "target": "css=img[alt=\"Login\"]",
+      "targets": [
+        ["css=img[alt=\"Login\"]", "css"],
+        ["css=td > a:nth-child(1) > img", "css:finder"],
+        ["xpath=//img[@alt='Login']", "xpath:img"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[4]/td/a/img", "xpath:idRelative"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3454675-ede5-493d-8214-e2be49d8a715",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "linkText=my.timetables",
+      "targets": [
+        ["linkText=my.timetables", "linkText"],
+        ["css=.taboff:nth-child(3) #tab", "css:finder"],
+        ["xpath=//a[contains(text(),'my.timetables')]", "xpath:link"],
+        ["xpath=(//a[@id='tab'])[3]", "xpath:attributes"],
+        ["xpath=//table[@id='tabs_tda']/tbody/tr/td[3]/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'tag.dffb6f8e5073dad7.render.userLayoutRootNode.uP?uP_root=root&uP_sparam=activeTab&activeTab=u12l1s5459&uP_tparam=frm&frm=')]", "xpath:href"],
+        ["xpath=//td[3]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5d098db4-ae95-4dbc-b97e-2c380cd4ba25",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=my.timetables",
+      "targets": [
+        ["linkText=my.timetables", "linkText"],
+        ["css=.taboff:nth-child(3) #tab", "css:finder"],
+        ["xpath=//a[contains(text(),'my.timetables')]", "xpath:link"],
+        ["xpath=(//a[@id='tab'])[3]", "xpath:attributes"],
+        ["xpath=//table[@id='tabs_tda']/tbody/tr/td[3]/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'tag.dffb6f8e5073dad7.render.userLayoutRootNode.uP?uP_root=root&uP_sparam=activeTab&activeTab=u12l1s5459&uP_tparam=frm&frm=')]", "xpath:href"],
+        ["xpath=//td[3]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e69fa1ab-591b-4e9e-9778-3301bb3447ee",
+      "comment": "",
+      "command": "click",
+      "target": "css=strong > span",
+      "targets": [
+        ["css=strong > span", "css"],
+        ["css=strong > span", "css:finder"],
+        ["xpath=//a[@id='webtimetableslink']/strong/span", "xpath:idRelative"],
+        ["xpath=//strong/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d6e023b-1d0f-402b-b8d8-6fdbbc696916",
+      "comment": "",
+      "command": "selectFrame",
+      "target": "index=0",
+      "targets": [
+        ["index=0"]
+      ],
+      "value": ""
+    }, {
+      "id": "c84c7507-07ad-4305-8153-2631f25c37ca",
+      "comment": "",
+      "command": "click",
+      "target": "id=LinkBtn_mystudentset",
+      "targets": [
+        ["id=LinkBtn_mystudentset", "id"],
+        ["css=#LinkBtn_mystudentset", "css"],
+        ["css=#LinkBtn_mystudentset", "css:finder"],
+        ["xpath=//a[contains(text(),'My Timetable')]", "xpath:link"],
+        ["xpath=//a[@id='LinkBtn_mystudentset']", "xpath:attributes"],
+        ["xpath=//div[@id='pLinkPanel']/div[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, \"javascript:__doPostBack('LinkBtn_mystudentset','')\")]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e0f5ccbe-df1e-4c75-adfb-a475b9d8bfd9",
+      "comment": "",
+      "command": "removeSelection",
+      "target": "id=lbWeeks",
+      "targets": [
+        ["id=lbWeeks", "id"],
+        ["name=lbWeeks", "name"],
+        ["css=#lbWeeks", "css"],
+        ["css=#lbWeeks", "css:finder"],
+        ["xpath=//select[@id='lbWeeks']", "xpath:attributes"],
+        ["xpath=//div[@id='pWeeks']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "label=This Week"
+    }, {
+      "id": "3b12aa3c-29ef-43fc-a909-2c9729747a36",
+      "comment": "",
+      "command": "addSelection",
+      "target": "id=lbWeeks",
+      "targets": [
+        ["id=lbWeeks", "id"],
+        ["name=lbWeeks", "name"],
+        ["css=#lbWeeks", "css"],
+        ["css=#lbWeeks", "css:finder"],
+        ["xpath=//select[@id='lbWeeks']", "xpath:attributes"],
+        ["xpath=//div[@id='pWeeks']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "label=*All Term Time"
+    }, {
+      "id": "5d829962-784c-4540-bc25-b5aedfe5e673",
+      "comment": "",
+      "command": "click",
+      "target": "css=option[value=\"6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43\"]",
+      "targets": [
+        ["css=option[value=\"6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43\"]", "css"],
+        ["css=#lbWeeks > option:nth-child(4)", "css:finder"],
+        ["xpath=//option[@value='6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43']", "xpath:attributes"],
+        ["xpath=//select[@id='lbWeeks']/option[4]", "xpath:idRelative"],
+        ["xpath=//option[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ffad5d6a-bd00-407f-ac75-ba7c936c8ecb",
+      "comment": "",
+      "command": "removeSelection",
+      "target": "id=lbDays",
+      "targets": [
+        ["id=lbDays", "id"],
+        ["name=lbDays", "name"],
+        ["css=#lbDays", "css"],
+        ["css=#lbDays", "css:finder"],
+        ["xpath=//select[@id='lbDays']", "xpath:attributes"],
+        ["xpath=//div[@id='pDays']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": "label=All Weekdays"
+    }, {
+      "id": "2d786d53-aff5-4b2f-9c21-453e42d50b35",
+      "comment": "",
+      "command": "addSelection",
+      "target": "id=lbDays",
+      "targets": [
+        ["id=lbDays", "id"],
+        ["name=lbDays", "name"],
+        ["css=#lbDays", "css"],
+        ["css=#lbDays", "css:finder"],
+        ["xpath=//select[@id='lbDays']", "xpath:attributes"],
+        ["xpath=//div[@id='pDays']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": "label=All Week"
+    }, {
+      "id": "de4deebd-ec5a-4e5a-8202-b5d67432fe04",
+      "comment": "",
+      "command": "click",
+      "target": "css=option[value=\"1-7\"]",
+      "targets": [
+        ["css=option[value=\"1-7\"]", "css"],
+        ["css=#lbDays > option:nth-child(2)", "css:finder"],
+        ["xpath=//option[@value='1-7']", "xpath:attributes"],
+        ["xpath=//select[@id='lbDays']/option[2]", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[2]/select/option[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d54aa9c5-1a9f-4816-8a7f-6fed522529be",
+      "comment": "",
+      "command": "click",
+      "target": "id=dlPeriod",
+      "targets": [
+        ["id=dlPeriod", "id"],
+        ["name=dlPeriod", "name"],
+        ["css=#dlPeriod", "css"],
+        ["css=#dlPeriod", "css:finder"],
+        ["xpath=//select[@id='dlPeriod']", "xpath:attributes"],
+        ["xpath=//div[@id='pPeriod']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3a6afd5-db4e-4316-9643-058b81fdf1b3",
+      "comment": "",
+      "command": "select",
+      "target": "id=dlPeriod",
+      "targets": [],
+      "value": "label=All Day (08:00 - 22:00)"
+    }, {
+      "id": "36b57ba3-1156-479c-9d09-4dea62cb0b27",
+      "comment": "",
+      "command": "click",
+      "target": "id=dlPeriod",
+      "targets": [
+        ["id=dlPeriod", "id"],
+        ["name=dlPeriod", "name"],
+        ["css=#dlPeriod", "css"],
+        ["css=#dlPeriod", "css:finder"],
+        ["xpath=//select[@id='dlPeriod']", "xpath:attributes"],
+        ["xpath=//div[@id='pPeriod']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "28731a0c-e89e-47c0-ae3d-ed44d21d9bdd",
+      "comment": "",
+      "command": "click",
+      "target": "id=dlType",
+      "targets": [
+        ["id=dlType", "id"],
+        ["name=dlType", "name"],
+        ["css=#dlType", "css"],
+        ["css=#dlType", "css:finder"],
+        ["xpath=//select[@id='dlType']", "xpath:attributes"],
+        ["xpath=//div[@id='pType']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[6]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "963924c0-0dbb-4006-9b02-4482bc90110c",
+      "comment": "",
+      "command": "select",
+      "target": "id=dlType",
+      "targets": [],
+      "value": "label=List Timetable (with calendar dates)"
+    }, {
+      "id": "61a02d6a-5531-4038-afed-501b32624a25",
+      "comment": "",
+      "command": "click",
+      "target": "id=dlType",
+      "targets": [
+        ["id=dlType", "id"],
+        ["name=dlType", "name"],
+        ["css=#dlType", "css"],
+        ["css=#dlType", "css:finder"],
+        ["xpath=//select[@id='dlType']", "xpath:attributes"],
+        ["xpath=//div[@id='pType']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[6]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1267b434-b1a8-43be-966d-3e1be4520b8f",
+      "comment": "",
+      "command": "click",
+      "target": "id=bGetTimetable",
+      "targets": [
+        ["id=bGetTimetable", "id"],
+        ["name=bGetTimetable", "name"],
+        ["css=#bGetTimetable", "css"],
+        ["css=#bGetTimetable", "css:finder"],
+        ["xpath=//input[@id='bGetTimetable']", "xpath:attributes"],
+        ["xpath=//div[@id='pButton']/input", "xpath:idRelative"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "ccd9f074-f6bb-4900-bdf0-d2bc199b05f8",
+    "name": "goto calendar v3",
+    "commands": [{
+      "id": "93770d13-675c-4efe-8551-a47fcc0a1505",
+      "comment": "",
+      "command": "open",
+      "target": "/cp/home/displaylogin",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "85616926-9e9f-4fbf-83e9-a99d02183530",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1365x1040",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "88e86b4e-a481-4134-8966-77ab08fa900a",
+      "comment": "",
+      "command": "click",
+      "target": "name=user",
+      "targets": [
+        ["name=user", "name"],
+        ["css=input[name=\"user\"]", "css"],
+        ["css=tr:nth-child(2) .textform", "css:finder"],
+        ["xpath=//input[@name='user']", "xpath:attributes"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]/form/font/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f4524e1-30c6-4d44-8e3e-8cf04f3b9805",
+      "comment": "",
+      "command": "type",
+      "target": "name=user",
+      "targets": [
+        ["name=user", "name"],
+        ["css=input[name=\"user\"]", "css"],
+        ["css=tr:nth-child(2) .textform", "css:finder"],
+        ["xpath=//input[@name='user']", "xpath:attributes"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]/form/font/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "thm837"
+    }, {
+      "id": "767a5980-347f-4e9e-8a11-5518f83a96ca",
+      "comment": "",
+      "command": "click",
+      "target": "name=pass",
+      "targets": [
+        ["name=pass", "name"],
+        ["css=input[name=\"pass\"]", "css"],
+        ["css=tr:nth-child(3) .textform", "css:finder"],
+        ["xpath=//input[@name='pass']", "xpath:attributes"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[3]/td[2]/form/font/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/form/font/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4a4db7b2-dcec-492f-ae74-e344ab20a0f4",
+      "comment": "",
+      "command": "type",
+      "target": "name=pass",
+      "targets": [
+        ["name=pass", "name"],
+        ["css=input[name=\"pass\"]", "css"],
+        ["css=tr:nth-child(3) .textform", "css:finder"],
+        ["xpath=//input[@name='pass']", "xpath:attributes"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[3]/td[2]/form/font/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/form/font/input", "xpath:position"]
+      ],
+      "value": "Divine-09"
+    }, {
+      "id": "40b77969-cfdf-4691-86e2-2187fc4fbcee",
+      "comment": "",
+      "command": "click",
+      "target": "css=img[alt=\"Login\"]",
+      "targets": [
+        ["css=img[alt=\"Login\"]", "css"],
+        ["css=td > a:nth-child(1) > img", "css:finder"],
+        ["xpath=//img[@alt='Login']", "xpath:img"],
+        ["xpath=//div[@id='wrapper']/div/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[4]/td/a/img", "xpath:idRelative"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f00e391-c506-4ae7-aa1b-2d4ede4a6c35",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "linkText=my.learning",
+      "targets": [
+        ["linkText=my.learning", "linkText"],
+        ["css=.taboff:nth-child(4) #tab", "css:finder"],
+        ["xpath=//a[contains(text(),'my.learning')]", "xpath:link"],
+        ["xpath=(//a[@id='tab'])[4]", "xpath:attributes"],
+        ["xpath=//table[@id='tabs_tda']/tbody/tr/td[4]/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'tag.dffb6f8e5073dad7.render.userLayoutRootNode.uP?uP_root=root&uP_sparam=activeTab&activeTab=u12l1s149&uP_tparam=frm&frm=')]", "xpath:href"],
+        ["xpath=//td[4]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4c3846f9-5bad-458e-a9b2-8a7e5fa9f1a1",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "linkText=my.learning",
+      "targets": [
+        ["linkText=my.learning", "linkText"],
+        ["css=.taboff:nth-child(4) #tab", "css:finder"],
+        ["xpath=//a[contains(text(),'my.learning')]", "xpath:link"],
+        ["xpath=(//a[@id='tab'])[4]", "xpath:attributes"],
+        ["xpath=//table[@id='tabs_tda']/tbody/tr/td[4]/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'tag.dffb6f8e5073dad7.render.userLayoutRootNode.uP?uP_root=root&uP_sparam=activeTab&activeTab=u12l1s149&uP_tparam=frm&frm=')]", "xpath:href"],
+        ["xpath=//td[4]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ed38c89c-8a70-45fd-a09d-16f31607e5ac",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=my.timetables",
+      "targets": [
+        ["linkText=my.timetables", "linkText"],
+        ["css=.taboff:nth-child(3) #tab", "css:finder"],
+        ["xpath=//a[contains(text(),'my.timetables')]", "xpath:link"],
+        ["xpath=(//a[@id='tab'])[3]", "xpath:attributes"],
+        ["xpath=//table[@id='tabs_tda']/tbody/tr/td[3]/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'tag.dffb6f8e5073dad7.render.userLayoutRootNode.uP?uP_root=root&uP_sparam=activeTab&activeTab=u12l1s5459&uP_tparam=frm&frm=')]", "xpath:href"],
+        ["xpath=//td[3]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f16181c4-ad93-46ae-a729-b02b72b32b05",
+      "comment": "",
+      "command": "click",
+      "target": "css=strong > span",
+      "targets": [
+        ["css=strong > span", "css"],
+        ["css=strong > span", "css:finder"],
+        ["xpath=//a[@id='webtimetableslink']/strong/span", "xpath:idRelative"],
+        ["xpath=//strong/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b75cb685-939a-4e92-a136-d5a96a431319",
+      "comment": "",
+      "command": "selectFrame",
+      "target": "index=0",
+      "targets": [
+        ["index=0"]
+      ],
+      "value": ""
+    }, {
+      "id": "d6312313-77cb-43b2-8dee-0ffcabe31d1d",
+      "comment": "",
+      "command": "click",
+      "target": "css=img",
+      "targets": [
+        ["css=img", "css"],
+        ["css=img", "css:finder"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b178afbe-eb73-4a01-a88a-61420ca9103e",
+      "comment": "",
+      "command": "click",
+      "target": "id=LinkBtn_mystudentset",
+      "targets": [
+        ["id=LinkBtn_mystudentset", "id"],
+        ["css=#LinkBtn_mystudentset", "css"],
+        ["css=#LinkBtn_mystudentset", "css:finder"],
+        ["xpath=//a[contains(text(),'My Timetable')]", "xpath:link"],
+        ["xpath=//a[@id='LinkBtn_mystudentset']", "xpath:attributes"],
+        ["xpath=//div[@id='pLinkPanel']/div[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, \"javascript:__doPostBack('LinkBtn_mystudentset','')\")]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3e3a764e-639f-4e02-a950-0d39d0deb1e2",
+      "comment": "",
+      "command": "click",
+      "target": "id=LinkBtn_mystudentset",
+      "targets": [
+        ["id=LinkBtn_mystudentset", "id"],
+        ["css=#LinkBtn_mystudentset", "css"],
+        ["css=#LinkBtn_mystudentset", "css:finder"],
+        ["xpath=//a[contains(text(),'My Timetable')]", "xpath:link"],
+        ["xpath=//a[@id='LinkBtn_mystudentset']", "xpath:attributes"],
+        ["xpath=//div[@id='pLinkPanel']/div[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, \"javascript:__doPostBack('LinkBtn_mystudentset','')\")]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "af428f97-7d7b-4299-b0b5-1710e47b1a50",
+      "comment": "",
+      "command": "removeSelection",
+      "target": "id=lbWeeks",
+      "targets": [
+        ["id=lbWeeks", "id"],
+        ["name=lbWeeks", "name"],
+        ["css=#lbWeeks", "css"],
+        ["css=#lbWeeks", "css:finder"],
+        ["xpath=//select[@id='lbWeeks']", "xpath:attributes"],
+        ["xpath=//div[@id='pWeeks']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "label=This Week"
+    }, {
+      "id": "243b7081-4a6a-4d78-8c7f-564b04aad40c",
+      "comment": "",
+      "command": "addSelection",
+      "target": "id=lbWeeks",
+      "targets": [
+        ["id=lbWeeks", "id"],
+        ["name=lbWeeks", "name"],
+        ["css=#lbWeeks", "css"],
+        ["css=#lbWeeks", "css:finder"],
+        ["xpath=//select[@id='lbWeeks']", "xpath:attributes"],
+        ["xpath=//div[@id='pWeeks']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "label=*All Term Time"
+    }, {
+      "id": "97219c45-aa20-42f8-aff2-b64e1bde12ee",
+      "comment": "",
+      "command": "click",
+      "target": "css=option[value=\"6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43\"]",
+      "targets": [
+        ["css=option[value=\"6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43\"]", "css"],
+        ["css=#lbWeeks > option:nth-child(4)", "css:finder"],
+        ["xpath=//option[@value='6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43']", "xpath:attributes"],
+        ["xpath=//select[@id='lbWeeks']/option[4]", "xpath:idRelative"],
+        ["xpath=//option[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d0c0120a-06be-40b1-8705-04f9a540216c",
+      "comment": "",
+      "command": "click",
+      "target": "css=option[value=\"6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43\"]",
+      "targets": [
+        ["css=option[value=\"6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43\"]", "css"],
+        ["css=#lbWeeks > option:nth-child(4)", "css:finder"],
+        ["xpath=//option[@value='6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43']", "xpath:attributes"],
+        ["xpath=//select[@id='lbWeeks']/option[4]", "xpath:idRelative"],
+        ["xpath=//option[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6f73b029-ced8-4932-8027-a33d3fe1b3c5",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "css=option[value=\"6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43\"]",
+      "targets": [
+        ["css=option[value=\"6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43\"]", "css"],
+        ["css=#lbWeeks > option:nth-child(4)", "css:finder"],
+        ["xpath=//option[@value='6;7;8;9;10;11;12;13;14;15;16;21;22;23;24;25;26;27;28;29;30;31;36;37;38;39;40;41;42;43']", "xpath:attributes"],
+        ["xpath=//select[@id='lbWeeks']/option[4]", "xpath:idRelative"],
+        ["xpath=//option[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8134bb7b-c725-4f77-a058-5eece74e32bc",
+      "comment": "",
+      "command": "removeSelection",
+      "target": "id=lbDays",
+      "targets": [
+        ["id=lbDays", "id"],
+        ["name=lbDays", "name"],
+        ["css=#lbDays", "css"],
+        ["css=#lbDays", "css:finder"],
+        ["xpath=//select[@id='lbDays']", "xpath:attributes"],
+        ["xpath=//div[@id='pDays']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": "label=All Weekdays"
+    }, {
+      "id": "646f58c4-1a47-42a6-8b49-b55dddd445c9",
+      "comment": "",
+      "command": "addSelection",
+      "target": "id=lbDays",
+      "targets": [
+        ["id=lbDays", "id"],
+        ["name=lbDays", "name"],
+        ["css=#lbDays", "css"],
+        ["css=#lbDays", "css:finder"],
+        ["xpath=//select[@id='lbDays']", "xpath:attributes"],
+        ["xpath=//div[@id='pDays']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": "label=All Week"
+    }, {
+      "id": "88d7fe1c-4980-49e2-aca9-3f65626ff04c",
+      "comment": "",
+      "command": "click",
+      "target": "css=option[value=\"1-7\"]",
+      "targets": [
+        ["css=option[value=\"1-7\"]", "css"],
+        ["css=#lbDays > option:nth-child(2)", "css:finder"],
+        ["xpath=//option[@value='1-7']", "xpath:attributes"],
+        ["xpath=//select[@id='lbDays']/option[2]", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[2]/select/option[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1dd705e0-71c2-4de4-afbe-5fa393878448",
+      "comment": "",
+      "command": "click",
+      "target": "css=option[value=\"1-7\"]",
+      "targets": [
+        ["css=option[value=\"1-7\"]", "css"],
+        ["css=#lbDays > option:nth-child(2)", "css:finder"],
+        ["xpath=//option[@value='1-7']", "xpath:attributes"],
+        ["xpath=//select[@id='lbDays']/option[2]", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[2]/select/option[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "35b0760f-e485-4d3b-80f6-c32a73d724e4",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "css=option[value=\"1-7\"]",
+      "targets": [
+        ["css=option[value=\"1-7\"]", "css"],
+        ["css=#lbDays > option:nth-child(2)", "css:finder"],
+        ["xpath=//option[@value='1-7']", "xpath:attributes"],
+        ["xpath=//select[@id='lbDays']/option[2]", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[2]/select/option[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2f3d2253-2af7-4546-a3da-800adcb11090",
+      "comment": "",
+      "command": "click",
+      "target": "id=dlType",
+      "targets": [
+        ["id=dlType", "id"],
+        ["name=dlType", "name"],
+        ["css=#dlType", "css"],
+        ["css=#dlType", "css:finder"],
+        ["xpath=//select[@id='dlType']", "xpath:attributes"],
+        ["xpath=//div[@id='pType']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[6]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "200407a0-9661-4fc0-be61-16f0286389ea",
+      "comment": "",
+      "command": "select",
+      "target": "id=dlType",
+      "targets": [],
+      "value": "label=List Timetable (with calendar dates)"
+    }, {
+      "id": "f9b7a8d0-975f-4025-be9f-824dfc036e7d",
+      "comment": "",
+      "command": "click",
+      "target": "id=dlType",
+      "targets": [
+        ["id=dlType", "id"],
+        ["name=dlType", "name"],
+        ["css=#dlType", "css"],
+        ["css=#dlType", "css:finder"],
+        ["xpath=//select[@id='dlType']", "xpath:attributes"],
+        ["xpath=//div[@id='pType']/table/tbody/tr/td[2]/select", "xpath:idRelative"],
+        ["xpath=//div[6]/table/tbody/tr/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "42fad8bc-f924-41b2-b1c5-3c4d67187232",
+      "comment": "",
+      "command": "click",
+      "target": "id=bGetTimetable",
+      "targets": [
+        ["id=bGetTimetable", "id"],
+        ["name=bGetTimetable", "name"],
+        ["css=#bGetTimetable", "css"],
+        ["css=#bGetTimetable", "css:finder"],
+        ["xpath=//input[@id='bGetTimetable']", "xpath:attributes"],
+        ["xpath=//div[@id='pButton']/input", "xpath:idRelative"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "6bee2950-f541-4e01-9e82-56b367335a1e",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["82acdbb9-e7a3-4e08-bf48-ec49ab1f0d8e"]
+  }],
+  "urls": ["https://www.my.bham.ac.uk/"],
+  "plugins": []
+}
