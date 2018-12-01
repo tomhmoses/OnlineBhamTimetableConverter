@@ -1,5 +1,6 @@
 import getFrame
 import converter
+import googleCalendarMaker
 
 def main():
     username = raw_input("Please enter your username: ")
@@ -11,6 +12,8 @@ def main():
         quit()
     csv = converter.Main(frameSource)
     saveToFile(csv, "Timetable.csv")
+    googleCalendarMaker.main(username, csv)
+
 
 def saveToFile(text, filePath = "output.txt"):
     file = open(filePath, "w")
