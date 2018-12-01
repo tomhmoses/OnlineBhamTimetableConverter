@@ -1,3 +1,6 @@
 *.slide
 *.sublime-project
 *.sublime-workspace
+credentials.jason
+frame.html
+exampleFrame.html
