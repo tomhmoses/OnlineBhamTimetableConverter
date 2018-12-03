@@ -5,5 +5,7 @@ To get this to work you may need to change a few string where I mention `bham.ti
 
 At the moment you can run the `BhamCalConverter.py` file to be emailed a google calendar link.
 
-# example
+# Example
 Visit: https://tomhmoses.pythonanywhere.com/
+
+As if writing this README, it currently does not work as there are some issues with running Selenium through Flask on pythonanywhere.
