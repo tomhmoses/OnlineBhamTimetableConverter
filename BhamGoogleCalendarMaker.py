@@ -76,7 +76,7 @@ def main(username, email, csv):
             }
             try:
                 event = service.events().insert(calendarId=calID, body=eventDetails).execute()
-                time.sleep(20)
+                time.sleep(0.2)
                 counter += 1
             except:
                 pp = pprint.PrettyPrinter(indent=4)
