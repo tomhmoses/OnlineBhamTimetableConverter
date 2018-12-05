@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
+import time
 
 def getFrameSourceAnywhere(username, password):
     with Display():
@@ -28,13 +29,11 @@ def getFrameSource(username, password):
 
         #opens google to check things are working
         driver.get("https://www.google.co.uk/")
-        print("opened google to check things are working...")
         driver.save_screenshot("screenshot0g.png")
         print("saved screenshot of google home page")
 
         #opens login page
         driver.get(loginURL)
-        print("opened login page...")
         driver.save_screenshot("screenshot0.png")
         print("saved screenshot of login page")
 
@@ -145,3 +144,4 @@ def getFrameSource(username, password):
 
     finally:
         driver.quit()
+
