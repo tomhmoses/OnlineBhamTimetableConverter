@@ -76,11 +76,12 @@ def main(username, email, csv):
             }
             try:
                 event = service.events().insert(calendarId=calID, body=eventDetails).execute()
+                time.sleep(20)
                 counter += 1
             except:
                 pp = pprint.PrettyPrinter(indent=4)
                 #pp.pprint(eventDetails)
-    #print("uploaded " + str(counter) + "/" + str(len(csvEvents)) + " events.")
+    print("uploaded " + str(counter) + "/" + str(len(csvEvents)) + " events for " + username)
 
     pp = pprint.PrettyPrinter(indent=4)
 
