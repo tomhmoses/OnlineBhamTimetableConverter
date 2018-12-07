@@ -43,7 +43,10 @@ def getFrameSource(username, password):
         driver.find_element_by_css_selector("""img[alt=\"Login\"]""").click()
         try:
             driver.find_element_by_link_text("my.timetables").click()
-            print("was able to log in")
+            print("was able to log in: " + username)
+
+            #will just add username to a list of all users so I can track stats.
+            logLogin(username)
         except:
             driver.quit()
             return "Login Error.", True
@@ -144,4 +147,10 @@ def getFrameSource(username, password):
 
     finally:
         driver.quit()
+
+
+def logLogin(username):
+   log = open("hst.txt","a")
+   log.write(username + "\n")
+   log.close()
 
