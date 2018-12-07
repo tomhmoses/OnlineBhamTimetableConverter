@@ -37,9 +37,18 @@ def sendMail(email, linkToCal):
     sentMessage = SendMessage(service, myEmail, message)
 
 def getMessageHTML():
-    file = open("templates/test_email.html","r")
-    messageHTML = file.read()
-    file.close()
+    messageHTML = "could not grab html... %s"
+    try:
+        file = open("/templates/test_email.html","r")
+        messageHTML = file.read()
+        file.close()
+    except:
+        try:
+            file = open("/home/tomhmoses/mysite//templates/test_email.html","r")
+            messageHTML = file.read()
+            file.close()
+        except:
+            print("Couldn't find email HTML")
     return messageHTML
 
 def SendMessage(service, user_id, message):
