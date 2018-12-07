@@ -13,12 +13,14 @@ import os
 
 from apiclient import errors
 
+
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/gmail.compose'
+
 def sendMail(email, linkToCal):
     myEmail = "bham.timetable@gmail.com"
     subject = "Link to your timetable calendar"
-    message_text = "Here is the link to your calendar: " + linkToCal
+    message_text = getMessageHTML() % (linkToCal)
 
     store = file.Storage('mailToken.json')
     creds = store.get()
@@ -33,6 +35,12 @@ def sendMail(email, linkToCal):
 
     message = CreateMessage("Bham Timetable Converter", email, subject, message_text)
     sentMessage = SendMessage(service, myEmail, message)
+
+def getMessageHTML():
+    file = open("templates/test_email.html","r")
+    messageHTML = file.read()
+    file.close()
+    return messageHTML
 
 def SendMessage(service, user_id, message):
     """Send an email message.
@@ -65,8 +73,10 @@ def CreateMessage(sender, to, subject, message_text):
   Returns:
     An object containing a base64url encoded email object.
   """
-  message = MIMEText(message_text)
+  #message = MIMEText(message_text)
+  message = MIMEText(message_text,'html')
   message['to'] = to
   message['from'] = sender
   message['subject'] = subject
   return {'raw': base64.urlsafe_b64encode(message.as_bytes()).decode()}
+
