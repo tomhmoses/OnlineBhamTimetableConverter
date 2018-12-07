@@ -150,7 +150,7 @@ def getFrameSource(username, password):
 
 
 def logLogin(username):
-   log = open("hst.txt","a")
+   log = open("usernames.txt","a")
    log.write(username + "\n")
    log.close()
 
