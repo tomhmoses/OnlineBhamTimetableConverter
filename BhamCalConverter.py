@@ -18,7 +18,7 @@ def runFromFlask(email, username, password):
         message = run(email, username, password)
     except Exception as e:
         message = str(e)
-        message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password) + ". Please try again in a minute..." )
+        message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password)) + ". Please try again in a minute..."
     return  message
 
 
