@@ -7,6 +7,6 @@ To get this to work you may need to change a few string where I mention `bham.ti
 # Example
 Visit [my pythonanywhere site to see it on action](https://tomhmoses.pythonanywhere.com/timetable/).
 
-As if writing this README, it currently fully works!
+As of writing this README, it currently fully works!
 
 (thanks to the pytonanywhere team for helping me [solve some issues](https://www.pythonanywhere.com/forums/topic/13594/))
