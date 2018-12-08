@@ -16,16 +16,12 @@ def getFrameSource(username, password):
         loginURL = "https://www.my.bham.ac.uk/cp/home/displaylogin"
         actualWebTimeTableURL = """https://onlinetimetables.bham.ac.uk/Timetable/current_academic_year_2/default.aspx"""
 
-        #opens instance of webdriver
-        #options = webdriver.FirefoxOptions()
-        #options.add_argument('-headless')
         try:
-            #driver = webdriver.Firefox(firefox_options=options)
             print("trying to load firefox")
             driver = webdriver.Firefox()
         except:
             print("was unable to open firefox driver.")
-            return "was unable to open firefox driver.", True
+            return "was unable to open firefox driver. Please try again...", True
 
         #opens google to check things are working
         #driver.get("https://www.google.co.uk/")
@@ -50,12 +46,12 @@ def getFrameSource(username, password):
         except:
             driver.quit()
             print("login error")
-            return "Login Error.", True
+            return "Login Error. Please try again...", True
         try:
             driver.get(actualWebTimeTableURL)
         except:
             driver.quit()
-            return "Failed to load web timetables page", True
+            return "Failed to load web timetables page. Please try again...", True
 
         #will try to log in again
         try:
@@ -86,7 +82,7 @@ def getFrameSource(username, password):
                 print("already logged in")
         except:
             driver.quit()
-            return "Failed to goto 'My Timetable'.", True
+            return "Failed to goto 'My Timetable'. Please try again...", True
 
         #selects options from drop downs:
         try:
@@ -123,7 +119,7 @@ def getFrameSource(username, password):
                         el = driver.find_element_by_css_selector("#dlType")
                         print("found dlType by CSS")
                     except:
-                        print("Failed to find element 3 time")
+                        print("Failed to find element 3 time. Please try again...")
             el.click()
             #driver.save_screenshot("screenshot3d.png")
             select = Select(el)
@@ -134,14 +130,17 @@ def getFrameSource(username, password):
         except:
             driver.save_screenshot("screenshot3f.png")
             driver.quit()
-            return "Failed to select correct view options.", True
+            return "Failed to select correct view options. Please try again...", True
 
         #gets calendar list view
+        print("going to list view")
         driver.find_element_by_id("bGetTimetable").click()
+        print("getting source")
 
         #gets page source
         frameHTML = driver.page_source
-        driver.save_screenshot("screenshot4.png")
+        print("returning")
+        #driver.save_screenshot("screenshot4.png")
         driver.quit()
 
         return frameHTML, False
@@ -154,4 +153,3 @@ def logLogin(username):
    log = open("usernameLog.txt","a")
    log.write(username + "\n")
    log.close()
-
