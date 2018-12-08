@@ -4,13 +4,18 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>UoB Timetable Converter | Convert your uni timetable into a calendar for easy viewing ready for next term!</title>
         <style>
             .pinkbutton {background-color: #FC92A4; border: none;} /* Pink */
         </style>
     </head>
-    <body>
+    <body data-spy="scroll" data-target="#navbar">
         <!—- facebook share button javascript —->
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
@@ -21,7 +26,7 @@
             fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script>
-        <nav id="navbar" class="navbar navbar-light bg-light">
+        <nav id="navbar" class="navbar sticky-top navbar-light bg-light">
             <span class="navbar-brand">UoB Timetable Converter</span>
             <ul class="nav nav-pills">
                 <li class="nav-item">
@@ -40,11 +45,14 @@
         </nav>
         <div class="container" data-spy="scroll" data-target="#navbar" data-offset="0">
             {% if error %}
-            <div class="alert alert-warning" role="alert">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Error! </strong> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             {% endif %}
-            <h1>
+            <h1 id="start">
                 What to do
             </h1>
             <p>
@@ -53,7 +61,7 @@
             <p>
                 You can leave the email field blank and it will be sent to your uni email. <strong>However,</strong> using your email linked with your existing google calendar can make things easier.
             </p>
-            <h3 id="start">
+            <h3>
                 Start Conversion
             </h3>
             <form action="." method="POST">
@@ -72,7 +80,7 @@
                 <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
             </form>
             <p>
-                It might take a few minutes to load but you don't need to wait after you click this button.
+                It might take a few minutes to load but you don't need to wait here after you click this button.
             </p>
             <!--  </div> -->
             <!-- <div class="row"> -->
