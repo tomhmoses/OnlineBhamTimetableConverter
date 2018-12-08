@@ -29,10 +29,6 @@ def sendMail(email, linkToCal):
         creds = tools.run_flow(flow, store)
     service = build('gmail', 'v1', http=creds.authorize(Http()))
 
-    print()
-    print(message_text)
-    print()
-
     message = CreateMessage("Bham Timetable Converter", email, subject, message_text)
     sentMessage = SendMessage(service, myEmail, message)
 
