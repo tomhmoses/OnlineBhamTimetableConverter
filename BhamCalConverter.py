@@ -11,6 +11,9 @@ def main():
 
 def runFromFlask(email, username, password):
     print("running from flask")
+    username = checkUsername(username)
+    if username == "Invalid username":
+        return username
     if email == "":
         print("uni email generated")
         email = username + "@student.bham.ac.uk"
@@ -19,7 +22,16 @@ def runFromFlask(email, username, password):
     except Exception as e:
         message = str(e)
         message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password)) + ". Please try again in a minute..."
-    return  message
+    return message
+
+def checkUsername(username):
+    if "@" in username:
+        username = username[:username.find("@")]
+    username = username.replace(" ", "")
+    for char in username:
+        if not (char.isalpha() or char.isdigit()):
+            return "Invalid username"
+    return username
 
 
 def run(email, username, password):
