@@ -18,9 +18,10 @@ The user enters their details into my website running through flask. These detai
 - This is passed to another python program where a new google calendar is created and all the events are added to it, using the google api
 - This calendar is made public and owership permissions are given to the email the user gave. This means that if the user gave their google account email then it is automatically shared with them in this process.
 - The user is then sent a HTML email with a link to view the new calendar.
+
 <details>
 <summary>Example email</summary>
 <br>
 ![alt text](https://tinyurl.com/yaqw4tou "Example email")
-<details>
+</details>
 
