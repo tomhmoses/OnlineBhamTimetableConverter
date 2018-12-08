@@ -4,11 +4,13 @@ import BhamCalConverter
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-#comments = []
+BhamCalConverter.resetInUse()
+
 
 @app.route("/timetable/", methods=["GET", "POST"])
 def main():
     if request.method == "GET":
+        BhamCalConverter.trackVisit()
         return render_template("main_page.html", error=False, message = "")
 
 
@@ -35,6 +37,16 @@ def done():
 def testEmail():
     return render_template("test_email.html")
 
+@app.route("/test/stats/")
+def stats():
+    stats = BhamCalConverter.getStats()
+    return render_template("stats_page.html", visits = stats["visits"], users = stats["users"])
+
 @app.route("/share/")
 def share():
     return render_template("share_page.html")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
