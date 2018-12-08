@@ -13,12 +13,6 @@ args = tools.argparser.parse_args()
 args.noauth_local_webserver = True
 
 def main(username, email, csv):
-    """Shows basic usage of the Google Calendar API.
-    Prints the start and name of the next 10 events on the user's calendar.
-    """
-    # The file token.json stores the user's access and refresh tokens, and is
-    # created automatically when the authorization flow completes for the first
-    # time.
     store = file.Storage('token.json')
     creds = store.get()
     if not creds or creds.invalid:
@@ -26,19 +20,7 @@ def main(username, email, csv):
         creds = tools.run_flow(flow, store, args)
     service = build('calendar', 'v3', http=creds.authorize(Http()))
 
-    # Call the Calendar API
-    #now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    #print('Getting the upcoming 10 events')
-    #events_result = service.events().list(calendarId='primary', timeMin=now,
-    #                                    maxResults=10, singleEvents=True,
-    #                                    orderBy='startTime').execute()
-    #events = events_result.get('items', [])
 
-    #if not events:
-    #    print('No upcoming events found.')
-    #for event in events:
-    #    start = event['start'].get('dateTime', event['start'].get('date'))
-    #    print(start, event['summary'])
 
     summary = "UoB Timetable: " + username
     timeZone = "Europe/London"
@@ -46,21 +28,16 @@ def main(username, email, csv):
     'summary': summary,
     'timeZone': timeZone
     }
-    #print("about to make new calendar")
+    print("about to make new calendar")
     created_calendar = service.calendars().insert(body=calendar).execute()
     calID = created_calendar["id"]
     csvEvents = csv.split("\n")
-    #print(csvEvents)
-    #scvEvents = csvEvents[1:]
-    #print(csvEvents)
     counter = 0
     for csvEvent in csvEvents:
-        #print("doing loop")
         deets = csvEvent.split(",")
         if toDateTimeZ(deets[0], deets[3]) == "":
-            myLog("error occurred setting datetime so skipped.")
+            print("error occurred setting datetime so skipped.")
         else:
-            #print(timeformat)
             eventDetails = {
               'summary': deets[2],
               'location': deets[5],
@@ -79,8 +56,7 @@ def main(username, email, csv):
                 time.sleep(0.2)
                 counter += 1
             except:
-                pp = pprint.PrettyPrinter(indent=4)
-                #pp.pprint(eventDetails)
+                print("failed to create event: " + str(counter))
     print("uploaded " + str(counter) + "/" + str(len(csvEvents)) + " events for " + username)
 
     pp = pprint.PrettyPrinter(indent=4)
@@ -93,8 +69,8 @@ def main(username, email, csv):
         'role': 'reader'
     }
 
-    print("sleeping for 20 seconds...")
-    time.sleep(20)
+    print("sleeping for 5 seconds...")
+    time.sleep(5)
     created_rule = service.acl().insert(calendarId=calID, body=rule).execute()
     pp.pprint(created_rule)
 
@@ -106,15 +82,14 @@ def main(username, email, csv):
         'role': 'owner'
     }
 
-    print("sleeping for 20 seconds...")
-    time.sleep(20)
+    print("sleeping for 5 seconds...")
+    time.sleep(5)
     created_rule = service.acl().insert(calendarId=calID, body=rule).execute()
     pp.pprint(created_rule)
+    #if this failed then perhaps a 5 second delay is too short.
 
     return "https://calendar.google.com/calendar/r?cid=" + calID
 
-def myLog(text):
-    doesNothing = text
 
 def toDateTimeZ(dateString, timeString):
     bitsOfDate = dateString.split("/")
