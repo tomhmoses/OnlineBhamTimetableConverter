@@ -32,6 +32,7 @@ def main(username, email, csv):
     created_calendar = service.calendars().insert(body=calendar).execute()
     calID = created_calendar["id"]
     csvEvents = csv.split("\n")
+    csvEvents = csvEvents[1:]
     counter = 0
     for csvEvent in csvEvents:
         deets = csvEvent.split(",")
