@@ -12,7 +12,7 @@ As of writing this README, it currently fully works!
 (thanks to the pytonanywhere team for helping me [solve some issues](https://www.pythonanywhere.com/forums/topic/13594/))
 
 # What happens
-The user enters their details into my website running through flask. These details are then validated and passed into the main program:
+- The user enters their details into my website running through flask. These details are then validated and passed into the main program:
 - The university timetable website is loaded, logged into, and the html is scraped
 - This is then parsed and turned into a CSV of all the found events
 - This is passed to another python program where a new google calendar is created and all the events are added to it, using the google api
