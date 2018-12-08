@@ -21,6 +21,8 @@ The user enters their details into my website running through flask. These detai
 
 <details>
 <summary>Example email</summary>
+  
 ![alt text](https://tinyurl.com/yaqw4tou "Example email")
+
 </details>
 
