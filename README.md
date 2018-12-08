@@ -5,7 +5,7 @@ To get this to work you may need to change a few string where I mention `bham.ti
 
 
 # Example
-Visit [my pythonanywhere site to see it on action](https://tomhmoses.pythonanywhere.com/timetable/).
+Visit [my pythonanywhere](https://tomhmoses.pythonanywhere.com/timetable/) site to see it on action.
 
 As of writing this README, it currently fully works!
 
