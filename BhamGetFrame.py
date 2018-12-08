@@ -28,14 +28,14 @@ def getFrameSource(username, password):
             return "was unable to open firefox driver.", True
 
         #opens google to check things are working
-        driver.get("https://www.google.co.uk/")
-        driver.save_screenshot("screenshot0g.png")
-        print("saved screenshot of google home page")
+        #driver.get("https://www.google.co.uk/")
+        #driver.save_screenshot("screenshot0g.png")
+        #print("saved screenshot of google home page")
 
         #opens login page
         driver.get(loginURL)
-        driver.save_screenshot("screenshot0.png")
-        print("saved screenshot of login page")
+        #driver.save_screenshot("screenshot0.png")
+        #print("saved screenshot of login page")
 
         #navigates through login page
         driver.find_element_by_name("user").send_keys(username)
@@ -49,6 +49,7 @@ def getFrameSource(username, password):
             logLogin(username)
         except:
             driver.quit()
+            print("login error")
             return "Login Error.", True
         try:
             driver.get(actualWebTimeTableURL)
@@ -64,7 +65,7 @@ def getFrameSource(username, password):
         except:
             print("already logged in")
 
-        driver.save_screenshot("screenshot.png")
+        #driver.save_screenshot("screenshot.png")
         #el = driver.find_elements_by_id("LinkBtn_mystudentset")
         try:
             #driver.find_element_by_id("LinkBtn_mystudentset").click()
@@ -73,14 +74,14 @@ def getFrameSource(username, password):
             javascript = "javascript:__doPostBack('LinkBtn_mystudentset','')"
             driver.execute_script(javascript)
             print("clicked element... worked")
-            driver.save_screenshot("screenshot3.png")
+            #driver.save_screenshot("screenshot3.png")
             #will try to log in again
             try:
                 driver.find_element_by_name("tUserName").send_keys(username)
                 driver.find_element_by_name("tPassword").send_keys(password)
                 driver.find_element_by_name("bLogin").click()
                 driver.execute_script(javascript)
-                driver.save_screenshot("screenshot3b.png")
+                #driver.save_screenshot("screenshot3b.png")
             except:
                 print("already logged in")
         except:
@@ -106,7 +107,7 @@ def getFrameSource(username, password):
             print("selected days")
 
             select = Select(driver.find_element_by_id("dlPeriod"))
-            driver.save_screenshot("screenshot3c.png")
+            #driver.save_screenshot("screenshot3c.png")
             select.select_by_visible_text('All Day (08:00 - 22:00)')
             print("selected period")
 
@@ -124,10 +125,10 @@ def getFrameSource(username, password):
                     except:
                         print("Failed to find element 3 time")
             el.click()
-            driver.save_screenshot("screenshot3d.png")
+            #driver.save_screenshot("screenshot3d.png")
             select = Select(el)
             print("selected dlType")
-            driver.save_screenshot("screenshot3e.png")
+            #driver.save_screenshot("screenshot3e.png")
             select.select_by_visible_text('List Timetable (with calendar dates)')
             print("selected view type")
         except:
