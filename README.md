@@ -21,7 +21,7 @@ As of writing this README, it currently fully works!
   - <details>
     <summary>Example email</summary>
 
-    ![alt text](https://tinyurl.com/yaqw4tou "Example email")
+    ![alt text](https://i.imgur.com/wC4vPDy_d.jpg "Example email")
 
     </details>
 
