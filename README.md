@@ -21,7 +21,7 @@ As of writing this README, it currently fully works!
   - <details>
     <summary>Example email</summary>
 
-    ![alt text](https://i.imgur.com/wC4vPDy_d.jpg "Example email")
-
+    <a href="https://ibb.co/ggWcxhZ"><img src="https://i.ibb.co/ggWcxhZ/CC5-C9-AD2-AA69-44-B1-9-C9-B-93-A44489085-F.jpg" alt="example email screensho" border="0" /></a>
+    
     </details>
 
