@@ -8,6 +8,8 @@ import pickle
 visitsFilePath = "visits.pickle"
 usernameLogFilePath = "usernameLog.txt"
 inUseFilePath = "inUse.pickle"
+queueFilePath = "queue.pickle"
+warningFilePath = "siteWarning.txt"
 
 def resetInUse():
     inUse = False
@@ -44,6 +46,29 @@ def runFromFlask(email, username, password):
             resetInUse()
     return message
 
+def runFromFlaskWithDB(email, username, password):
+    print("running from flask")
+    mins = 0
+    username = checkUsername(username)
+    if username == "Invalid username":
+        return username, mins
+    if loadPickle(inUseFilePath):
+        print("was in use :(")
+        message = "Somebody else is using the service right now. Please try again in 10 seconds..."
+    else:
+        setInUse()
+        if email == "":
+            print("uni email generated")
+            email = username + "@student.bham.ac.uk"
+        try:
+            message, mins = runWithDB(email, username, password)
+        except Exception as e:
+            message = str(e)
+            message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password)) + ". Please try again in 10 seconds..."
+        finally:
+            resetInUse()
+    return message, mins
+
 def checkUsername(username):
     if "@" in username:
         username = username[:username.find("@")]
@@ -69,9 +94,42 @@ def run(email, username, password):
     BhamCalEmailSender.sendMail(email, linkToCal)
     return "done"
 
+def runWithDB(email, username, password):
+    frameSource, errorOccured = BhamGetFrame.getFrameSourceAnywhere(username, password)
+    if errorOccured:
+        print("error occurred in getting frame.. trying again")
+        errorMessage = frameSource
+        if "Login Error." in errorMessage:
+            return errorMessage, 0
+        else:
+            frameSource, errorOccured = BhamGetFrame.getFrameSourceAnywhere(username, password)
+            if errorOccured:
+                print("error occurred in getting frame.. again")
+                errorMessage = frameSource
+                return errorMessage, 0
+    print("got frame source")
+    #saveToFile(frameSource, "frameSource.html")
+    csv = BhamTTConverter.main(frameSource)
+    print("generated csv")
+    #saveToFile(csv, "Timetable.csv")
+    queueLength = addToDB(username, email, csv)
+    #linkToCal = BhamGoogleCalendarMaker.main(username, email, csv)
+    #BhamCalEmailSender.sendMail(email, linkToCal)
+    return "done" , queueLength * 2.5
+
+def addToDB(username, email, csv):
+    try:
+        queue = loadPickle(queueFilePath)
+        details = [username, email, csv]
+        queue.append(details)
+        savePickle(queueFilePath, queue)
+        return len(queue)
+    except:
+        return 0
+
 def getStats():
     try:
-        visits = visits = loadPickle(visitsFilePath)
+        visits =  loadPickle(visitsFilePath)
     except:
         visits = 0
     try:
@@ -81,8 +139,22 @@ def getStats():
         users = len(usernames)
     except:
         visits = 0
-    stats = {"visits":visits, "users":users}
+    try:
+        queue = loadPickle(queueFilePath)
+        queueLen = len(queue)
+    except:
+        queue = 0
+    stats = {"visits":visits, "users":users, "queue":queueLen}
     return stats
+
+def getWarningMessage():
+    try:
+        file = open(warningFilePath, "r")
+        warning = file.read()
+        file.close()
+    except:
+        warning = ""
+    return warning
 
 def trackVisit():
     attempts = 3
