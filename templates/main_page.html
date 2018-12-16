@@ -44,9 +44,33 @@
             </ul>
         </nav>
         <div class="container" data-spy="scroll" data-target="#navbar" data-offset="0">
+            {% if test %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Warning! </strong> You are using a test version of this site...
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+            {% if warn %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{warning}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
             {% if error %}
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Error! </strong> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+            {% if done %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Done! </strong> You will be emailed in roughly {{ mins }} minutes.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -56,7 +80,7 @@
                 What to do
             </h1>
             <p>
-                Fill in the boxes below and click submit. You should be emailed a link to view (and inport) your calendar within a few minutes.
+                Fill in the boxes below and click submit. You should be emailed a link to view (and import) your calendar within a few minutes.
             </p>
             <p>
                 You can leave the email field blank and it will be sent to your uni email. <strong>However,</strong> using your email linked with your existing google calendar can make things easier.
@@ -80,10 +104,8 @@
                 <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
             </form>
             <p>
-                It might take a few minutes to load but you don't need to wait here after you click this button.
+                It might take a few minutes to load but (as long as your details are correct) you don't need to wait here after you click this button.
             </p>
-            <!--  </div> -->
-            <!-- <div class="row"> -->
             <h3>
             </h3>
             <h3 id="donate">
@@ -96,7 +118,6 @@
                 I'm currently trying to raise money for breast cancer now, I would really appriciate it if you donated around a fiver to this great cause:
             </p>
             <a href="https://l2p19.everydayhero.com/uk/tom" class="btn btn-secondary btn-lg pinkbutton">Tom’s London to Paris page</a>
-            <!--  </div> -->
             <h3 id = "share">
                 Share
             </h3>
@@ -107,6 +128,13 @@
             <p>
                 This project is made by Tom Moses (a first year Comp Sci student at UoB) and is <a href="https://tomhmoses.github.io/OnlineBhamTimetableConverter/" class="badge badge-secondary">open source</a>. If you need to contact me, <a href="mailto:tom@tmoses.co.uk?Subject=UoB%20Timetable%20Converter%20Comment" target="_top" class="badge badge-secondary">email me</a>.
             </p>
+            <h3 id="stats">
+                Stats
+            </h3>
+            <p>So far, the site has had <strong>{{stats["visits"]}}</strong> visits and <strong>{{stats["users"]}}</strong> users. There are currently <strong>{{stats["queue"]}}</strong> users in the queue.</p>
+            <p>This project is made of <strong>667</strong> lines of python code and <strong>320</strong> lines of HTML code.</p>
+            <p></p>
+            <p></p>
             <p></p>
             <p></p>
             <p></p>
