@@ -7,11 +7,12 @@ app.config["DEBUG"] = True
 BhamCalConverter.resetInUse()
 
 
-@app.route("/timetable/", methods=["GET", "POST"])
-def main():
+@app.route("/old/timetable/", methods=["GET", "POST"])
+def old():
     if request.method == "GET":
         BhamCalConverter.trackVisit()
-        return render_template("main_page.html", error=False, message = "")
+        stats = BhamCalConverter.getStats()
+        return render_template("main_page.html", error=False, message = "", stats = stats)
 
 
     email = request.form["email"]
@@ -23,7 +24,33 @@ def main():
     if message == "done":
         return redirect(url_for('done'))
 
-    return render_template("main_page.html", error=True, message = message)
+    stats = BhamCalConverter.getStats()
+    return render_template("main_page.html", error=True, message = message, stats = stats)
+
+@app.route("/timetable/", methods=["GET", "POST"])
+def main():
+    if request.method == "GET":
+        BhamCalConverter.trackVisit()
+        stats = BhamCalConverter.getStats()
+        warning = BhamCalConverter.getWarningMessage()
+        warn = False
+        if warning != "":
+            warn = True
+        return render_template("main_page.html", error=False, message = "", stats = stats, warn = warn, warning = warning)
+
+
+    email = request.form["email"]
+    username = request.form["username"]
+    password = request.form["password"]
+
+    #message = BhamCalConverter.run(email, username, password)
+    message, mins = BhamCalConverter.runFromFlaskWithDB(email, username, password)
+    if message == "done":
+        stats = BhamCalConverter.getStats()
+        return render_template("main_page.html", done=True, mins = mins, stats = stats)
+
+    stats = BhamCalConverter.getStats()
+    return render_template("main_page.html", error=True, message = message, stats = stats)
 
 @app.route("/")
 def timetable():
