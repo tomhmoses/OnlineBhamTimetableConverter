@@ -13,10 +13,10 @@ args = tools.argparser.parse_args()
 args.noauth_local_webserver = True
 
 def main(username, email, csv):
-    store = file.Storage('token.json')
+    store = file.Storage('/home/tomhmoses/mysite/token.json')
     creds = store.get()
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
+        flow = client.flow_from_clientsecrets('/home/tomhmoses/mysite/credentials.json', SCOPES)
         creds = tools.run_flow(flow, store, args)
     service = build('calendar', 'v3', http=creds.authorize(Http()))
 
