@@ -4,6 +4,7 @@ import BhamGoogleCalendarMaker
 import getpass
 import BhamCalEmailSender
 import pickle
+from validate_email import validate_email
 
 visitsFilePath = "visits.pickle"
 usernameLogFilePath = "usernameLog.txt"
@@ -37,12 +38,17 @@ def runFromFlask(email, username, password):
         if email == "":
             print("uni email generated")
             email = username + "@student.bham.ac.uk"
-        try:
-            message = run(email, username, password)
-        except Exception as e:
-            message = str(e)
-            message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password)) + ". Please try again in 2 minutes..."
-        finally:
+        validEmail = validate_email(email)
+        if validEmail:
+            try:
+                message = run(email, username, password)
+            except Exception as e:
+                message = str(e)
+                message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password)) + ". Please try again in 2 minutes..."
+            finally:
+                resetInUse()
+        else:
+            message = "Invalid email, please try again..."
             resetInUse()
     return message
 
@@ -60,12 +66,17 @@ def runFromFlaskWithDB(email, username, password):
         if email == "":
             print("uni email generated")
             email = username + "@student.bham.ac.uk"
-        try:
-            message, mins = runWithDB(email, username, password)
-        except Exception as e:
-            message = str(e)
-            message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password)) + ". Please try again in 10 seconds..."
-        finally:
+        validEmail = validate_email(email)
+        if validEmail:
+            try:
+                message, mins = runWithDB(email, username, password)
+            except Exception as e:
+                message = str(e)
+                message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password)) + ". Please try again in 10 seconds..."
+            finally:
+                resetInUse()
+        else:
+            message = "Invalid email, please try again..."
             resetInUse()
     return message, mins
 
