@@ -6,7 +6,6 @@ app.config["DEBUG"] = True
 
 BhamCalConverter.resetInUse()
 
-
 @app.route("/old/timetable/", methods=["GET", "POST"])
 def old():
     if request.method == "GET":
@@ -37,7 +36,6 @@ def main():
         if warning != "":
             warn = True
         return render_template("main_page.html", error=False, message = "", stats = stats, warn = warn, warning = warning)
-
 
     email = request.form["email"]
     username = request.form["username"]
