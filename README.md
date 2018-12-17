@@ -10,9 +10,6 @@ To get this to work you may need to change a few string where I mention `bham.ti
 # Example
 Visit [my pythonanywhere](https://tomhmoses.pythonanywhere.com/timetable/) site to see it on action.
 
-As of writing this README, it currently fully works!
-
-(thanks to the pytonanywhere team for helping me [solve some issues](https://www.pythonanywhere.com/forums/topic/13594/))
 
 # What happens
 - The user enters their details into my website running through flask. These details are then validated and passed into the main program:
