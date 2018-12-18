@@ -11,6 +11,8 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>UoB Timetable Converter | Convert your uni timetable into a calendar for easy viewing ready for next term!</title>
+        <link rel="canonical" href="https://tomhmoses.pythonanywhere.com/timetable/" />
+        <link rel="me" href="https://twitter.com/tomhmoses" />
         <style>
             .pinkbutton {background-color: #FC92A4; border: none;} /* Pink */
         </style>
@@ -26,6 +28,24 @@
             fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script>
+        <!—- twiter share button javascript —->
+        <script>window.twttr = (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+          if (d.getElementById(id)) return t;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+
+          t._e = [];
+          t.ready = function(f) {
+            t._e.push(f);
+          };
+
+          return t;
+        }(document, "script", "twitter-wjs"));</script>
+        <!—- navbar —->
         <nav id="navbar" class="navbar sticky-top navbar-light bg-light">
             <span class="navbar-brand">UoB Timetable Converter</span>
             <ul class="nav nav-pills">
@@ -43,6 +63,7 @@
                 </li>
             </ul>
         </nav>
+        <!—- main page —->
         <div class="container" data-spy="scroll" data-target="#navbar" data-offset="0">
             {% if test %}
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -76,6 +97,8 @@
                 </button>
             </div>
             {% endif %}
+            <h3>
+            </h3>
             <h1 id="start">
                 What to do
             </h1>
@@ -86,7 +109,7 @@
                 You can leave the email field blank and it will be sent to your uni email. <strong>However,</strong> using your email linked with your existing google calendar can make things easier.
             </p>
             <h3>
-                Start Conversion
+                1. Start Conversion
             </h3>
             <form action="." method="POST">
                 <div class="form-group">
@@ -104,29 +127,42 @@
                 <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
             </form>
             <p>
-                It might take a few minutes to load but (as long as your details are correct) you don't need to wait here after you click this button.
+                It might take a few seconds to load but please just wait for the confirmation message.
             </p>
-            <h3>
-            </h3>
             <h3 id="donate">
-                Donate money to charity as a thank you
+                2. Donate money to charity as a thank you
             </h3>
             <p>
                 This took ages to make.
             </p>
             <p>
-                I'm currently trying to raise money for breast cancer now, I would really appriciate it if you donated around a fiver to this great cause:
+                I'm currently trying to raise money for breast cancer now, I would really appriciate it if you donated around £2-£5 to this great cause:
             </p>
-            <a href="https://l2p19.everydayhero.com/uk/tom" class="btn btn-secondary btn-lg pinkbutton">Tom’s London to Paris page</a>
+            <p>
+                <a href="https://l2p19.everydayhero.com/uk/tom" class="btn btn-secondary btn-lg pinkbutton">Tom’s London to Paris page</a>
+            </p>
             <h3 id = "share">
-                Share
+                3. Share
             </h3>
-            <div class="fb-like" data-href="https://tomhmoses.pythonanywhere.com/timetable/" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+            <p>
+                <div class="fb-like" data-href="https://tomhmoses.pythonanywhere.com/timetable/" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+            </p>
+            <p>
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Add%20your%20uni%20timetable%20to%20your%20phone%20calendar%20now%3A" data-size="large">
+                    Tweet
+                </a>
+            </p>
             <h1 id="about">
                 About
             </h1>
             <p>
                 This project is made by Tom Moses (a first year Comp Sci student at UoB) and is <a href="https://tomhmoses.github.io/OnlineBhamTimetableConverter/" class="badge badge-secondary">open source</a>. If you need to contact me, <a href="mailto:tom@tmoses.co.uk?Subject=UoB%20Timetable%20Converter%20Comment" target="_top" class="badge badge-secondary">email me</a>.
+            </p>
+            <p>
+                If you are worries about entering your details into this site, please rest assured that your password is never stored. Your email is temporarily stored while the processing is happening. Your username is stored so that I am able to track statistics of how many users I have.
+            </p>
+            <p>
+                If you do not want any information stored, there is <a href="https://repl.it/@TomMoses/timetable" class="badge badge-secondary">this</a> very old version I made (which is much more complicated to use).
             </p>
             <h3 id="stats">
                 Stats
