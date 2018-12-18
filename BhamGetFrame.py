@@ -30,13 +30,17 @@ def getFrameSource(username, password):
 
         #opens login page
         driver.get(loginURL)
-        #driver.save_screenshot("screenshot0.png")
+        #driver.save_screenshot("screenshot0a.png")
         #print("saved screenshot of login page")
 
         #navigates through login page
         driver.find_element_by_name("user").send_keys(username)
         driver.find_element_by_name("pass").send_keys(password)
+        #driver.save_screenshot("screenshot0b.png")
+        #print("saved screenshot of login page b")
         driver.find_element_by_css_selector("""img[alt=\"Login\"]""").click()
+        #driver.save_screenshot("screenshot0c.png")
+        #print("saved screenshot of login page c")
         try:
             driver.find_element_by_link_text("my.timetables").click()
             print("was able to log in: " + username)
