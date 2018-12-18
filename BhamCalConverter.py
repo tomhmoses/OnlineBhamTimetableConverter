@@ -43,12 +43,12 @@ def runFromFlaskWithDB(email, username, password):
             print("uni email generated")
             email = username + "@student.bham.ac.uk"
         validEmail = validate_email(email)
-        if username in getFreeUsers():
-            donated = True
-        else:
-            donated = DonationChecker.checkForDonationAnywhere(username)
-        if not donated:
-            return "It looks like you haven't donated yet. Please do that first. If you are sure you have donated and you are still getting this error please email me.", 0
+        #if username in getFreeUsers():
+        #    donated = True
+        #else:
+        #    donated = DonationChecker.checkForDonationAnywhere(username)
+        #if not donated:
+        #    return "It looks like you haven't donated yet. Please do that first. If you are sure you have donated and you are still getting this error please email me.", 0
         if validEmail:
             try:
                 message, mins = runWithDB(email, username, password)
