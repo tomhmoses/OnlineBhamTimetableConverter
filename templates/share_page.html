@@ -21,6 +21,23 @@
             fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script>
+        <!—- twiter share button javascript —->
+        <script>window.twttr = (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+          if (d.getElementById(id)) return t;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+
+          t._e = [];
+          t.ready = function(f) {
+            t._e.push(f);
+          };
+
+          return t;
+        }(document, "script", "twitter-wjs"));</script>
         <nav id="navbar" class="navbar navbar-light bg-light">
             <a class="navbar-brand" href = "https://tomhmoses.pythonanywhere.com/timetable/" >UoB Timetable Converter</a>
         </nav>
@@ -28,8 +45,15 @@
             <h1>
                 Share
             </h1>
-            <div class="fb-like" data-href="https://tomhmoses.pythonanywhere.com/timetable/" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
-            <p></p>
+            <p>
+                <div class="fb-like" data-href="https://tomhmoses.pythonanywhere.com/timetable/" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+            </p>
+            <p>
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Add%20your%20%40mybham%20timetable%20to%20your%20phone%20calendar%20now%3A" data-size="large">
+                    Tweet
+                </a>
+            </p>
+            </p>
             <p></p>
             <p></p>
             <p></p>
