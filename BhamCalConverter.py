@@ -3,6 +3,7 @@ import BhamTTConverter
 import BhamGoogleCalendarMaker
 import getpass
 import BhamCalEmailSender
+import DonationChecker
 import pickle
 from validate_email import validate_email
 
@@ -11,6 +12,7 @@ usernameLogFilePath = "usernameLog.txt"
 inUseFilePath = "inUse.pickle"
 queueFilePath = "queue.pickle"
 warningFilePath = "siteWarning.txt"
+freeUsersFilePath = "freeUsers.txt"
 
 MINS_PER_USER = 20
 
@@ -25,34 +27,6 @@ def setInUse():
 def main():
     email, username, password = getUserInput()
     print(run(email, username, password))
-
-
-def runFromFlask(email, username, password):
-    print("running from flask")
-    username = checkUsername(username)
-    if username == "Invalid username":
-        return username
-    if loadPickle(inUseFilePath):
-        print("was in use :(")
-        message = "Somebody else is using the service right now. Due to limitation with having a free google API account I can't handle more than one request at once. Please try again in 2 minutes..."
-    else:
-        setInUse()
-        if email == "":
-            print("uni email generated")
-            email = username + "@student.bham.ac.uk"
-        validEmail = validate_email(email)
-        if validEmail:
-            try:
-                message = run(email, username, password)
-            except Exception as e:
-                message = str(e)
-                message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password)) + ". Please try again in 2 minutes..."
-            finally:
-                resetInUse()
-        else:
-            message = "Invalid email, please try again..."
-            resetInUse()
-    return message
 
 def runFromFlaskWithDB(email, username, password):
     print("running from flask")
@@ -69,6 +43,12 @@ def runFromFlaskWithDB(email, username, password):
             print("uni email generated")
             email = username + "@student.bham.ac.uk"
         validEmail = validate_email(email)
+        if username in getFreeUsers():
+            donated = True
+        else:
+            donated = DonationChecker.checkForDonationAnywhere(username)
+        if not donated:
+            return "It looks like you haven't donated yet. Please do that first. If you are sure you have donated and you are still getting this error please email me.", 0
         if validEmail:
             try:
                 message, mins = runWithDB(email, username, password)
@@ -199,6 +179,12 @@ def saveToFile(text, filePath = "output.txt"):
     file = open(filePath, "w")
     file.write(text)
     file.close()
+
+def getFreeUsers():
+    file = open(freeUsersFilePath, "r")
+    contents = file.readlines()
+    file.close()
+    return contents
 
 def getUserInput():
     print("\nYou will be emailed the calendar as it takes a minute or two to generate.")
