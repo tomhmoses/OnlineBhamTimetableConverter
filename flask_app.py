@@ -6,26 +6,6 @@ app.config["DEBUG"] = True
 
 BhamCalConverter.resetInUse()
 
-@app.route("/old/timetable/", methods=["GET", "POST"])
-def old():
-    if request.method == "GET":
-        BhamCalConverter.trackVisit()
-        stats = BhamCalConverter.getStats()
-        return render_template("main_page.html", error=False, message = "", stats = stats)
-
-
-    email = request.form["email"]
-    username = request.form["username"]
-    password = request.form["password"]
-
-    #message = BhamCalConverter.run(email, username, password)
-    message = BhamCalConverter.runFromFlask(email, username, password)
-    if message == "done":
-        return redirect(url_for('done'))
-
-    stats = BhamCalConverter.getStats()
-    return render_template("main_page.html", error=True, message = message, stats = stats)
-
 @app.route("/timetable/", methods=["GET", "POST"])
 def main():
     if request.method == "GET":
@@ -36,6 +16,7 @@ def main():
         if warning != "":
             warn = True
         return render_template("main_page.html", error=False, message = "", stats = stats, warn = warn, warning = warning)
+
 
     email = request.form["email"]
     username = request.form["username"]
