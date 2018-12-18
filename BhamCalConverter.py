@@ -12,6 +12,8 @@ inUseFilePath = "inUse.pickle"
 queueFilePath = "queue.pickle"
 warningFilePath = "siteWarning.txt"
 
+MINS_PER_USER = 20
+
 def resetInUse():
     inUse = False
     savePickle(inUseFilePath, inUse)
@@ -126,7 +128,7 @@ def runWithDB(email, username, password):
     queueLength = addToDB(username, email, csv)
     #linkToCal = BhamGoogleCalendarMaker.main(username, email, csv)
     #BhamCalEmailSender.sendMail(email, linkToCal)
-    return "done" , queueLength * 2.5
+    return "done" , queueLength * MINS_PER_USER
 
 def addToDB(username, email, csv):
     try:
