@@ -14,7 +14,7 @@ queueFilePath = "queue.pickle"
 warningFilePath = "siteWarning.txt"
 freeUsersFilePath = "freeUsers.txt"
 
-MINS_PER_USER = 20
+MINS_PER_USER = 5
 
 def resetInUse():
     inUse = False
