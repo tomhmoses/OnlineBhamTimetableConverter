@@ -12,11 +12,23 @@ SCOPES = 'https://www.googleapis.com/auth/calendar'
 args = tools.argparser.parse_args()
 args.noauth_local_webserver = True
 
+filePaths = [{"token":"/home/tomhmoses/mysite/token.json", "creds":"/home/tomhmoses/mysite/credentials.json"},
+            {"token":"/home/tomhmoses/mysite/token2.json", "creds":"/home/tomhmoses/mysite/credentials2.json"},
+            {"token":"/home/tomhmoses/mysite/token3.json", "creds":"/home/tomhmoses/mysite/credentials3.json"}]
+
 def main(username, email, csv):
-    store = file.Storage('/home/tomhmoses/mysite/token.json')
+    for accountNo in range(len(filePaths)):
+        try:
+            return createCalendar(username, email, csv, accountNo)
+        except:
+            print("failed with accountNo: " + str(accountNo))
+
+
+def createCalendar(username, email, csv, accountNo):
+    store = file.Storage(filePaths[accountNo]["token"])
     creds = store.get()
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('/home/tomhmoses/mysite/credentials.json', SCOPES)
+        flow = client.flow_from_clientsecrets(filePaths[accountNo]["creds"], SCOPES)
         creds = tools.run_flow(flow, store, args)
     service = build('calendar', 'v3', http=creds.authorize(Http()))
 
@@ -57,8 +69,8 @@ def main(username, email, csv):
                 time.sleep(0.2)
                 counter += 1
             except:
-                print("failed to create event: " + str(counter))
-    print("uploaded " + str(counter) + "/" + str(len(csvEvents)) + " events for " + username)
+                print("failed making calendar with accountNo: " + str(counter))
+    print("uploaded " + str(counter) + "/" + str(len(csvEvents)) + " events for " + username + " using account number: " + str(accountNo))
 
     pp = pprint.PrettyPrinter(indent=4)
 
@@ -110,4 +122,5 @@ def toDateTimeZ(dateString, timeString):
     return datetime
 
 if __name__ == '__main__':
-    main()
+    csv = "ok\n01/14/2019,01/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With:  . Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science"
+    createCalendar("thm2000","thomas@tmoses.co.uk",csv,2)
