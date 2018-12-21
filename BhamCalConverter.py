@@ -11,7 +11,8 @@ visitsFilePath = "visits.pickle"
 usernameLogFilePath = "usernameLog.txt"
 inUseFilePath = "inUse.pickle"
 queueFilePath = "queue.pickle"
-warningFilePath = "siteWarning.txt"
+warningFilePath = "warningMessage.txt"
+infoFilePath = "infoMessage.txt"
 freeUsersFilePath = "freeUsers.txt"
 
 MINS_PER_USER = 5
@@ -140,14 +141,20 @@ def getStats():
     stats = {"visits":visits, "users":users, "queue":queueLen}
     return stats
 
-def getWarningMessage():
+def getFileContents(filePath):
     try:
-        file = open(warningFilePath, "r")
-        warning = file.read()
+        file = open(filePath, "r")
+        contents = file.read()
         file.close()
     except:
-        warning = ""
-    return warning
+        contents = ""
+    return contents
+
+def getWarningMessage():
+    return getFileContents(warningFilePath)
+
+def getInfoMessage():
+    return getFileContents(infoFilePath)
 
 def trackVisit():
     attempts = 3
