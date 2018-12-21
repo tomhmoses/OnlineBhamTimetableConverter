@@ -217,10 +217,17 @@
                 Stats
             </h2>
             <p>
-                So far, the site has had <strong>{{stats["visits"]}}</strong> visits and <strong>{{stats["users"]}}</strong> users. There are currently <strong>{{stats["queue"]}}</strong> users in the queue.
+                So far, the site has had <strong>{{stats["visits"]}}</strong> visits and <strong>{{stats["users"]}}</strong> users. There are currently <strong>{{stats["queue"]}}</strong> users in the queue. So far, the amount of people from the university to have used or seen this service:
             </p>
             <p>
-                This project is made of <strong>895</strong> lines of python code and <strong>476</strong> lines of HTML.
+                <div class="progress">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: {{ (stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{(stats["users"]-stats["queue"])}}" aria-valuemin="0" aria-valuemax="28000"></div>
+                  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ stats["queue"]/280 }}%" aria-valuenow="{{stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
+                  <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ (stats["visits"]-stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{stats["visits"]-stats["users"]-stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
+                </div>
+            </p>
+            <p>
+                This project is made of <strong>{{stats["python"]}}</strong> lines of python code and <strong>{{stats["HTML"]}}</strong> lines of HTML.
             </p>
             <h2>
                 End Result
