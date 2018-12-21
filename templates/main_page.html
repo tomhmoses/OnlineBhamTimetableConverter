@@ -107,7 +107,7 @@
             {% endif %}
             {% if warn %}
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{warning}}
+                {{ warning | safe }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -115,7 +115,7 @@
             {% endif %}
             {% if info %}
             <div class="alert alert-info alert-dismissible fade show" role="alert">
-                {{infoMessage}}
+                {{ infoMessage | safe }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -123,7 +123,7 @@
             {% endif %}
             {% if error %}
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Error! </strong> {{ message }}
+                <strong>Error! </strong> {{ message | safe }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
