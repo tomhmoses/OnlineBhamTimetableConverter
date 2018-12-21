@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, Response
 import BhamCalConverter
+import time
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -65,6 +66,22 @@ def forms():
 @app.route("/share/")
 def share():
     return render_template("share_page.html")
+
+@app.route('/test/start')
+def start():
+	return render_template('test_index.html')
+
+@app.route('/test/progress')
+def progress():
+	def generate():
+		x = 0
+
+		while x <= 100:
+			yield "data:" + str(x) + "\n\n"
+			x = x + 10
+			time.sleep(2)
+
+	return Response(generate(), mimetype= 'text/event-stream')
 
 @app.errorhandler(404)
 def page_not_found(e):
