@@ -12,10 +12,14 @@ def main():
         BhamCalConverter.trackVisit()
         stats = BhamCalConverter.getStats()
         warning = BhamCalConverter.getWarningMessage()
+        infoMessage = BhamCalConverter.getInfoMessage()
         warn = False
         if warning != "":
             warn = True
-        return render_template("main_page.html", error=False, message = "", stats = stats, warn = warn, warning = warning)
+        info = False
+        if infoMessage != "":
+            info = True
+        return render_template("main_page.html", error=False, message = "", stats = stats, warn = warn, warning = warning, info = info, infoMessage = infoMessage)
 
 
     email = request.form["email"]
@@ -47,6 +51,16 @@ def testEmail():
 def stats():
     stats = BhamCalConverter.getStats()
     return render_template("stats_page.html", visits = stats["visits"], users = stats["users"])
+
+@app.route("/test/forms/", methods=["GET", "POST","POSTTWO"])
+def forms():
+    if request.method == "GET":
+        return render_template("test_forms.html", test = True)
+
+    elif request.method == "POST":
+        return "1"
+    else:
+        return "2"
 
 @app.route("/share/")
 def share():
