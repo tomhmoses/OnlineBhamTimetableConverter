@@ -12,7 +12,7 @@ usernameLogFilePath = "usernameLog.txt"
 inUseFilePath = "inUse.pickle"
 queueFilePath = "queue.pickle"
 warningFilePath = "warningMessage.txt"
-infoFilePath = "infoMessage.txt"
+infoFilePath = "infoMessage.html"
 freeUsersFilePath = "freeUsers.txt"
 
 MINS_PER_USER = 5
