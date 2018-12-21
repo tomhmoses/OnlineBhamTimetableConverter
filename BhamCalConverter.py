@@ -14,6 +14,7 @@ queueFilePath = "queue.pickle"
 warningFilePath = "warningMessage.txt"
 infoFilePath = "infoMessage.html"
 freeUsersFilePath = "freeUsers.txt"
+linesOfCodeFilePath = "linesOfCode.pickle"
 
 MINS_PER_USER = 5
 
@@ -138,7 +139,15 @@ def getStats():
         queueLen = len(queue)
     except:
         queue = 0
-    stats = {"visits":visits, "users":users, "queue":queueLen}
+    try:
+        linesOfCodeDic = loadPickle(linesOfCodeFilePath)
+        HTML = linesOfCodeDic["HTML"]
+        python = linesOfCodeDic["python"]
+    except:
+
+        HTML = 0
+        python = 0
+    stats = {"visits":visits, "users":users, "queue":queueLen, 'HTML':HTML, 'python':python}
     return stats
 
 def getFileContents(filePath):
@@ -173,9 +182,12 @@ def trackVisitWithPickle():
     visits += 1
     savePickle(visitsFilePath, visits)
 
-def savePickle(file_name, obj):
+def savePickleForHuman(file_name, obj):
+    savePickle(file_name, obj, protocol=0)
+
+def savePickle(file_name, obj, protocol=pickle.DEFAULT_PROTOCOL):
     with open(file_name, 'wb') as fobj:
-        pickle.dump(obj, fobj)
+        pickle.dump(obj, fobj, protocol)
 
 def loadPickle(file_name):
     with open(file_name, 'rb') as fobj:
