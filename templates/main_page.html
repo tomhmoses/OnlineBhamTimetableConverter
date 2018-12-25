@@ -45,6 +45,7 @@
         <style>
             .pinkbutton {background-color: #FC92A4; border: none;} /* Pink */
         </style>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
     <body data-spy="scroll" data-target="#navbar">
         <!-- Google Tag Manager (noscript) -->
@@ -168,7 +169,13 @@
                     <label for="password">UoB Password:</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
                 </div>
-                <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+                {{ recaptcha }}
+                <br/>
+                <button
+                    type="submit"
+                    class="btn btn-success btn-lg btn-block">
+                        Submit
+                </button>
             </form>
             <p>
                 It might take a few seconds to load but please just wait for the confirmation message.
