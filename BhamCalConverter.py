@@ -7,25 +7,27 @@ import DonationChecker
 import pickle
 from validate_email import validate_email
 
-visitsFilePath = "visits.pickle"
-usernameLogFilePath = "usernameLog.txt"
-inUseFilePath = "inUse.pickle"
-queueFilePath = "queue.pickle"
-warningFilePath = "warningMessage.txt"
-infoFilePath = "infoMessage.html"
-freeUsersFilePath = "freeUsers.txt"
-linesOfCodeFilePath = "linesOfCode.pickle"
-CAPTCHASecretKeyFilePath = "CAPTCHASecretKey.txt"
+files = {
+    "visits":"visits.pickle",
+    "usernameLog":"usernameLog.txt",
+    "inUse":"inUse.pickle",
+    "queue":"queue.pickle",
+    "warning":"warningMessage.txt",
+    "info":"infoMessage.html",
+    "freeUsers":"freeUsers.txt",
+    "linesOfCode":"linesOfCode.pickle",
+    "CAPTCHASecretKey":"CAPTCHASecretKey.txt"
+}
 
 MINS_PER_USER = 5
 
 def resetInUse():
     inUse = False
-    savePickle(inUseFilePath, inUse)
+    savePickle(files["inUse"], inUse)
 
 def setInUse():
     inUse = True
-    savePickle(inUseFilePath, inUse)
+    savePickle(files["inUse"], inUse)
 
 def main():
     email, username, password = getUserInput()
@@ -37,7 +39,7 @@ def runFromFlaskWithDB(email, username, password):
     username = checkUsername(username)
     if username == "Invalid username":
         return username, mins
-    if loadPickle(inUseFilePath):
+    if loadPickle(files["inUse"]):
         print("was in use :(")
         message = "Somebody else is using the service right now. Please try again in 10 seconds..."
     else:
@@ -115,33 +117,33 @@ def runWithDB(email, username, password):
 
 def addToDB(username, email, csv):
     try:
-        queue = loadPickle(queueFilePath)
+        queue = loadPickle(files["queue"])
         details = [username, email, csv]
         queue.append(details)
-        savePickle(queueFilePath, queue)
+        savePickle(files["queue"], queue)
         return len(queue)
     except:
         return 0
 
 def getStats():
     try:
-        visits =  loadPickle(visitsFilePath)
+        visits =  loadPickle(files["visits"])
     except:
         visits = 0
     try:
-        file = open(usernameLogFilePath, "r")
+        file = open(files["usernameLog"], "r")
         usernames = file.readlines()
         file.close()
         users = len(usernames)
     except:
         visits = 0
     try:
-        queue = loadPickle(queueFilePath)
+        queue = loadPickle(files["queue"])
         queueLen = len(queue)
     except:
         queue = 0
     try:
-        linesOfCodeDic = loadPickle(linesOfCodeFilePath)
+        linesOfCodeDic = loadPickle(files["linesOfCode"])
         HTML = linesOfCodeDic["HTML"]
         python = linesOfCodeDic["python"]
     except:
@@ -161,10 +163,10 @@ def getFileContents(filePath):
     return contents
 
 def getWarningMessage():
-    return getFileContents(warningFilePath)
+    return getFileContents(files["warning"])
 
 def getInfoMessage():
-    return getFileContents(infoFilePath)
+    return getFileContents(files["info"])
 
 def trackVisit():
     attempts = 3
@@ -179,9 +181,9 @@ def trackVisit():
         print("failed to track site visit")
 
 def trackVisitWithPickle():
-    visits = loadPickle(visitsFilePath)
+    visits = loadPickle(files["visits"])
     visits += 1
-    savePickle(visitsFilePath, visits)
+    savePickle(files["visits"], visits)
 
 def savePickleForHuman(file_name, obj):
     savePickle(file_name, obj, protocol=0)
@@ -198,7 +200,7 @@ def getCAPTCHASiteKey():
     return "6LekpIQUAAAAAM-ECLqHuBs7uRdEe5oxug31idbQ"
 
 def getCAPTCHASecretKey():
-    return getFileContents(CAPTCHASecretKeyFilePath).strip()
+    return getFileContents(files["CAPTCHASecretKey"]).strip()
 
 def saveToFile(text, filePath = "output.txt"):
     file = open(filePath, "w")
@@ -206,7 +208,7 @@ def saveToFile(text, filePath = "output.txt"):
     file.close()
 
 def getFreeUsers():
-    file = open(freeUsersFilePath, "r")
+    file = open(files["freeUsers"], "r")
     contents = file.readlines()
     file.close()
     return contents
