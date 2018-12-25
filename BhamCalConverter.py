@@ -15,6 +15,7 @@ warningFilePath = "warningMessage.txt"
 infoFilePath = "infoMessage.html"
 freeUsersFilePath = "freeUsers.txt"
 linesOfCodeFilePath = "linesOfCode.pickle"
+CAPTCHASecretKeyFilePath = "CAPTCHASecretKey.txt"
 
 MINS_PER_USER = 5
 
@@ -193,6 +194,11 @@ def loadPickle(file_name):
     with open(file_name, 'rb') as fobj:
         return pickle.load(fobj)
 
+def getCAPTCHASiteKey():
+    return "6LekpIQUAAAAAM-ECLqHuBs7uRdEe5oxug31idbQ"
+
+def getCAPTCHASecretKey():
+    return getFileContents(CAPTCHASecretKeyFilePath).strip()
 
 def saveToFile(text, filePath = "output.txt"):
     file = open(filePath, "w")
