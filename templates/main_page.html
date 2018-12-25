@@ -17,6 +17,7 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-THMH39H');</script>
         <!-- End Google Tag Manager -->
+        <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5c1f8e5cf6809e0011a91d8c&product=sticky-share-buttons' async='async'></script>
         <meta charset="utf-8">
         <meta name="description" content="This service allows you to easily add your University of Birmingham student timetable to the calendar on your phone (or other device)." />
         <meta property="og:url"                content="https://tomhmoses.pythonanywhere.com/timetable/" />
@@ -220,7 +221,7 @@
                 So far, the site has had <strong>{{stats["visits"]}}</strong> visits and <strong>{{stats["users"]}}</strong> users. There are currently <strong>{{stats["queue"]}}</strong> users in the queue. So far, the amount of people from the university to have used or seen this service:
             </p>
             <p>
-                <div class="progress">
+                <div class="progress" style="height: 30px;">
                   <div class="progress-bar bg-success" role="progressbar" style="width: {{ (stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{(stats["users"]-stats["queue"])}}" aria-valuemin="0" aria-valuemax="28000"></div>
                   <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ stats["queue"]/280 }}%" aria-valuenow="{{stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
                   <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ (stats["visits"]-stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{stats["visits"]-stats["users"]-stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
@@ -228,6 +229,9 @@
             </p>
             <p>
                 This project is made of <strong>{{stats["python"]}}</strong> lines of python code and <strong>{{stats["HTML"]}}</strong> lines of HTML.
+            </p>
+            <p>
+                <div class="sharethis-inline-reaction-buttons"></div>
             </p>
             <h2>
                 End Result
