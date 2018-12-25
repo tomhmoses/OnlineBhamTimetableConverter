@@ -1,9 +1,22 @@
 from flask import Flask, render_template, request, redirect, url_for, Response
 import BhamCalConverter
 import time
+from flask_recaptcha import ReCaptcha
+
+site_key = BhamCalConverter.getCAPTCHASiteKey()
+secret_key = BhamCalConverter.getCAPTCHASecretKey()
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
+
+app.config.update(dict(
+    RECAPTCHA_ENABLED = True,
+    RECAPTCHA_SITE_KEY = site_key,
+    RECAPTCHA_SECRET_KEY = secret_key,
+))
+
+recaptcha = ReCaptcha()
+recaptcha.init_app(app)
 
 BhamCalConverter.resetInUse()
 
@@ -22,16 +35,18 @@ def main():
             info = True
         return render_template("main_page.html", error=False, message = "", stats = stats, warn = warn, warning = warning, info = info, infoMessage = infoMessage)
 
+    if recaptcha.verify():
+        email = request.form["email"]
+        username = request.form["username"]
+        password = request.form["password"]
 
-    email = request.form["email"]
-    username = request.form["username"]
-    password = request.form["password"]
-
-    #message = BhamCalConverter.run(email, username, password)
-    message, mins = BhamCalConverter.runFromFlaskWithDB(email, username, password)
-    if message == "done":
-        stats = BhamCalConverter.getStats()
-        return render_template("main_page.html", done=True, mins = mins, stats = stats)
+        #message = BhamCalConverter.run(email, username, password)
+        message, mins = BhamCalConverter.runFromFlaskWithDB(email, username, password)
+        if message == "done":
+            stats = BhamCalConverter.getStats()
+            return render_template("main_page.html", done=True, mins = mins, stats = stats)
+    else:
+        message = "Failed reCAPTCHA"
 
     stats = BhamCalConverter.getStats()
     return render_template("main_page.html", error=True, message = message, stats = stats)
