@@ -66,7 +66,7 @@ def testEmail():
 @app.route("/test/stats/")
 def stats():
     stats = BhamCalConverter.getStats()
-    return render_template("stats_page.html", visits = stats["visits"], users = stats["users"])
+    return render_template("stats_page.html", stats = stats)
 
 @app.route("/test/forms/", methods=["GET", "POST","POSTTWO"])
 def forms():
