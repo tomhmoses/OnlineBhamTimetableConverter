@@ -21,7 +21,7 @@ recaptcha.init_app(app)
 BhamCalConverter.resetInUse()
 
 @app.route("/timetable/", methods=["GET", "POST"])
-def main():
+def timetable():
     if request.method == "GET":
         BhamCalConverter.trackVisit()
         stats = BhamCalConverter.getStats()
@@ -52,21 +52,21 @@ def main():
     return render_template("main_page.html", error=True, message = message, stats = stats)
 
 @app.route("/")
-def timetable():
-    return redirect(url_for('main'))
-
-@app.route("/done/")
-def done():
-    return render_template("done_page.html")
+def main():
+    return redirect(url_for('timetable'))
 
 @app.route("/test/email/")
 def testEmail():
-    return render_template("test_email.html")
+    return render_template("email_template.html")
 
-@app.route("/test/stats/")
+@app.route("/timetable/stats/")
 def stats():
     stats = BhamCalConverter.getStats()
     return render_template("stats_page.html", stats = stats)
+    
+@app.route("/test/stats/")
+def oldStats(): 
+    return redirect(url_for('stats'))
 
 @app.route("/test/forms/", methods=["GET", "POST","POSTTWO"])
 def forms():
@@ -78,9 +78,17 @@ def forms():
     else:
         return "2"
 
-@app.route("/share/")
+@app.route("/timetable/credits/")
+def credits():
+    return render_template("credits_page.html")
+
+@app.route("/timetable/share/")
 def share():
     return render_template("share_page.html")
+    
+@app.route("/share/")
+def oldSshare():
+    return redirect(url_for('share'))
 
 @app.route('/test/start')
 def start():
