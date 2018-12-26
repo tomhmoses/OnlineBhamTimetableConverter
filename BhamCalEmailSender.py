@@ -35,12 +35,12 @@ def sendMail(email, linkToCal):
 def getMessageHTML():
     messageHTML = "could not grab html... %s"
     try:
-        file = open("/templates/test_email.html","r")
+        file = open("/templates/email_template.html","r")
         messageHTML = file.read()
         file.close()
     except:
         try:
-            file = open("/home/tomhmoses/mysite/templates/test_email.html","r")
+            file = open("/home/tomhmoses/mysite/templates/email_template.html","r")
             messageHTML = file.read()
             file.close()
         except:
