@@ -18,9 +18,10 @@ from apiclient import errors
 SCOPES = 'https://www.googleapis.com/auth/gmail.compose'
 
 def sendMail(email, linkToCal):
+    print("in email sender...")
     myEmail = "bham.timetable@gmail.com"
     subject = "Link to your timetable calendar"
-    message_text = getMessageHTML() % (linkToCal)
+    message_text = getCustomEmail(linkToCal)
 
     store = file.Storage('/home/tomhmoses/mysite/mailToken.json')
     creds = store.get()
@@ -32,15 +33,23 @@ def sendMail(email, linkToCal):
     message = CreateMessage("Bham Timetable Converter", email, subject, message_text)
     sentMessage = SendMessage(service, myEmail, message)
 
+def getCustomEmail(linkToCal):
+    print("making custom email")
+    orig = getMessageHTML()
+    print(linkToCal)
+    message_text = orig.replace("LINK_GOES_HERE", linkToCal)
+    print(message_text)
+    return message_text
+
 def getMessageHTML():
-    messageHTML = "could not grab html... %s"
+    messageHTML = "could not grab html... LINK GOES HERE <-- click here"
     try:
-        file = open("/templates/email_template.html","r")
+        file = open("/templates/email_inline.html","r")
         messageHTML = file.read()
         file.close()
     except:
         try:
-            file = open("/home/tomhmoses/mysite/templates/email_template.html","r")
+            file = open("/home/tomhmoses/mysite/templates/email_inline.html","r")
             messageHTML = file.read()
             file.close()
         except:
