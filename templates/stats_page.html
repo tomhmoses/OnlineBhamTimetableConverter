@@ -1,41 +1,25 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <title>Stats | UoB Timetable Converter</title>
-        <style>
-            .pinkbutton {background-color: #FC92A4; border: none;} /* Pink */
-        </style>
-    </head>
-    <body>
-        <nav id="navbar" class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href = "https://tomhmoses.pythonanywhere.com/timetable/" >UoB Timetable Converter</a>
-        </nav>
-        <div class="container" data-spy="scroll" data-target="#navbar" data-offset="0">
-            <h1>
-                Stats
-            </h1>
-            <p>
-                So far, the site has had <strong>{{stats["visits"]}}</strong> visits and <strong>{{stats["users"]}}</strong> users. There are currently <strong>{{stats["queue"]}}</strong> users in the queue. So far, the amount of people from the university to have used or seen this service:
-            </p>
-            <p>
-                <div class="progress" style="height: 30px;">
-                  <div class="progress-bar bg-success" role="progressbar" style="width: {{ (stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{(stats["users"]-stats["queue"])}}" aria-valuemin="0" aria-valuemax="28000"></div>
-                  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ stats["queue"]/280 }}%" aria-valuenow="{{stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
-                  <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ (stats["visits"]-stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{stats["visits"]-stats["users"]-stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
-                </div>
-            </p>
-            <p>
-                This project is made of <strong>{{stats["python"]}}</strong> lines of python code and <strong>{{stats["HTML"]}}</strong> lines of HTML.
-            </p>
-            <p>
-                <div class="sharethis-inline-reaction-buttons"></div>
-            </p>
-            <h2>
-            <p></p>
+{% extends "structure.html" %}
+{% block title %}Stats | UoB Timetable Converter{% endblock %}
+{% block page_content %}
+    <h1>
+        Stats
+    </h1>
+    <p>
+        So far, the site has had <strong>{{stats["visits"]}}</strong> visits and <strong>{{stats["users"]}}</strong> uses (<strong>{{stats["diffUsers"]}}</strong> users... I've used it <strong>{{stats["myUses"]}}</strong> times). There are currently <strong>{{stats["queue"]}}</strong> users in the queue. So far, the amount of people from the university to have used or seen this service:
+    </p>
+    <p>
+        <div class="progress" style="height: 30px;">
+          <div class="progress-bar bg-success" role="progressbar" style="width: {{ (stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{(stats["users"]-stats["queue"])}}" aria-valuemin="0" aria-valuemax="28000"></div>
+          <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ stats["queue"]/280 }}%" aria-valuenow="{{stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
+          <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ (stats["visits"]-stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{stats["visits"]-stats["users"]-stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
         </div>
-    </body>
-</html>
+    </p>
+    <p>
+        This project is made of <strong>{{stats["python"]}}</strong> lines of python code and <strong>{{stats["HTML"]}}</strong> lines of HTML.
+    </p>
+    <p>
+        Matthew Bilella has used it <strong>{{stats["matthew"]}}</strong> times.
+    </p>
+    <h2>
+    <p></p>
+{% endblock %}
