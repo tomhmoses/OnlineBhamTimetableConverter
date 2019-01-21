@@ -1,6 +1,8 @@
 # program to move bham timetable to google calendar (or other calendar)
 # made by Tom Moses
 
+debug = False
+
 def changeDateFormat(originalDate,monthDict):
     #start with 01 Oct 2018
     #end with 10/01/2018
@@ -73,17 +75,32 @@ def main(frameHTML):
     #print "got the HTML code"
     #we now have the full html of the body of the page, we need to cut it down.
 
+    if debug:
+        saveToFile(frameHTML,"debug_frame.txt")
+
     wholeTable = getTableFromFrame(frameHTML)
     #print "got the table from the HTML code"
 
+    if debug:
+        saveToFile(wholeTable,"debug_wholeTable.txt")
+
     #splits at row breaks
-    listOfRows = wholeTable.split("</tr><tr>")
+    listOfRows = wholeTable.replace("</tr></tbody><tr>","</tr><tr>").split("</tr><tr>")
     #print "split into "+str(len(listOfRows))+" different events"
 
+
+    if debug:
+        temp = ""
+        for eachRow in listOfRows:
+            temp += eachRow + "\n"
+        saveToFile(temp,"debug_rows.txt")
+
+    temp = ""
 
     for eachEvent in listOfRows:
         eachEvent = eachEvent.replace("</td>","").replace("&amp;","&").replace("&nbsp;"," ").replace(",","")
         #splits at element break and removes first empty item from list
+        temp += "\n\n" + eachEvent.split("<td>")[0]
         eventInfoList = eachEvent.split("<td>")[1:]
         csvLine = "\n"
         #adds start and end date (which are the same)
@@ -101,11 +118,14 @@ def main(frameHTML):
 
         csv += csvLine
 
+    if debug:
+        saveToFile(temp,"debug_lostEvents.txt")
 
     return csv
 
+def saveToFile(text, filePath = "output.txt"):
+    file = open(filePath, "w")
+    file.write(text)
+    file.close()
 
 
-
-if __name__ == "__main__":
-  main()
