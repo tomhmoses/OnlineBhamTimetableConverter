@@ -23,10 +23,10 @@ def sendMail(email, linkToCal):
     subject = "Link to your timetable calendar"
     message_text = getCustomEmail(linkToCal)
 
-    store = file.Storage('/home/tomhmoses/mysite/mailToken.json')
+    store = file.Storage('/home/tomhmoses/mysite_ttc/mailToken.json')
     creds = store.get()
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('/home/tomhmoses/mysite/credentials.json', SCOPES)
+        flow = client.flow_from_clientsecrets('/home/tomhmoses/mysite_ttc/credentials.json', SCOPES)
         creds = tools.run_flow(flow, store)
     service = build('gmail', 'v1', http=creds.authorize(Http()))
 
@@ -49,7 +49,7 @@ def getMessageHTML():
         file.close()
     except:
         try:
-            file = open("/home/tomhmoses/mysite/templates/email_inline.html","r")
+            file = open("/home/tomhmoses/mysite_ttc/templates/email_inline.html","r")
             messageHTML = file.read()
             file.close()
         except:
