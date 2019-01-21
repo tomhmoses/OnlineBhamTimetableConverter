@@ -1,28 +1,9 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <title>Error 404 | UoB Timetable Converter</title>
-        <style>
-            .pinkbutton {background-color: #FC92A4; border: none;} /* Pink */
-        </style>
-    </head>
-    <body>
-        <nav id="navbar" class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href = "https://tomhmoses.pythonanywhere.com/timetable/" >UoB Timetable Converter</a>
-        </nav>
-        <div class="container" data-spy="scroll" data-target="#navbar" data-offset="0">
-            <h1>
-                Error 404: Page not found
-            </h1>
-            <p>What you are looking for just isn’t here.</p>
-            <a href="https://tomhmoses.pythonanywhere.com/timetable/" class="btn btn-secondary btn-lg">Go to the main page</a>
-            <p></p>
-            <p></p>
-            <p></p>
-        </div>
-    </body>
-</html>
+{% extends "structure.html" %}
+{% block title %}Error 404{% endblock %}
+{% block page_content %}
+    <h1>
+        Error 404: Page not found
+    </h1>
+    <p>What you are looking for just isn’t here.</p>
+    <a href="https://ttc.tmoses.co.uk/" class="btn btn-secondary btn-lg">Go to the timetable main page</a>
+{% endblock %}
