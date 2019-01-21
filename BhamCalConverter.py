@@ -3,7 +3,6 @@ import BhamTTConverter
 import BhamGoogleCalendarMaker
 import getpass
 import BhamCalEmailSender
-import DonationChecker
 import pickle
 from validate_email import validate_email
 
@@ -16,7 +15,9 @@ files = {
     "info":"infoMessage.html",
     "freeUsers":"freeUsers.txt",
     "linesOfCode":"linesOfCode.pickle",
-    "CAPTCHASecretKey":"CAPTCHASecretKey.txt"
+    "CAPTCHASecretKey":"CAPTCHASecretKey.txt",
+    "normalLog":"normal.log",
+    "debugLog":"debug.log"
 }
 
 MINS_PER_USER = 5
@@ -33,9 +34,11 @@ def main():
     email, username, password = getUserInput()
     print(run(email, username, password))
 
-def runFromFlaskWithDB(email, username, password):
-    print("running from flask")
+def runFromFlaskWithDB(email, username, password, uni):
+    print("running from flask with username:" + username + " and uni: " + uni)
     mins = 0
+    if uni == "Bristol":
+        return """aayyyyyy hello from Birmingham! I'm working on support for your uni, please get in contact with me <a href="https://m.me/tomhmoses/" target="_blank">@tomhmoses</a>""", 0
     username = checkUsername(username)
     if username == "Invalid username":
         return username, mins
@@ -47,13 +50,9 @@ def runFromFlaskWithDB(email, username, password):
         if email == "":
             print("uni email generated")
             email = username + "@student.bham.ac.uk"
+        else:
+            email = tryToFixEmail(email)
         validEmail = validate_email(email)
-        #if username in getFreeUsers():
-        #    donated = True
-        #else:
-        #    donated = DonationChecker.checkForDonationAnywhere(username)
-        #if not donated:
-        #    return "It looks like you haven't donated yet. Please do that first. If you are sure you have donated and you are still getting this error please email me.", 0
         if validEmail:
             try:
                 message, mins = runWithDB(email, username, password)
@@ -76,6 +75,15 @@ def checkUsername(username):
             return "Invalid username"
     return username
 
+def tryToFixEmail(email):
+    email = email.lower()
+    origEmail = email
+    email = email.replace("students.", "student.")
+    email = email.replace(".bhan.", ".bham.")
+    email = email.replace("bham.student", "student.bham")
+    email = email.replace("bham.student", "student.bham")
+    email = email.replace("student.ac", "student.bham.ac")
+    return email
 
 def run(email, username, password):
     frameSource, errorOccured = BhamGetFrame.getFrameSourceAnywhere(username, password)
@@ -129,28 +137,41 @@ def getStats():
     try:
         visits =  loadPickle(files["visits"])
     except:
-        visits = 0
+        visits = -1
     try:
         file = open(files["usernameLog"], "r")
         usernames = file.readlines()
         file.close()
         users = len(usernames)
+        diffUsernames = []
+        myUses = 0
+        matthew = 0
+        for username in usernames:
+            if username.lower() not in diffUsernames:
+                diffUsernames.append(username.lower())
+            if "thm837" in username.lower():
+                myUses += 1
+            elif "mlb801" in username.lower():
+                matthew += 1
+        diffUsers = len(diffUsernames)
     except:
-        visits = 0
+        users = -1
+        diffUsers = -1
+        myUses = -1
+        matthew = -1
     try:
         queue = loadPickle(files["queue"])
         queueLen = len(queue)
     except:
-        queue = 0
+        queueLen = -1
     try:
         linesOfCodeDic = loadPickle(files["linesOfCode"])
         HTML = linesOfCodeDic["HTML"]
         python = linesOfCodeDic["python"]
     except:
-
-        HTML = 0
-        python = 0
-    stats = {"visits":visits, "users":users, "queue":queueLen, 'HTML':HTML, 'python':python}
+        HTML = -1
+        python = -1
+    stats = {"visits":visits, "users":users, "diffUsers":diffUsers, "myUses":myUses, "queue":queueLen, 'HTML':HTML, 'python':python, 'matthew':matthew}
     return stats
 
 def getFileContents(filePath):
