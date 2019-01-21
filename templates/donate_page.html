@@ -1,0 +1,40 @@
+{% extends "structure.html" %}
+{% block title %}Tom's London To Paris{% endblock %}
+{% block description %}Donate to Breast Cancer Now.{% endblock %}
+{% block url %}https://ttc.tmoses.co.uk/donate{% endblock %}
+{% block extra_styles %}
+    <style>
+        .pinkbutton {background-color: #FC92A4; border: none;} /* Pink */
+    </style>
+{% endblock %}
+{% block navbar_items %}
+    <li class="nav-item">
+        <a class="nav-link" href="https://home.tmoses.co.uk/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="https://ttc.tmoses.co.uk/">Timetable</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="#">Donate <span class="sr-only">(current)</span></a>
+    </li>
+{% endblock %}
+{% block page_content %}
+    <h3></h3>
+    <p>
+        <a href="https://l2p19.everydayhero.com/uk/tom" class="btn btn-secondary btn-lg pinkbutton" target="_blank">Breast Cancer Now</a>
+    </p>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type='text/javascript'>
+
+      $(function() {
+        $.getJSON('https://everydayhero.com/api/v2/pages/1548004595.jsonp?callback=?', {},  function (data) {
+          var funds = data.page.amount;
+          $('#raised').html(funds.currency.symbol + (funds.cents / 100) + " raised");
+        })
+      });
+
+    </script>
+
+    <div id='raised'></div>
+{% endblock %}
