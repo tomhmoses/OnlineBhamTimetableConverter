@@ -12,9 +12,9 @@ SCOPES = 'https://www.googleapis.com/auth/calendar'
 args = tools.argparser.parse_args()
 args.noauth_local_webserver = True
 
-filePaths = [{"token":"/home/tomhmoses/mysite/token.json", "creds":"/home/tomhmoses/mysite/credentials.json"},
-            {"token":"/home/tomhmoses/mysite/token2.json", "creds":"/home/tomhmoses/mysite/credentials2.json"},
-            {"token":"/home/tomhmoses/mysite/token3.json", "creds":"/home/tomhmoses/mysite/credentials3.json"}]
+filePaths = [{"token":"/home/tomhmoses/mysite_ttc/token.json", "creds":"/home/tomhmoses/mysite_ttc/credentials.json"},
+            {"token":"/home/tomhmoses/mysite_ttc/token2.json", "creds":"/home/tomhmoses/mysite_ttc/credentials2.json"},
+            {"token":"/home/tomhmoses/mysite_ttc/token3.json", "creds":"/home/tomhmoses/mysite_ttc/credentials3.json"}]
 
 def main(username, email, csv):
     for accountNo in range(len(filePaths)):
