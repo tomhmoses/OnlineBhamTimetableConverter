@@ -1,27 +1,27 @@
 from flask import Flask, render_template, request, redirect, url_for, Response
 import BhamCalConverter
 import time
-from flask_recaptcha import ReCaptcha
+#from flask_recaptcha import ReCaptcha
 
-site_key = BhamCalConverter.getCAPTCHASiteKey()
-secret_key = BhamCalConverter.getCAPTCHASecretKey()
+#site_key = BhamCalConverter.getCAPTCHASiteKey()
+#secret_key = BhamCalConverter.getCAPTCHASecretKey()
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-app.config.update(dict(
-    RECAPTCHA_ENABLED = True,
-    RECAPTCHA_SITE_KEY = site_key,
-    RECAPTCHA_SECRET_KEY = secret_key,
-))
+#app.config.update(dict(
+#    RECAPTCHA_ENABLED = True,
+#    RECAPTCHA_SITE_KEY = site_key,
+#    RECAPTCHA_SECRET_KEY = secret_key,
+#))
 
-recaptcha = ReCaptcha()
-recaptcha.init_app(app)
+#recaptcha = ReCaptcha()
+#recaptcha.init_app(app)
 
 BhamCalConverter.resetInUse()
 
-@app.route("/timetable/", methods=["GET", "POST"])
-def timetable():
+@app.route("/", methods=["GET", "POST"])
+def main():
     if request.method == "GET":
         BhamCalConverter.trackVisit()
         stats = BhamCalConverter.getStats()
@@ -33,39 +33,47 @@ def timetable():
         info = False
         if infoMessage != "":
             info = True
-        return render_template("main_page.html", error=False, message = "", stats = stats, warn = warn, warning = warning, info = info, infoMessage = infoMessage)
+        return render_template("timetable_page.html", error=False, message = "", stats = stats, warn = warn, warning = warning, info = info, infoMessage = infoMessage)
 
-    if recaptcha.verify():
-        email = request.form["email"]
-        username = request.form["username"]
-        password = request.form["password"]
 
-        #message = BhamCalConverter.run(email, username, password)
-        message, mins = BhamCalConverter.runFromFlaskWithDB(email, username, password)
-        if message == "done":
-            stats = BhamCalConverter.getStats()
-            return render_template("main_page.html", done=True, mins = mins, stats = stats)
-    else:
-        message = "Failed reCAPTCHA"
+    email = request.form["email"]
+    username = request.form["username"]
+    password = request.form["password"]
+    uni = request.form["uni"]
+
+    #message = BhamCalConverter.run(email, username, password)
+    message, mins = BhamCalConverter.runFromFlaskWithDB(email, username, password, uni)
+    if message == "done":
+        stats = BhamCalConverter.getStats()
+        return render_template("timetable_page.html", done=True, mins = mins, stats = stats)
+
 
     stats = BhamCalConverter.getStats()
-    return render_template("main_page.html", error=True, message = message, stats = stats)
+    return render_template("timetable_page.html", error=True, message = message, stats = stats)
 
-@app.route("/")
-def main():
-    return redirect(url_for('timetable'))
+@app.route("/timetable/")
+def timetable():
+    return redirect(url_for('main'))
 
 @app.route("/test/email/")
 def testEmail():
     return render_template("email_template.html")
 
+@app.route("/donate")
+def donate():
+    return render_template("donate_page.html")
+
+@app.route("/test/email_inline/")
+def testEmailInline():
+    return render_template("email_inline.html")
+
 @app.route("/timetable/stats/")
 def stats():
     stats = BhamCalConverter.getStats()
     return render_template("stats_page.html", stats = stats)
-    
+
 @app.route("/test/stats/")
-def oldStats(): 
+def oldStats():
     return redirect(url_for('stats'))
 
 @app.route("/test/forms/", methods=["GET", "POST","POSTTWO"])
@@ -85,7 +93,7 @@ def credits():
 @app.route("/timetable/share/")
 def share():
     return render_template("share_page.html")
-    
+
 @app.route("/share/")
 def oldSshare():
     return redirect(url_for('share'))
@@ -93,6 +101,10 @@ def oldSshare():
 @app.route('/test/start')
 def start():
 	return render_template('test_index.html')
+
+@app.route('/test/extends')
+def extendsTest():
+	return render_template('test_timetable_page.html', stats = BhamCalConverter.getStats())
 
 @app.route('/test/progress')
 def progress():
