@@ -238,25 +238,25 @@ def getUserInput():
     print("\nYou will be emailed the calendar as it takes a minute or two to generate.")
     print("If you want to use your UoB student email address, leave this field blank.\n")
     usingStudentMail = False
-    email = input("Please enter your email: ")
-    if email == "":
+    email1 = input("Please enter your email: ")
+    if email1 == "":
         email2 = ""
         usingStudentMail = True
     else:
         email2 = input("Please confirm your email: ")
-    while email != email2:
+    while email1 != email2:
         print("\nSorry, those emails didn't match. Please try again.")
-        email = input("Please enter your email: ")
-        if email == "":
+        email1 = input("Please enter your email: ")
+        if email1 == "":
             email2 = ""
             usingStudentMail = True
         else:
             email2 = input("Please confirm your email: ")
     username = input("Please enter your UoB username: ")
     if usingStudentMail:
-        email = username + "@student.bham.ac.uk"
+        email1 = username + "@student.bham.ac.uk"
     password = getpass.getpass("Please enter your UoB password: ")
-    return email, username, password
+    return email1, username, password
 
 
 if __name__ == '__main__':

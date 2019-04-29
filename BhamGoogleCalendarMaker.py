@@ -5,6 +5,9 @@ from httplib2 import Http
 from oauth2client import file, client, tools
 import pprint
 import time
+import config
+
+logger = config.initilise_logging()
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/calendar'
@@ -17,18 +20,18 @@ filePaths = [{"token":"/home/tomhmoses/mysite_ttc/token.json", "creds":"/home/to
             {"token":"/home/tomhmoses/mysite_ttc/token3.json", "creds":"/home/tomhmoses/mysite_ttc/credentials3.json"}]
 
 def main(username, email, csv):
-    for accountNo in range(len(filePaths)):
+    for account_no in range(len(filePaths)):
         try:
-            return createCalendar(username, email, csv, accountNo)
+            return create_calendar(username, email, csv, account_no)
         except:
-            print("failed with accountNo: " + str(accountNo))
+            logger.warn("failed with account_no: " + str(account_no))
 
 
-def createCalendar(username, email, csv, accountNo):
-    store = file.Storage(filePaths[accountNo]["token"])
+def create_calendar(username, email, csv, account_no):
+    store = file.Storage(filePaths[account_no]["token"])
     creds = store.get()
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets(filePaths[accountNo]["creds"], SCOPES)
+        flow = client.flow_from_clientsecrets(filePaths[account_no]["creds"], SCOPES)
         creds = tools.run_flow(flow, store, args)
     service = build('calendar', 'v3', http=creds.authorize(Http()))
 
@@ -40,27 +43,27 @@ def createCalendar(username, email, csv, accountNo):
     'summary': summary,
     'timeZone': timeZone
     }
-    print("about to make new calendar")
+    logger.info("Creating calendar")
     created_calendar = service.calendars().insert(body=calendar).execute()
     calID = created_calendar["id"]
-    csvEvents = csv.split("\n")
-    csvEvents = csvEvents[1:]
+    csv_events = csv.split("\n")
+    csv_events = csv_events[1:]
     counter = 0
-    for csvEvent in csvEvents:
-        deets = csvEvent.split(",")
-        if toDateTimeZ(deets[0], deets[3]) == "":
-            print("error occurred setting datetime so skipped.")
+    for csvEvent in csv_events:
+        details = csvEvent.split(",")
+        if to_date_time(details[0], details[3]) == "":
+            logger.debug("error occurred setting datetime so skipped.")
         else:
             eventDetails = {
-              'summary': deets[2],
-              'location': deets[5],
-              'description': deets[6],
+              'summary': details[2],
+              'location': details[5],
+              'description': details[6],
               'start': {
-                'dateTime': toDateTimeZ(deets[0], deets[3]),
+                'dateTime': to_date_time(details[0], details[3]),
                 'timeZone': timeZone,
               },
               'end': {
-                'dateTime': toDateTimeZ(deets[1], deets[4]),
+                'dateTime': to_date_time(details[1], details[4]),
                 'timeZone': timeZone,
               },
             }
@@ -69,8 +72,8 @@ def createCalendar(username, email, csv, accountNo):
                 time.sleep(0.2)
                 counter += 1
             except:
-                print("failed making calendar with accountNo: " + str(counter))
-    print("uploaded " + str(counter) + "/" + str(len(csvEvents)) + " events for " + username + " using account number: " + str(accountNo))
+                logger.warn("failed making calendar with account_no: " + str(counter))
+    logger.info("uploaded " + str(counter) + "/" + str(len(csv_events)) + " events for " + username + " using account number: " + str(account_no))
 
     pp = pprint.PrettyPrinter(indent=4)
 
@@ -82,7 +85,7 @@ def createCalendar(username, email, csv, accountNo):
         'role': 'reader'
     }
 
-    print("sleeping for 5 seconds...")
+    logger.debug("sleeping for 5 seconds...")
     time.sleep(5)
     created_rule = service.acl().insert(calendarId=calID, body=rule).execute()
     pp.pprint(created_rule)
@@ -95,7 +98,7 @@ def createCalendar(username, email, csv, accountNo):
         'role': 'owner'
     }
 
-    print("sleeping for 5 seconds...")
+    logger.debug("sleeping for 5 seconds...")
     time.sleep(5)
     created_rule = service.acl().insert(calendarId=calID, body=rule).execute()
     pp.pprint(created_rule)
@@ -104,23 +107,26 @@ def createCalendar(username, email, csv, accountNo):
     return "https://calendar.google.com/calendar/r?cid=" + calID
 
 
-def toDateTimeZ(dateString, timeString):
-    bitsOfDate = dateString.split("/")
-    for count in range(len(bitsOfDate)):
-        while len(bitsOfDate[count]) < 2:
-            bitsOfDate[count] = "0" + bitsOfDate[count]
-    bitsOfTime = timeString.split(":")
-    for count in range(len(bitsOfTime)):
-        while len(bitsOfTime[count]) < 2:
-            bitsOfTime[count] = "0" + bitsOfTime[count]
-    datetime = ""
+def to_date_time(date_string, time_string):
+    date_arr = date_string.split("/")
+    for count in range(len(date_arr)):
+        while len(date_arr[count]) < 2:
+            date_arr[count] = "0" + date_arr[count]
+    time_arr = time_string.split(":")
+    if (time.tzname[0] == 'STD'):
+        time_arr[0] = str(int(time_arr[0]) - 1)
+    for count in range(len(time_arr)):
+        while len(time_arr[count]) < 2:
+            time_arr[count] = "0" + time_arr[count]
+    dt_string = ""
     try:
-        datetime += bitsOfDate[2] + "-" + bitsOfDate[0] + "-" + bitsOfDate[1] + "T"
-        datetime += bitsOfTime[0] + ":" + bitsOfTime[1] + ":00Z"
+        dt = datetime.datetime(year=date_arr[2], month=date_arr[0], day=date_arr[1], hour=time_arr[0], minute=time_arr[1], second=00)
+        dt_string = dt.strftime('%Y-%m-%dT%H:%M:%S')
     except:
-        print(bitsOfDate)
-    return datetime
+        logger.debug(date_arr)
+        logger.debug(time_arr)
+    return dt_string
 
 if __name__ == '__main__':
     csv = "ok\n01/14/2019,01/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With:  . Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science"
-    createCalendar("thm2000","thomas@tmoses.co.uk",csv,2)
+    create_calendar("thm2000","thomas@tmoses.co.uk",csv,2)
