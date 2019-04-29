@@ -113,13 +113,15 @@ def to_date_time(date_string, time_string):
         while len(date_arr[count]) < 2:
             date_arr[count] = "0" + date_arr[count]
     time_arr = time_string.split(":")
+    if (time.tzname[0] == 'STD'):
+        time_arr[0] = str(int(time_arr[0]) - 1)
     for count in range(len(time_arr)):
         while len(time_arr[count]) < 2:
             time_arr[count] = "0" + time_arr[count]
     dt_string = ""
     try:
         dt = datetime.datetime(year=date_arr[2], month=date_arr[0], day=date_arr[1], hour=time_arr[0], minute=time_arr[1], second=00)
-        dt_string = dt.strftime('%Y-%m-%dT%H:%M:%S-01:00')
+        dt_string = dt.strftime('%Y-%m-%dT%H:%M:%S')
     except:
         logger.debug(date_arr)
         logger.debug(time_arr)
