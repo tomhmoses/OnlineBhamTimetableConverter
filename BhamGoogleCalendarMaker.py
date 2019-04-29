@@ -119,7 +119,7 @@ def toDateTimeZ(date_string, time_string):
         dt_string = dt.strftime("%Y-%m-%dT%H:%M:%S")
     except:
         print(date_arr)
-    return dt_string
+    return dt_string.replace("Z","")
 
 if __name__ == '__main__':
     csv = "ok\n01/14/2019,01/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With:  . Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science"
