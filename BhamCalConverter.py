@@ -228,12 +228,6 @@ def saveToFile(text, filePath = "output.txt"):
     file.write(text)
     file.close()
 
-def getFreeUsers():
-    file = open(files["freeUsers"], "r")
-    contents = file.readlines()
-    file.close()
-    return contents
-
 def getUserInput():
     print("\nYou will be emailed the calendar as it takes a minute or two to generate.")
     print("If you want to use your UoB student email address, leave this field blank.\n")
