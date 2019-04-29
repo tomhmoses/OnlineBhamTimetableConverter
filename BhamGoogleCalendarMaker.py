@@ -104,22 +104,22 @@ def createCalendar(username, email, csv, accountNo):
     return "https://calendar.google.com/calendar/r?cid=" + calID
 
 
-def toDateTimeZ(dateString, timeString):
-    bitsOfDate = dateString.split("/")
-    for count in range(len(bitsOfDate)):
-        while len(bitsOfDate[count]) < 2:
-            bitsOfDate[count] = "0" + bitsOfDate[count]
-    bitsOfTime = timeString.split(":")
-    for count in range(len(bitsOfTime)):
-        while len(bitsOfTime[count]) < 2:
-            bitsOfTime[count] = "0" + bitsOfTime[count]
-    datetime = ""
+def toDateTimeZ(date_string, time_string):
+    date_arr = date_string.split("/")
+    for count in range(len(date_arr)):
+        while len(date_arr[count]) < 2:
+            date_arr[count] = "0" + date_arr[count]
+    time_arr = time_string.split(":")
+    for count in range(len(time_arr)):
+        while len(time_arr[count]) < 2:
+            time_arr[count] = "0" + time_arr[count]
+    dt_string = ""
     try:
-        dt = datetime.datetime(year=bitsOfDate[2], month=bitsOfDate[0], day=bitsOfDate[1], hour=bitsOfTime[0], minute=bitsOfTime[1], second=00)
-        datetime= dt.strftime("%Y-%m-%dT%H:%M:%S")
+        dt = datetime.datetime(year=date_arr[2], month=date_arr[0], day=date_arr[1], hour=time_arr[0], minute=time_arr[1], second=00)
+        dt_string = dt.strftime("%Y-%m-%dT%H:%M:%S")
     except:
-        print(bitsOfDate)
-    return datetime
+        print(date_arr)
+    return dt_string
 
 if __name__ == '__main__':
     csv = "ok\n01/14/2019,01/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With:  . Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science"
