@@ -5,13 +5,9 @@ from httplib2 import Http
 from oauth2client import file, client, tools
 import pprint
 import time
-import logging
+import config
 
-logger = logging.getLogger('cal_maker')
-logger.setLevel(logging.WARN)
-handler = logging.FileHandler(filename='calendar.log', encoding='utf-8', mode='w')
-handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(handler)
+logger = config.initilise_logging()
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/calendar'
@@ -24,11 +20,11 @@ filePaths = [{"token":"/home/tomhmoses/mysite_ttc/token.json", "creds":"/home/to
             {"token":"/home/tomhmoses/mysite_ttc/token3.json", "creds":"/home/tomhmoses/mysite_ttc/credentials3.json"}]
 
 def main(username, email, csv):
-    for accountNo in range(len(filePaths)):
+    for account_no in range(len(filePaths)):
         try:
-            return create_calendar(username, email, csv, accountNo)
+            return create_calendar(username, email, csv, account_no)
         except:
-            logger.warn("failed with accountNo: " + str(accountNo))
+            logger.warn("failed with account_no: " + str(account_no))
 
 
 def create_calendar(username, email, csv, account_no):
@@ -76,7 +72,7 @@ def create_calendar(username, email, csv, account_no):
                 time.sleep(0.2)
                 counter += 1
             except:
-                logger.warn("failed making calendar with accountNo: " + str(counter))
+                logger.warn("failed making calendar with account_no: " + str(counter))
     logger.info("uploaded " + str(counter) + "/" + str(len(csv_events)) + " events for " + username + " using account number: " + str(account_no))
 
     pp = pprint.PrettyPrinter(indent=4)
