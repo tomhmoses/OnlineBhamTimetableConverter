@@ -115,8 +115,8 @@ def toDateTimeZ(dateString, timeString):
             bitsOfTime[count] = "0" + bitsOfTime[count]
     datetime = ""
     try:
-        datetime += bitsOfDate[2] + "-" + bitsOfDate[0] + "-" + bitsOfDate[1] + "T"
-        datetime += bitsOfTime[0] + ":" + bitsOfTime[1] + ":00Z"
+        dt = datetime.datetime(year=bitsOfDate[2], month=bitsOfDate[0], day=bitsOfDate[1], hour=bitsOfTime[0], minute=bitsOfTime[1], second=00)
+        datetime= dt.strftime("%Y-%m-%dT%H:%M:%S")
     except:
         print(bitsOfDate)
     return datetime
