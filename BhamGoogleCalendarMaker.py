@@ -119,7 +119,7 @@ def to_date_time(date_string, time_string):
     dt_string = ""
     try:
         dt = datetime.datetime(year=date_arr[2], month=date_arr[0], day=date_arr[1], hour=time_arr[0], minute=time_arr[1], second=00)
-        dt_string = dt.strftime("%Y-%m-%dT%H:%M:%S")
+        dt_string = dt.strftime('%Y-%m-%dT%H:%M:%S-01:00')
     except:
         logger.debug(date_arr)
         logger.debug(time_arr)
