@@ -5,6 +5,13 @@ from httplib2 import Http
 from oauth2client import file, client, tools
 import pprint
 import time
+import logging
+
+logger = logging.getLogger('cal_maker')
+logger.setLevel(logging.WARN)
+handler = logging.FileHandler(filename='calendar.log', encoding='utf-8', mode='w')
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/calendar'
@@ -19,12 +26,12 @@ filePaths = [{"token":"/home/tomhmoses/mysite_ttc/token.json", "creds":"/home/to
 def main(username, email, csv):
     for accountNo in range(len(filePaths)):
         try:
-            return createCalendar(username, email, csv, accountNo)
+            return create_calendar(username, email, csv, accountNo)
         except:
-            print("failed with accountNo: " + str(accountNo))
+            logger.warn("failed with accountNo: " + str(accountNo))
 
 
-def createCalendar(username, email, csv, accountNo):
+def create_calendar(username, email, csv, accountNo):
     store = file.Storage(filePaths[accountNo]["token"])
     creds = store.get()
     if not creds or creds.invalid:
@@ -40,7 +47,7 @@ def createCalendar(username, email, csv, accountNo):
     'summary': summary,
     'timeZone': timeZone
     }
-    print("about to make new calendar")
+    logger.info("Creating calendar")
     created_calendar = service.calendars().insert(body=calendar).execute()
     calID = created_calendar["id"]
     csvEvents = csv.split("\n")
@@ -48,19 +55,19 @@ def createCalendar(username, email, csv, accountNo):
     counter = 0
     for csvEvent in csvEvents:
         deets = csvEvent.split(",")
-        if toDateTimeZ(deets[0], deets[3]) == "":
-            print("error occurred setting datetime so skipped.")
+        if to_date_time(deets[0], deets[3]) == "":
+            logger.debug("error occurred setting datetime so skipped.")
         else:
             eventDetails = {
               'summary': deets[2],
               'location': deets[5],
               'description': deets[6],
               'start': {
-                'dateTime': toDateTimeZ(deets[0], deets[3]),
+                'dateTime': to_date_time(deets[0], deets[3]),
                 'timeZone': timeZone,
               },
               'end': {
-                'dateTime': toDateTimeZ(deets[1], deets[4]),
+                'dateTime': to_date_time(deets[1], deets[4]),
                 'timeZone': timeZone,
               },
             }
@@ -69,8 +76,8 @@ def createCalendar(username, email, csv, accountNo):
                 time.sleep(0.2)
                 counter += 1
             except:
-                print("failed making calendar with accountNo: " + str(counter))
-    print("uploaded " + str(counter) + "/" + str(len(csvEvents)) + " events for " + username + " using account number: " + str(accountNo))
+                logger.warn("failed making calendar with accountNo: " + str(counter))
+    logger.info("uploaded " + str(counter) + "/" + str(len(csvEvents)) + " events for " + username + " using account number: " + str(accountNo))
 
     pp = pprint.PrettyPrinter(indent=4)
 
@@ -82,7 +89,7 @@ def createCalendar(username, email, csv, accountNo):
         'role': 'reader'
     }
 
-    print("sleeping for 5 seconds...")
+    logger.debug("sleeping for 5 seconds...")
     time.sleep(5)
     created_rule = service.acl().insert(calendarId=calID, body=rule).execute()
     pp.pprint(created_rule)
@@ -95,7 +102,7 @@ def createCalendar(username, email, csv, accountNo):
         'role': 'owner'
     }
 
-    print("sleeping for 5 seconds...")
+    logger.debug("sleeping for 5 seconds...")
     time.sleep(5)
     created_rule = service.acl().insert(calendarId=calID, body=rule).execute()
     pp.pprint(created_rule)
@@ -104,7 +111,7 @@ def createCalendar(username, email, csv, accountNo):
     return "https://calendar.google.com/calendar/r?cid=" + calID
 
 
-def toDateTimeZ(date_string, time_string):
+def to_date_time(date_string, time_string):
     date_arr = date_string.split("/")
     for count in range(len(date_arr)):
         while len(date_arr[count]) < 2:
@@ -118,9 +125,10 @@ def toDateTimeZ(date_string, time_string):
         dt = datetime.datetime(year=date_arr[2], month=date_arr[0], day=date_arr[1], hour=time_arr[0], minute=time_arr[1], second=00)
         dt_string = dt.strftime("%Y-%m-%dT%H:%M:%S")
     except:
-        print(date_arr)
-    return dt_string.replace("Z","")
+        logger.debug(date_arr)
+        logger.debug(time_arr)
+    return dt_string
 
 if __name__ == '__main__':
     csv = "ok\n01/14/2019,01/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With:  . Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science"
-    createCalendar("thm2000","thomas@tmoses.co.uk",csv,2)
+    create_calendar("thm2000","thomas@tmoses.co.uk",csv,2)
