@@ -31,11 +31,11 @@ def main(username, email, csv):
             logger.warn("failed with accountNo: " + str(accountNo))
 
 
-def create_calendar(username, email, csv, accountNo):
-    store = file.Storage(filePaths[accountNo]["token"])
+def create_calendar(username, email, csv, account_no):
+    store = file.Storage(filePaths[account_no]["token"])
     creds = store.get()
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets(filePaths[accountNo]["creds"], SCOPES)
+        flow = client.flow_from_clientsecrets(filePaths[account_no]["creds"], SCOPES)
         creds = tools.run_flow(flow, store, args)
     service = build('calendar', 'v3', http=creds.authorize(Http()))
 
@@ -50,24 +50,24 @@ def create_calendar(username, email, csv, accountNo):
     logger.info("Creating calendar")
     created_calendar = service.calendars().insert(body=calendar).execute()
     calID = created_calendar["id"]
-    csvEvents = csv.split("\n")
-    csvEvents = csvEvents[1:]
+    csv_events = csv.split("\n")
+    csv_events = csv_events[1:]
     counter = 0
-    for csvEvent in csvEvents:
-        deets = csvEvent.split(",")
-        if to_date_time(deets[0], deets[3]) == "":
+    for csvEvent in csv_events:
+        details = csvEvent.split(",")
+        if to_date_time(details[0], details[3]) == "":
             logger.debug("error occurred setting datetime so skipped.")
         else:
             eventDetails = {
-              'summary': deets[2],
-              'location': deets[5],
-              'description': deets[6],
+              'summary': details[2],
+              'location': details[5],
+              'description': details[6],
               'start': {
-                'dateTime': to_date_time(deets[0], deets[3]),
+                'dateTime': to_date_time(details[0], details[3]),
                 'timeZone': timeZone,
               },
               'end': {
-                'dateTime': to_date_time(deets[1], deets[4]),
+                'dateTime': to_date_time(details[1], details[4]),
                 'timeZone': timeZone,
               },
             }
@@ -77,7 +77,7 @@ def create_calendar(username, email, csv, accountNo):
                 counter += 1
             except:
                 logger.warn("failed making calendar with accountNo: " + str(counter))
-    logger.info("uploaded " + str(counter) + "/" + str(len(csvEvents)) + " events for " + username + " using account number: " + str(accountNo))
+    logger.info("uploaded " + str(counter) + "/" + str(len(csv_events)) + " events for " + username + " using account number: " + str(account_no))
 
     pp = pprint.PrettyPrinter(indent=4)
 
