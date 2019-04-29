@@ -34,11 +34,9 @@ def main():
     email, username, password = getUserInput()
     print(run(email, username, password))
 
-def runFromFlaskWithDB(email, username, password, uni):
-    print("running from flask with username:" + username + " and uni: " + uni)
+def runFromFlaskWithDB(email, username, password, shortenTitle, customTitle):
+    print("running from flask with username:" + username)
     mins = 0
-    if uni == "Bristol":
-        return """aayyyyyy hello from Birmingham! I'm working on support for your uni, please get in contact with me <a href="https://m.me/tomhmoses/" target="_blank">@tomhmoses</a>""", 0
     username = checkUsername(username)
     if username == "Invalid username":
         return username, mins
@@ -55,7 +53,7 @@ def runFromFlaskWithDB(email, username, password, uni):
         validEmail = validate_email(email)
         if validEmail:
             try:
-                message, mins = runWithDB(email, username, password)
+                message, mins = runWithDB(email, username, password, shortenTitle, customTitle)
             except Exception as e:
                 message = str(e)
                 message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password)) + ". Please try again in 10 seconds..."
@@ -100,7 +98,7 @@ def run(email, username, password):
     BhamCalEmailSender.sendMail(email, linkToCal)
     return "done"
 
-def runWithDB(email, username, password):
+def runWithDB(email, username, password, shortenTitle, customTitle):
     frameSource, errorOccured = BhamGetFrame.getFrameSourceAnywhere(username, password)
     if errorOccured:
         print("error occurred in getting frame.. trying again")
@@ -118,15 +116,15 @@ def runWithDB(email, username, password):
     csv = BhamTTConverter.main(frameSource)
     print("generated csv")
     #saveToFile(csv, "Timetable.csv")
-    queueLength = addToDB(username, email, csv)
+    queueLength = addToDB(username, email, csv, shortenTitle, customTitle)
     #linkToCal = BhamGoogleCalendarMaker.main(username, email, csv)
     #BhamCalEmailSender.sendMail(email, linkToCal)
     return "done" , queueLength * MINS_PER_USER
 
-def addToDB(username, email, csv):
+def addToDB(username, email, csv, shortenTitle, customTitle):
     try:
         queue = loadPickle(files["queue"])
-        details = [username, email, csv]
+        details = {"username":username, "email":email, "csv":csv, "shortenTitle":shortenTitle, "customTitle":customTitle}
         queue.append(details)
         savePickle(files["queue"], queue)
         return len(queue)
