@@ -1,5 +1,4 @@
 {% extends "structure.html" %}
-
 {% block head_scripts %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131203296-1"></script>
@@ -22,18 +21,20 @@
     <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5c4605d6058f100011a5ac6f&product=sticky-share-buttons' async='async'></script>
     <!-- End share this verification -->
     <script src='https://www.google.com/recaptcha/api.js'></script>
-{% endblock %}
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 
+{% endblock %}
 {% block title %}UoB Timetable Converter{% endblock %}
 {% block description %}Easily add your student timetable to your calendar on your phone (or other device).{% endblock %}
 {% block url %}https://ttc.tmoses.co.uk/{% endblock %}
-
 {% block extra_styles %}
     <style>
         .pinkbutton {background-color: #FC92A4; border: none;} /* Pink */
     </style>
 {% endblock %}
-
 {% block body_scripts %}
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THMH39H"
@@ -69,9 +70,8 @@
         }(document, "script", "twitter-wjs"));
     </script>
     <!-- End twiter share button javascript -->
-{% endblock %}
-
-{% block navbar_items %}
+    {% endblock %}
+    {% block navbar_items %}
     <li class="nav-item">
         <a class="nav-link" href="https://home.tmoses.co.uk/">Home</a>
     </li>
@@ -79,18 +79,20 @@
         <a class="nav-link" href="#">Timetable <span class="sr-only">(current)</span></a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="https://home.tmoses.co.uk/repairs">Repairs</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="https://ttc.tmoses.co.uk/donate">Donate</a>
     </li>
 {% endblock %}
-
 {% block page_content %}
     {% if done %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Done! </strong> You will be emailed in roughly {{ mins }} minutes.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Done! </strong> You will be emailed in roughly {{ mins }} minutes.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     {% endif %}
     <h3>
     </h3>
@@ -140,18 +142,41 @@
             <label for="password">Uni Password:</label>
             <input class="form-control" id="password" name="password" type="password" placeholder="Enter your password">
         </div>
-        <div>
-            <label for="password">University:</label>
+        <div class="form-group">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#moreOptions" aria-expanded="false" aria-controls="moreOptions">
+            More Options
+            </button>
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="uni" id="uniRadio1" value="Birmingham" checked>
-            <label class="form-check-label" for="uniRadio1">Birmingham</label>
+        <div class="collapse" id="moreOptions">
+            <div class="form-group form-check custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="shortenTitle" name="shortenTitle" checked>
+                <label class="custom-control-label" for="shortenTitle">Shorten Event Titles</label>
+            </div>
+            <div class="form-group">
+                <label for="customTitle">Custom Calendar Title:</label>
+                <input class="form-control" id="customTitle" name="customTitle" type="text" placeholder="UoB Timetable: ABC123">
+            </div>
+            <div class="form-group">
+                <label for="colorPicker">Custom Calendar Color (not working):</label>
+                <select class="selectpicker" data-live-search="true" data-width="fit" tabindex="-98">
+                    <option style="background-color: #7a86cb">1</option>
+                    <option style="background-color: #33b679">2</option>
+                    <option style="background-color: #8e24aa">3</option>
+                    <option style="background-color: #e67c73">4</option>
+                    <option style="background-color: #f6bf25">5</option>
+                    <option style="background-color: #f4521d">6</option>
+                    <option style="background-color: #039be5">7</option>
+                    <option style="background-color: #616161">8</option>
+                    <option style="background-color: #3f51b5">9</option>
+                    <option style="background-color: #0a8043">10</option>
+                    <option style="background-color: #d50001">11</option>
+                    <option data-content="<span class='badge badge-success'>Relish</span>">2</option>
+                    <option data-content="<span class='badge badge-success'>Relish</span>">3</option>
+                    <option data-content="<span class='badge badge-success'>Relish</span>">4</option>
+                    <option><span class="badge badge-primary">Primary</span></option>
+                </select>
+            </div>
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="uni" id="uniRadio2" value="Bristol">
-            <label class="form-check-label" for="uniRadio2">Bristol</label>
-        </div>
-        <br>
         <button type="submit" class="btn btn-success btn-lg btn-block">
         Submit
         </button>
@@ -178,7 +203,9 @@
         And give the website a like:
     </p>
     <p>
-    <div class="fb-like" data-href="https://tomhmoses.pythonanywhere.com/timetable/" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
+    <div class="embed-responsive embed-responsive">
+        <div class="fb-like" data-href="https://tomhmoses.pythonanywhere.com/timetable/" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
+    </div>
     </p>
     <p>
         <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Add%20your%20%40mybham%20timetable%20to%20your%20phone%20calendar%20now%3A" data-size="large">
@@ -213,13 +240,13 @@
         So far, the site has had <strong>{{stats["visits"]}}</strong> visits and <strong>{{stats["users"]}}</strong> uses. There are currently <strong>{{stats["queue"]}}</strong> users in the queue. So far, the amount of people from the university to have used or seen this service:
     </p>
     <p>
-        <div class="progress" style="height: 30px;">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ (stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{(stats["users"]-stats["queue"])}}" aria-valuemin="0" aria-valuemax="28000"></div>
-            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ stats["queue"]/280 }}%" aria-valuenow="{{stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
-            <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ (stats["visits"]-stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{stats["visits"]-stats["users"]-stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
-        </div>
+    <div class="progress" style="height: 30px;">
+        <div class="progress-bar bg-success" role="progressbar" style="width: {{ (stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{(stats["users"]-stats["queue"])}}" aria-valuemin="0" aria-valuemax="28000">
+    </div>
+    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ stats["queue"]/280 }}%" aria-valuenow="{{stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
+    <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ (stats["visits"]-stats["users"]-stats["queue"])/280 }}%" aria-valuenow="{{stats["visits"]-stats["users"]-stats["queue"]}}" aria-valuemin="0" aria-valuemax="28000"></div>
+    </div>
     </p>
-
     <p>
         This project is made of <strong>{{stats["python"]}}</strong> lines of python code and <strong>{{stats["HTML"]}}</strong> lines of HTML.
     </p>
@@ -227,30 +254,20 @@
         End Result
     </h2>
     <p>
-        <div id="carousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://i.ibb.co/bWh1g27/screenshots.jpg" alt="iPhone X screenshots">
-                </div>
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://i.ibb.co/mF2ywSG/watches.jpg" alt="Apple Watch screenshots">
-                </div>
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://i.ibb.co/XzrPzwC/xps-screenshot.jpg" alt="Dell XPS screenshot">
-                </div>
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="https://i.ibb.co/bWh1g27/screenshots.jpg" alt="iPhone X screenshots">
+            </div>
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="https://i.ibb.co/mF2ywSG/watches.jpg" alt="Apple Watch screenshots">
+            </div>
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="https://i.ibb.co/XzrPzwC/xps-screenshot.jpg" alt="Dell XPS screenshot">
             </div>
         </div>
+    </div>
     </p>
-    <h2>
-        Credits
-    </h2>
-    <p>
-        <a href="https://tomhmoses.pythonanywhere.com/timetable/credits/" class="btn btn-primary btn-lg ">Credits page</a>
-    </p>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
     <br/>
     <p>
         test 21/01/19 15:15
