@@ -2,7 +2,7 @@ import time
 import BhamGoogleCalendarMaker
 import BhamCalEmailSender
 import pickle
-import logging
+import config
 
 # DEBUG: Detailed information, typically of interest only when diagnosing problems.
 
@@ -17,27 +17,22 @@ import logging
 files = {"queue":"/home/tomhmoses/mysite_ttc/queue.pickle",
         "log":"/home/tomhmoses/mysite_ttc/backgrounder.log"}
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger = logger = config.initilise_logging()
 
-formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
-file_handler = logging.FileHandler(files["log"])
-
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
-
-def main(logger = None):
+def main():
     while True:
         time.sleep(5)
         queue = loadPickle(files["queue"])
         if len(queue) > 0:
             #details = [username, email, csv]
             details = queue[0]
-            username = details[0]
-            email = details[1].replace(" ", "")
-            csv = details[2]
-            print("Making calendar for " + username)
-            linkToCal = BhamGoogleCalendarMaker.main(username, email, csv)
+            username = details["username"]
+            email = details["email"].replace(" ", "")
+            csv = details["csv"]
+            shortenTitle = details["shortenTitle"]
+            customTitle = details["customTitle"]
+            print("Making calendar for " + username + ", shortenTitle: " + str(shortenTitle) + ", customTitle: " + str(customTitle))
+            linkToCal = BhamGoogleCalendarMaker.main(username, email, csv, shortenTitle, customTitle)
             print("about to send email")
             BhamCalEmailSender.sendMail(email, linkToCal)
             removeFromQueue()
