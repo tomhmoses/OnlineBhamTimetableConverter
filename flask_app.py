@@ -34,15 +34,22 @@ def main():
         if infoMessage != "":
             info = True
         return render_template("timetable_page.html", error=False, message = "", stats = stats, warn = warn, warning = warning, info = info, infoMessage = infoMessage)
-
-
     email = request.form["email"]
     username = request.form["username"]
     password = request.form["password"]
-    uni = request.form["uni"]
+    customTitle = request.form["customTitle"]
+    try:
+        shortenTitle = request.form["shortenTitle"]
+        print("shortenTitle: " + shortenTitle)
+        if shortenTitle == "on":
+            shortenTitle = True
+        else:
+            shortenTitle = False
+    except:
+        shortenTitle = False
 
     #message = BhamCalConverter.run(email, username, password)
-    message, mins = BhamCalConverter.runFromFlaskWithDB(email, username, password, uni)
+    message, mins = BhamCalConverter.runFromFlaskWithDB(email, username, password, shortenTitle, customTitle)
     if message == "done":
         stats = BhamCalConverter.getStats()
         return render_template("timetable_page.html", done=True, mins = mins, stats = stats)
@@ -63,11 +70,15 @@ def testEmail():
 def donate():
     return render_template("donate_page.html")
 
+@app.route("/timetable/donate")
+def donateForward():
+    return redirect(url_for('donate'))
+
 @app.route("/test/email_inline/")
 def testEmailInline():
     return render_template("email_inline.html")
 
-@app.route("/timetable/stats/")
+@app.route("/stats")
 def stats():
     stats = BhamCalConverter.getStats()
     return render_template("stats_page.html", stats = stats)
@@ -76,7 +87,11 @@ def stats():
 def oldStats():
     return redirect(url_for('stats'))
 
-@app.route("/test/forms/", methods=["GET", "POST","POSTTWO"])
+@app.route("/stats/")
+def oldStatsTwo():
+    return redirect(url_for('stats'))
+
+@app.route("/test/forms", methods=["GET", "POST","POSTTWO"])
 def forms():
     if request.method == "GET":
         return render_template("test_forms.html", test = True)
@@ -86,16 +101,24 @@ def forms():
     else:
         return "2"
 
+@app.route("/test/redirect")
+def testRedirect():
+    return render_template("redirect_home.html")
+
 @app.route("/timetable/credits/")
 def credits():
     return render_template("credits_page.html")
 
-@app.route("/timetable/share/")
+@app.route("/share")
 def share():
     return render_template("share_page.html")
 
-@app.route("/share/")
+@app.route("/timetable/share/")
 def oldSshare():
+    return redirect(url_for('share'))
+
+@app.route("/share/")
+def oldSshare2():
     return redirect(url_for('share'))
 
 @app.route('/test/start')
