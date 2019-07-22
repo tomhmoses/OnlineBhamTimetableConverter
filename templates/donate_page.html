@@ -5,6 +5,7 @@
 {% block extra_styles %}
     <style>
         .pinkbutton {background-color: #FC92A4; border: none;} /* Pink */
+        .paypalbutton {background-color: #2997D8; border: none;}
     </style>
 {% endblock %}
 {% block navbar_items %}
@@ -13,6 +14,9 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="https://ttc.tmoses.co.uk/">Timetable</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="https://home.tmoses.co.uk/repairs">Repairs</a>
     </li>
     <li class="nav-item active">
         <a class="nav-link" href="#">Donate <span class="sr-only">(current)</span></a>
@@ -23,18 +27,15 @@
     <p>
         <a href="https://l2p19.everydayhero.com/uk/tom" class="btn btn-secondary btn-lg pinkbutton" target="_blank">Breast Cancer Now</a>
     </p>
-
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type='text/javascript'>
-
-      $(function() {
-        $.getJSON('https://everydayhero.com/api/v2/pages/1548004595.jsonp?callback=?', {},  function (data) {
-          var funds = data.page.amount;
-          $('#raised').html(funds.currency.symbol + (funds.cents / 100) + " raised");
-        })
-      });
-
-    </script>
+    <p>
+        You can donate directly to this donation page.
+    </p>
+    <p>
+        <a href="https://paypal.me/tomhmoses" class="btn btn-primary btn-lg paypalbutton" target="_blank">Donate via Paypal</a>
+    </p>
+    <p>
+        For donations sent via paypal I will upload them all to the donation page... this may be an easier way to donate but it's up to you.
+    </p>
 
     <div id='raised'></div>
 {% endblock %}
