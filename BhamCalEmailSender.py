@@ -36,9 +36,9 @@ def sendMail(email, linkToCal):
 def getCustomEmail(linkToCal):
     print("making custom email")
     orig = getMessageHTML()
-    print(linkToCal)
+    #print(linkToCal)
     message_text = orig.replace("LINK_GOES_HERE", linkToCal)
-    print(message_text)
+    #print(message_text)
     return message_text
 
 def getMessageHTML():
@@ -93,4 +93,3 @@ def CreateMessage(sender, to, subject, message_text):
   message['from'] = sender
   message['subject'] = subject
   return {'raw': base64.urlsafe_b64encode(message.as_bytes()).decode()}
-
