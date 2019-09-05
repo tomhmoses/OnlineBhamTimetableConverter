@@ -6,6 +6,7 @@ from oauth2client import file, client, tools
 import pprint
 import time
 import config
+import pytz
 
 logger = config.initilise_logging()
 
@@ -118,28 +119,14 @@ def create_calendar(username, email, csv, shortenTitle, customTitle, account_no)
 
 
 def to_date_time(date_string, time_string):
-    date_arr = date_string.split("/")
-    for count in range(len(date_arr)):
-        while len(date_arr[count]) < 2:
-            date_arr[count] = "0" + date_arr[count]
-    time_arr = time_string.split(":")
-    if (time.tzname[0] == 'STD'):
-        logger.degub("was in DST so time moved back an hour to match UTC:")
-        logger.debug(date_arr)
-        logger.debug(time_arr)
-        time_arr[0] = str(int(time_arr[0]) - 1)
-    for count in range(len(time_arr)):
-        while len(time_arr[count]) < 2:
-            time_arr[count] = "0" + time_arr[count]
-    dt_string = ""
-    try:
-        dt_string += date_arr[2] + "-" + date_arr[0] + "-" + date_arr[1] + "T"
-        dt_string += time_arr[0] + ":" + time_arr[1] + ":00Z"
-    except:
-        logger.debug(date_arr)
-        logger.debug(time_arr)
+    local_tz = pytz.timezone ("Europe/London")
+    datetime_without_tz = datetime.datetime.strptime(date_string + " " +time_string, "%m/%d/%Y %H:%M")
+    datetime_with_tz = local_tz.localize(datetime_without_tz, is_dst=None) # No daylight saving time
+    datetime_in_utc = datetime_with_tz.astimezone(pytz.utc)
+    dt_string = datetime_in_utc.strftime('%Y-%m-%dT%H:%M:00Z')
     return dt_string
 
 if __name__ == '__main__':
-    csv = "ok\n01/14/2019,01/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With:  . Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science"
-    create_calendar("thm2000","thomas@tmoses.co.uk",csv,2)
+    print(str(datetime.datetime.now()))
+    csv = "ThisBitIsRemoved\n01/14/2019,01/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With: Professor Loupin. Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science\n06/14/2019,06/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With: Professor Loupin. Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science\n08/14/2019,08/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With: Professor Loupin. Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science"
+    create_calendar("thm2000","thomas@tmoses.co.uk",csv,True,"Test"+str(datetime.datetime.now()),0)
