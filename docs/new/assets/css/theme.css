@@ -5588,7 +5588,7 @@ figure + .ld-cart-product-details {
 .ld-sf--input-solid [type=text],
 .ld-sf--input-solid [type=password],
 .ld-sf--input-solid [type=email] {
-  border: none;
+  border: 1px solid #f0f0f0;
   background-color: #fff;
   color: #000;
 }
