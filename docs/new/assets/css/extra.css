@@ -3,3 +3,8 @@
     margin-bottom:-150px;
   }
 }
+@media only screen and (max-width: 399px) {
+  .main-header {
+    margin-bottom:-120px;
+  }
+}
