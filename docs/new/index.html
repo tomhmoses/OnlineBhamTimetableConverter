@@ -47,6 +47,16 @@ hassle of logging into my.bham.">
 	<!-- Head Libs -->
 	<script async src="https://ttc.git.tmoses.co.uk/new/assets/vendors/modernizr.min.js"></script>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131203296-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131203296-1');
+</script>
+
 
 
 </head>
@@ -213,7 +223,7 @@ hassle of logging into my.bham.">
 								data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1600", "startDelay":"1300", "delay":"160", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":40, "opacity":0}, "animations":{"translateY":0, "opacity":1}}'>
 
 									<a
-									href="#"
+									href="#start"
 									class="btn btn-solid text-uppercase btn-md circle btn-bordered border-thin btn-gradient px-2"
 									data-localscroll="true"
 									data-localscroll-options='{"scrollBelowSection":true}'>
@@ -288,7 +298,7 @@ hassle of logging into my.bham.">
 			</section>
 
 			<section class="vc_row bg-no-repeat pt-50 pb-150" style="background-image: url(https://ttc.git.tmoses.co.uk/new/assets/bg/bg-76.svg); background-position: -90% 80%;">
-				<div class="container pb-50">
+				<div class="container pb-50" id="start">
 					<div class="row">
 
 						<div class="col-md-3 col-sm-6 text-center text-sm-left">
@@ -409,13 +419,28 @@ hassle of logging into my.bham.">
 								<h6 class="text-uppercase">How it works</h6>
 								<h2><strong>Open Source</strong> and hosted on <strong>PythonAnywhere</strong></h2>
 								<p>
+								    <strong>Important:</strong> This simply copies over the <strong>current</strong> state of your timetable to a google calendar. As I do not store your password there is no way for me to check if your timetable changes... this is up to you!
+								</p>
+								<p>
 									This service allows you to easily add your University of Birmingham student timetable to your calendar; making it easier than ever to view. After submitting your request you will have the timetable calendar automattically added to your google account. You will also be emailed with more information.
 								</p>
 								<p>
-									This project is made by Tom Moses (a second year Comp Sci student at UoB) and is open source. If you need to contact me, email me or message me.
+									This project is made by Tom Moses (a second year Comp Sci student at UoB) and is <a href="https://github.com/tomhmoses/OnlineBhamTimetableConverter">open source</a>. If you need to contact me, <a href="mailto:tom@tmoses.co.uk">email</a> me or <a href="https://m.me/tomhmoses">message</a> me.
 								</p>
 								<p>
 									If you are worries about entering your details into this site, please rest assured that your password is never stored. Your email is temporarily stored while the processing is happening. Your username is stored so that I am able to track statistics of how many users I have.
+								</p>
+							</header>
+
+						</div><!-- /.lqd-column col-md-12 -->
+
+						<div class="lqd-column col-md-12">
+
+							<header class="fancy-title">
+								<h6 class="text-uppercase">Extra information</h6>
+								<h2>The fine print</h2>
+								<p>
+									You should be aware that this service is not provided by The University of Birmingham, it's by Tom Moses. As such the university cannot guarentee this is 100% safe so it would be best practice to change your password after using this service.
 								</p>
 							</header>
 
