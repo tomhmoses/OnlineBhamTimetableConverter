@@ -64,6 +64,28 @@ def runFromFlaskWithDB(email, username, password, shortenTitle, customTitle):
             resetInUse()
     return message, mins
 
+def runFromFlask2019(email, username, password):
+    print("running from flask with username:" + username)
+    # validation
+    username = checkUsername(username)
+    if username == "Invalid username":
+        return "Error: Invalid username!"
+    elif not validate_email(email):
+        return "Error: Invalid email!"
+    if loadPickle(files["inUse"]):
+        print("was in use :(")
+        message = "Somebody else is using the service right now. Please try again in 10 seconds..."
+    else:
+        setInUse()
+        try:
+            message, mins = runWithDB(email, username, password, True, "UoB Timetable " + username)
+        except Exception as e:
+            message = str(e)
+            message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password)) + ". Please try again in 10 seconds..."
+        finally:
+            resetInUse()
+    return message
+
 def checkUsername(username):
     if "@" in username:
         username = username[:username.find("@")]
