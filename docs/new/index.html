@@ -155,7 +155,7 @@ hassle of logging into my.bham.">
 
 		<main id="content" class="content">
 
-			<section class="vc_row bg-no-repeat fullheight d-flex align-items-center py-5" style="background-image: url(./assets/bg/bg-75.svg); background-position: 170% 110%;">
+			<section class="vc_row bg-no-repeat fullheight d-flex align-items-center py-5" style="background-image: url(https://ttc.git.tmoses.co.uk/new/assets/bg/bg-75.svg); background-position: 170% 110%;">
 
 				<div class="lqd-particles-bg-wrap">
 					<div class="ld-particles-container">
@@ -287,7 +287,7 @@ hassle of logging into my.bham.">
 
 			</section>
 
-			<section class="vc_row bg-no-repeat pt-50 pb-150" style="background-image: url(./assets/bg/bg-76.svg); background-position: -90% 80%;">
+			<section class="vc_row bg-no-repeat pt-50 pb-150" style="background-image: url(https://ttc.git.tmoses.co.uk/new/assets/bg/bg-76.svg); background-position: -90% 80%;">
 				<div class="container pb-50">
 					<div class="row">
 
@@ -360,15 +360,15 @@ hassle of logging into my.bham.">
 							<div class="row">
 								<div class="col-md-10 col-md-offset-1">
 									<div class="ld-sf ld-sf--input-solid ld-sf--button-solid ld-sf--size-lg ld-sf--circle ld-sf--border-thin ld-sf--input-shadow ld-sf--button-show">
-										<form id="details_form" class="ld_sf_form" action="" name="details-form" method="post" onsubmit="showLoadingIcon()">
+										<form id="details_form" class="ld_sf_form" action="" name="details-form" method="post">
 											<p class="ld_sf_paragraph pr-2">
-												<input type="email" class="ld_sf_text" id="email" name="email" placeholder="Enter your Google Account email address" value="" required title="Enter the email associated with your Google Account, so the timetable can show in your Google Calendar">
+												<input type="email" class="ld_sf_text" id="email" name="email" placeholder="Enter your Google Account email address" value="" required title="Enter the email associated with your Google Account, so the timetable can show in your Google Calendar" autocomplete="email">
 											</p>
 											<p class="ld_sf_paragraph pr-2">
-												<input type="text" class="ld_sf_text" id="username" name="username" placeholder="Enter your UoB Username" value="" pattern="([a-z]|[A-Z]){3,6}\d{3,6}" required title="Enter your UoB Username, e.g. THM837">
+												<input type="text" class="ld_sf_text" id="username" name="username" placeholder="Enter your UoB Username" value="" pattern="([a-z]|[A-Z]){3,6}\d{3,6}" required title="Enter your UoB Username, e.g. THM837" autocomplete="username">
 											</p>
 											<p class="ld_sf_paragraph pr-2">
-												<input type="password" class="ld_sf_text" id="password" name="password" placeholder="(Uob) Password" value="" required title="Enter your UoB Password">
+												<input type="password" class="ld_sf_text" id="password" name="password" placeholder="(Uob) Password" value="" required title="Enter your UoB Password" autocomplete="password">
 											</p>
 											<div class="lqd-column col-md-12 ca-initvalues-applied lqd-animations-done btn-solid.color-secondary" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;:&quot;inview&quot;, &quot;animationTarget&quot;:&quot;all-childs&quot;, &quot;duration&quot;:&quot;1600&quot;, &quot;startDelay&quot;:&quot;1300&quot;, &quot;delay&quot;:&quot;160&quot;, &quot;easing&quot;:&quot;easeOutQuint&quot;, &quot;direction&quot;:&quot;forward&quot;, &quot;initValues&quot;:{&quot;translateY&quot;:40, &quot;opacity&quot;:0}, &quot;animations&quot;:{&quot;translateY&quot;:0, &quot;opacity&quot;:1}}">
 
@@ -393,7 +393,9 @@ hassle of logging into my.bham.">
 											</div>
 											</button>
 										</form>
-										<div class="ld_sf_response" id="response"></div>
+										<div class="ld_sf_response">
+										    <p id="response" style="display:none;"></p>
+										</div>
 									</div><!-- /.ld-sf -->
 
 								</div><!-- /.col-md-10 col-md-offset-1 -->
@@ -453,15 +455,16 @@ hassle of logging into my.bham.">
 		})
 		.done(function(data) {
 
-			if (data.error) {
-				alert(data.error);
-			}
-			else {
-				alert(data.message);
-			}
-
     		document.getElementById("submit-text").style.display = "block";
     		document.getElementById("loader").style.display = "none";
+
+			if (data.error) {
+			    $('#response').text(data.error).show();
+			}
+			else {
+			    $('#response').hide();
+				alert(data.message);
+			}
 
 		});
 
