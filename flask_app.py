@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, Response
+from flask import Flask, render_template, request, redirect, url_for, Response, jsonify
 import BhamCalConverter
 import time
 #from flask_recaptcha import ReCaptcha
@@ -20,46 +20,42 @@ app.config["DEBUG"] = True
 
 BhamCalConverter.resetInUse()
 
-@app.route("/", methods=["GET", "POST"])
+
+@app.route("/", methods=["GET"])
 def main():
     if request.method == "GET":
-        BhamCalConverter.trackVisit()
-        stats = BhamCalConverter.getStats()
-        warning = BhamCalConverter.getWarningMessage()
-        infoMessage = BhamCalConverter.getInfoMessage()
-        warn = False
-        if warning != "":
-            warn = True
-        info = False
-        if infoMessage != "":
-            info = True
-        return render_template("timetable_page.html", error=False, message = "", stats = stats, warn = warn, warning = warning, info = info, infoMessage = infoMessage)
-    email = request.form["email"]
-    username = request.form["username"]
-    password = request.form["password"]
-    customTitle = request.form["customTitle"]
-    try:
-        shortenTitle = request.form["shortenTitle"]
-        print("shortenTitle: " + shortenTitle)
-        if shortenTitle == "on":
-            shortenTitle = True
-        else:
-            shortenTitle = False
-    except:
-        shortenTitle = False
+        return render_template("new/index.html")
+    else:
+        time.sleep(5)
+        return "posted"
 
-    #message = BhamCalConverter.run(email, username, password)
-    message, mins = BhamCalConverter.runFromFlaskWithDB(email, username, password, shortenTitle, customTitle)
-    if message == "done":
-        stats = BhamCalConverter.getStats()
-        return render_template("timetable_page.html", done=True, mins = mins, stats = stats)
+@app.route('/process', methods=['POST'])
+def process():
+	email = request.form['email']
+	username = request.form['username']
+	password = request.form['password']
 
+	message = BhamCalConverter.runFromFlask2019(email, username, password)
 
-    stats = BhamCalConverter.getStats()
-    return render_template("timetable_page.html", error=True, message = message, stats = stats)
+	if message == "done":
+	    return jsonify({'message' : 'Success! Please wait for the processing to be done. This may take up to an hour. If it takes longer than this please contact me so I can fix the issue.'})
+
+	return jsonify({'error' : message})
+
+@app.route('/_add_numbers')
+def add_numbers():
+    a = request.args.get('a', 0, type=int)
+    b = request.args.get('b', 0, type=int)
+    return jsonify(result=a + b)
+
+# redirects:
 
 @app.route("/timetable/")
 def timetable():
+    return redirect(url_for('main'))
+
+@app.route("/new/")
+def new():
     return redirect(url_for('main'))
 
 @app.route("/test/email/")
