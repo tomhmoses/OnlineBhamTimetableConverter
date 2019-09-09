@@ -47,6 +47,8 @@ hassle of logging into my.bham.">
 	<!-- Head Libs -->
 	<script async src="https://ttc.git.tmoses.co.uk/new/assets/vendors/modernizr.min.js"></script>
 
+
+
 </head>
 <body data-mobile-nav-trigger-alignment="right" data-mobile-nav-align="left" data-mobile-nav-style="modern" data-mobile-nav-shceme="gray" data-mobile-header-scheme="gray" data-mobile-nav-breakpoint="1199">
 
@@ -358,12 +360,12 @@ hassle of logging into my.bham.">
 							<div class="row">
 								<div class="col-md-10 col-md-offset-1">
 									<div class="ld-sf ld-sf--input-solid ld-sf--button-solid ld-sf--size-lg ld-sf--circle ld-sf--border-thin ld-sf--input-shadow ld-sf--button-show">
-										<form id="details_form" class="ld_sf_form" action="" name="details-form" method="post">
+										<form id="details_form" class="ld_sf_form" action="" name="details-form" method="post" onsubmit="showLoadingIcon()">
 											<p class="ld_sf_paragraph pr-2">
-												<input type="email" class="ld_sf_text" id="gmail" name="gmail" placeholder="Enter your Google Account email address" value="" required title="Enter the email associated with your Google Account, so the timetable can show in your Google Calendar">
+												<input type="email" class="ld_sf_text" id="email" name="email" placeholder="Enter your Google Account email address" value="" required title="Enter the email associated with your Google Account, so the timetable can show in your Google Calendar">
 											</p>
 											<p class="ld_sf_paragraph pr-2">
-												<input type="text" class="ld_sf_text" id="uobusername" name="uobusername" placeholder="Enter your UoB Username" value="" pattern="([a-z]|[A-Z]){3,6}\d{3,6}" required title="Enter your UoB Username, e.g. THM837">
+												<input type="text" class="ld_sf_text" id="username" name="username" placeholder="Enter your UoB Username" value="" pattern="([a-z]|[A-Z]){3,6}\d{3,6}" required title="Enter your UoB Username, e.g. THM837">
 											</p>
 											<p class="ld_sf_paragraph pr-2">
 												<input type="password" class="ld_sf_text" id="password" name="password" placeholder="(Uob) Password" value="" required title="Enter your UoB Password">
@@ -373,7 +375,7 @@ hassle of logging into my.bham.">
 												<button type="submit" class="btn btn-solid text-uppercase btn-md circle btn-bordered border-thin btn-gradient px-2 lqd-unit-animation-done" style="opacity: 1;">
 													<span>
 														<span class="btn-gradient-bg btn-solid.color-secondary"></span>
-														<span class="submit-text btn-txt">Submit</span>
+														<span class="submit-text btn-txt" id="submit-text">Submit</span>
 														<div class="loader" style="display:none" id="loader">Loading...</div>
 														<span class="btn-gradient-bg btn-gradient-bg-hover"></span>
 														<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" class="btn-gradient-border" width="100%" height="100%">
@@ -391,7 +393,7 @@ hassle of logging into my.bham.">
 											</div>
 											</button>
 										</form>
-										<div class="ld_sf_response"></div>
+										<div class="ld_sf_response" id="response"></div>
 									</div><!-- /.ld-sf -->
 
 								</div><!-- /.col-md-10 col-md-offset-1 -->
@@ -429,9 +431,44 @@ hassle of logging into my.bham.">
 
 </div><!-- /#wrap -->
 
-<script src="https://ttc.git.tmoses.co.uk/new/assets/vendors/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ttc.git.tmoses.co.uk/new/assets/js/theme-vendors.js"></script>
 <script src="https://ttc.git.tmoses.co.uk/new/assets/js/theme.min.js"></script>
+<script type='text/javascript'>
+ $(document).ready(function() {
+
+    $("form").submit(function(event){
+
+		document.getElementById("submit-text").style.display = "none";
+		document.getElementById("loader").style.display = "block";
+
+        $.ajax({
+			data : {
+				email : $('#email').val(),
+				username : $('#username').val(),
+				password : $('#password').val()
+			},
+			type : 'POST',
+			url : 'https://ttc.tmoses.co.uk/process'
+		})
+		.done(function(data) {
+
+			if (data.error) {
+				alert(data.error);
+			}
+			else {
+				alert(data.message);
+			}
+
+    		document.getElementById("submit-text").style.display = "block";
+    		document.getElementById("loader").style.display = "none";
+
+		});
+
+        event.preventDefault();
+    });
+});
+</script>
 
 </body>
 </html>
