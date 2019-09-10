@@ -345,7 +345,7 @@ hassle of logging into my.bham.">
 
 						</div><!-- /.col-md-3 col-sm-6 -->
 
-                        
+
 
 					</div><!-- /.row -->
 					<p style="margin-bottom:0;font-size: 0.5em;">(numbers as of yesterday)</p>
@@ -383,7 +383,7 @@ hassle of logging into my.bham.">
 											</p>
 											<div class="lqd-column col-md-12 ca-initvalues-applied lqd-animations-done btn-solid.color-secondary" data-custom-animations="true" data-ca-options="{&quot;triggerHandler&quot;:&quot;inview&quot;, &quot;animationTarget&quot;:&quot;all-childs&quot;, &quot;duration&quot;:&quot;1600&quot;, &quot;startDelay&quot;:&quot;1300&quot;, &quot;delay&quot;:&quot;160&quot;, &quot;easing&quot;:&quot;easeOutQuint&quot;, &quot;direction&quot;:&quot;forward&quot;, &quot;initValues&quot;:{&quot;translateY&quot;:40, &quot;opacity&quot;:0}, &quot;animations&quot;:{&quot;translateY&quot;:0, &quot;opacity&quot;:1}}">
 
-												<button type="submit" class="btn btn-solid text-uppercase btn-md circle btn-bordered border-thin btn-gradient px-2 lqd-unit-animation-done" style="opacity: 1;">
+												<button type="submit" id="submit-button" class="btn btn-solid text-uppercase btn-md circle btn-bordered border-thin btn-gradient px-2 lqd-unit-animation-done" style="opacity: 1;">
 													<span>
 														<span class="btn-gradient-bg btn-solid.color-secondary"></span>
 														<span class="submit-text btn-txt" id="submit-text">Submit</span>
@@ -411,7 +411,7 @@ hassle of logging into my.bham.">
 								</div><!-- /.col-md-10 col-md-offset-1 -->
 							</div><!-- /.row -->
 						</div>
-						
+
 						<a id="show-success" style="display:none;" href="#success" class="btn btn-solid btn-md round btn-secondary font-weight-medium" data-lity="#success">
 							<span>
 								<span class="btn-txt">Open success modal</span>
@@ -426,7 +426,7 @@ hassle of logging into my.bham.">
 
 									<div class="row">
 										<div class="col-md-12 text-center">
-	
+
 											<div class="row">
 												<div class="lqd-column col-md-8 col-md-offset-2">
 													<h1>Success!</h1>
@@ -461,7 +461,7 @@ hassle of logging into my.bham.">
 
 									<div class="row">
 										<div class="col-md-12 text-center">
-	
+
 											<div class="row">
 												<div class="lqd-column col-md-8 col-md-offset-2">
 													<h2>If you're still waiting....</h2>
@@ -522,9 +522,9 @@ hassle of logging into my.bham.">
 
 				</div><!-- /.container -->
 			</section>
-				
+
             <style>@media (min-width: 992px) { .liquid-row-responsive-5d70ddda4476f {margin-right:20px !important; margin-bottom:20px !important; margin-left:20px !important;  }  }  </style>
-            <section data-bg-image="url" class="vc_row wpb_row vc_row-fluid vc_custom_1542654997880 row-contains-padding-top row-contains-padding-bottom liquid-row-responsive-5d70ddda4476f liquid-row-shadowbox-5d70ddda4477f vc_row-has-fill vc_row-has-bg vc_column-gap-0" style="background-color: #f5f6f9">
+            <section id="testimonials" data-bg-image="url" class="vc_row wpb_row vc_row-fluid vc_custom_1542654997880 row-contains-padding-top row-contains-padding-bottom liquid-row-responsive-5d70ddda4476f liquid-row-shadowbox-5d70ddda4477f vc_row-has-fill vc_row-has-bg vc_column-gap-0" style="background-color: #f5f6f9">
             	<div class="ld-container container-fluid pb-150">
             		<div class="row ld-row">
             			<div class="wpb_column vc_column_container vc_col-sm-12 liquid-column-5d70ddda44853">
@@ -820,7 +820,7 @@ hassle of logging into my.bham.">
             											</div>
             										</div>
             									</div>
-            									
+
             								</div>
             							</div>
             						</div>
@@ -832,9 +832,9 @@ hassle of logging into my.bham.">
             </section>
 
 
+        </main>
 
-
-</div><!-- /#wrap -->
+    </div><!-- /#wrap -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ttc.git.tmoses.co.uk/new/assets/js/theme-vendors.js"></script>
@@ -845,10 +845,11 @@ hassle of logging into my.bham.">
  	//document.getElementById("show-modal").click();
 
     $("form").submit(function(event){
-        
+
         $('#response').hide();
 		document.getElementById("submit-text").style.display = "none";
 		document.getElementById("loader").style.display = "block";
+		$('#submit-button').prop('disabled', true);
 
         $.ajax({
 			data : {
@@ -866,6 +867,7 @@ hassle of logging into my.bham.">
 
 			if (data.error) {
 			    $('#response').text(data.error).show();
+			    $('#submit-button').prop('disabled', false);
 			}
 			else {
 			    $('#response').text("Done!").show();
