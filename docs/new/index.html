@@ -21,8 +21,8 @@ hassle of logging into my.bham.">
 your google calendar, so you can check it without the
 hassle of logging into my.bham.">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="Timetable Converter">
-	<meta name="twitter:title" content="Timetable Converter - Tom Moses">
+	<meta property="og:title" content="UoB Timetable Converter">
+	<meta name="twitter:title" content="UoB Timetable Converter - Tom Moses">
 	<meta property="og:site_name" content="Tom Moses">
 	<meta name="twitter:domain" content="ttc.tmoses.co.uk">
 	<meta name="twitter:creator" content="@tomhmoses">
@@ -79,7 +79,7 @@ hassle of logging into my.bham.">
 											<strong>Tom Moses</strong>
 										</span>
 									</a>
-									<button type="button" class="navbar-toggle collapsed nav-trigger style-mobile" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" data-changeclassnames='{ "html": "mobile-nav-activated overflow-hidden" }'>
+									<button type="button" aria-label="Navbar Toggle" class="navbar-toggle collapsed nav-trigger style-mobile" data-toggle="collapse" data-target="#main-header-collapse" aria-expanded="false" data-changeclassnames='{ "html": "mobile-nav-activated overflow-hidden" }'>
 										<span class="sr-only">Toggle navigation</span>
 										<span class="bars">
 											<span class="bar"></span>
@@ -147,7 +147,7 @@ hassle of logging into my.bham.">
 
 							<div class="col text-right">
 								<div class="header-module">
-									<a href="http://m.me/tomhmoses" target="_blank" class="btn btn-default text-uppercase btn-sm circle btn-bordered border-thin px-2">
+									<a href="http://m.me/tomhmoses" target="_blank" rel="noopener" class="btn btn-default text-uppercase btn-sm circle btn-bordered border-thin px-2">
 										<span>
 											<span class="btn-txt">Message me</span>
 										</span>
@@ -297,7 +297,7 @@ hassle of logging into my.bham.">
 
 			</section>
 
-			<section class="vc_row bg-no-repeat pt-50 pb-150" style="background-image: url(https://ttc.git.tmoses.co.uk/new/assets/bg/bg-76.svg); background-position: -90% 80%;">
+			<section class="vc_row bg-no-repeat pt-50 pb-50" style="background-image: url(https://ttc.git.tmoses.co.uk/new/assets/bg/bg-76.svg); background-position: -90% 80%;">
 				<div class="container pb-50" id="start">
 					<div class="row">
 
@@ -305,7 +305,7 @@ hassle of logging into my.bham.">
 
 							<div class="liquid-counter liquid-counter-default liquid-counter-lg text-center text-sm-left">
 								<div class="liquid-counter-element text-black" data-enable-counter="true" data-counter-options='{"targetNumber":"2,809","blurEffect":false}'>
-									<span>2,809</span>
+									<span>4,236</span>
 								</div><!-- /.liquid-counter-element -->
 								<span class="liquid-counter-text liquid-text-bottom text-primary">Timetables Converted</span>
 							</div><!-- /.liquid-counter -->
@@ -316,7 +316,7 @@ hassle of logging into my.bham.">
 
 							<div class="liquid-counter liquid-counter-default liquid-counter-lg text-center text-sm-left">
 								<div class="liquid-counter-element text-black" data-enable-counter="true" data-counter-options='{"targetNumber":"2,160","blurEffect":false}'>
-									<span>2,160</span>
+									<span>2,761</span>
 								</div><!-- /.liquid-counter-element -->
 								<span class="liquid-counter-text liquid-text-bottom text-primary">Individual users</span>
 							</div><!-- /.liquid-counter -->
@@ -327,7 +327,7 @@ hassle of logging into my.bham.">
 
 							<div class="liquid-counter liquid-counter-default liquid-counter-lg text-center text-sm-left">
 								<div class="liquid-counter-element text-black" data-enable-counter="true" data-counter-options='{"targetNumber":"13,239","blurEffect":false}'>
-									<span>13,239</span>
+									<span>15,686</span>
 								</div><!-- /.liquid-counter-element -->
 								<span class="liquid-counter-text liquid-text-bottom text-primary">Site visits</span>
 							</div><!-- /.liquid-counter -->
@@ -345,9 +345,10 @@ hassle of logging into my.bham.">
 
 						</div><!-- /.col-md-3 col-sm-6 -->
 
-
+                        
 
 					</div><!-- /.row -->
+					<p style="margin-bottom:0;font-size: 0.5em;">(numbers as of yesterday)</p>
 				</div><!-- /.container -->
 
 
@@ -370,7 +371,7 @@ hassle of logging into my.bham.">
 							<div class="row">
 								<div class="col-md-10 col-md-offset-1">
 									<div class="ld-sf ld-sf--input-solid ld-sf--button-solid ld-sf--size-lg ld-sf--circle ld-sf--border-thin ld-sf--input-shadow ld-sf--button-show">
-										<form id="details_form" class="ld_sf_form" action="" name="details-form" method="post">
+										<form id="details_form" class="ld_sf_form pb-25" action="" name="details-form" method="post">
 											<p class="ld_sf_paragraph pr-2">
 												<input type="email" class="ld_sf_text" id="email" name="email" placeholder="Enter your Google Account email address" value="" required title="Enter the email associated with your Google Account, so the timetable can show in your Google Calendar" autocomplete="email">
 											</p>
@@ -386,7 +387,7 @@ hassle of logging into my.bham.">
 													<span>
 														<span class="btn-gradient-bg btn-solid.color-secondary"></span>
 														<span class="submit-text btn-txt" id="submit-text">Submit</span>
-														<div class="loader" style="display:none" id="loader">Loading...</div>
+														<div class="loader btn-txt" style="display:none" id="loader">Loading...</div>
 														<span class="btn-gradient-bg btn-gradient-bg-hover"></span>
 														<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" class="btn-gradient-border" width="100%" height="100%">
 															<defs>
@@ -407,10 +408,79 @@ hassle of logging into my.bham.">
 										    <p id="response" style="display:none;"></p>
 										</div>
 									</div><!-- /.ld-sf -->
-
 								</div><!-- /.col-md-10 col-md-offset-1 -->
 							</div><!-- /.row -->
+						</div>
+						
+						<a id="show-success" style="display:none;" href="#success" class="btn btn-solid btn-md round btn-secondary font-weight-medium" data-lity="#success">
+							<span>
+								<span class="btn-txt">Open success modal</span>
+							</span>
+						</a>
+						<div id="success" class="lqd-modal lity-hide" style="max-height: 812px;">
+							<div class="lqd-modal-inner">
 
+								<div class="lqd-modal-head"></div><!-- /.lqd-modal-head -->
+
+								<div class="lqd-modal-content">
+
+									<div class="row">
+										<div class="col-md-12 text-center">
+	
+											<div class="row">
+												<div class="lqd-column col-md-8 col-md-offset-2">
+													<h1>Success!</h1>
+													<p>Your timetable has been added to the queue to be processed.</p>
+													<p>You'll receive an email when it's done!</p>
+													<p>My system only processes one at a time and each person takes about 3 minutes, so it may take a while to get to yours. If it takes longer than an hour feel free to reach out to me and I'll see if theres an issue. &#128540;</p>
+													<p> ~ Tom Moses </p>
+												</div><!-- /.col-md-8 col-md-offset-2 -->
+											</div><!-- /.row -->
+
+										</div><!-- /.col-md-12 -->
+									</div><!-- /.row -->
+
+								</div><!-- /.lqd-modal-content -->
+
+								<div class="lqd-modal-foot"></div><!-- /.lqd-modal-foot -->
+
+							</div><!-- /.lqd-modal-inner -->
+						</div>
+
+						<a id="show-modal" style="display:none;" href="#modal" class="btn btn-solid btn-md round btn-secondary font-weight-medium" data-lity="#success">
+							<span>
+								<span class="btn-txt">Open welcome modal</span>
+							</span>
+						</a>
+						<div id="modal" class="lqd-modal lity-hide" style="max-height: 812px;">
+							<div class="lqd-modal-inner">
+
+								<div class="lqd-modal-head"></div><!-- /.lqd-modal-head -->
+
+								<div class="lqd-modal-content">
+
+									<div class="row">
+										<div class="col-md-12 text-center">
+	
+											<div class="row">
+												<div class="lqd-column col-md-8 col-md-offset-2">
+													<h2>If you're still waiting....</h2>
+													<h1>Hello!</h1>
+													<p>If you're wondering why it's taking so long, heres the reason:</p>
+													<p>My system takes about 3 minutes to process each timetable, and there are currently about 300 people waiting to have their's done.</p>
+													<p>If you'd like, I can move you to the front of that (<mark>15 hours</mark>) queue! <a href="https://forms.gle/a6ZwhzzuebJQyYWeA"><strong>Click here to view the form</strong></a></p>
+													<p> ~ Tom Moses </p>
+												</div><!-- /.col-md-8 col-md-offset-2 -->
+											</div><!-- /.row -->
+
+										</div><!-- /.col-md-12 -->
+									</div><!-- /.row -->
+
+								</div><!-- /.lqd-modal-content -->
+
+								<div class="lqd-modal-foot"></div><!-- /.lqd-modal-foot -->
+
+							</div><!-- /.lqd-modal-inner -->
 						</div>
 
 						<div class="lqd-column col-md-12">
@@ -451,7 +521,315 @@ hassle of logging into my.bham.">
 					</div><!-- /.row -->
 
 				</div><!-- /.container -->
-
+			</section>
+				
+            <style>@media (min-width: 992px) { .liquid-row-responsive-5d70ddda4476f {margin-right:20px !important; margin-bottom:20px !important; margin-left:20px !important;  }  }  </style>
+            <section data-bg-image="url" class="vc_row wpb_row vc_row-fluid vc_custom_1542654997880 row-contains-padding-top row-contains-padding-bottom liquid-row-responsive-5d70ddda4476f liquid-row-shadowbox-5d70ddda4477f vc_row-has-fill vc_row-has-bg vc_column-gap-0" style="background-color: #f5f6f9">
+            	<div class="ld-container container-fluid pb-150">
+            		<div class="row ld-row">
+            			<div class="wpb_column vc_column_container vc_col-sm-12 liquid-column-5d70ddda44853">
+            				<div class="vc_column-inner">
+            					<div class="wpb_wrapper ">
+            						<div class="wpb_wrapper-inner">
+            							<style>.ld_carousel_5d70ddda448fc .carousel-item{width:100%;padding-left:2.5%;padding-right:2.5%;}.ld_carousel_5d70ddda448fc .carousel-items.row{margin-left:-2.5%;margin-right:-2.5%;}.ld_carousel_5d70ddda448fc .flickity-prev-next-button svg{stroke:rgb(0, 0, 0);}.ld_carousel_5d70ddda448fc .flickity-prev-next-button{color:rgb(0, 0, 0);background:rgb(255, 255, 255);}.ld_carousel_5d70ddda448fc .flickity-prev-next-button:before{background:-webkit-linear-gradient(65deg, rgb(235, 87, 200) 0.6369426751592356%, #ff7969 100%);background:linear-gradient(65deg, rgb(235, 87, 200) 0.6369426751592356%, #ff7969 100%);}.ld_carousel_5d70ddda448fc .flickity-page-dots{top:auto;right:auto;bottom:-25px;left:auto;}@media (min-width: 768px) {.ld_carousel_5d70ddda448fc .carousel-item { width:50.632911392405% }.ld_carousel_5d70ddda448fc .carousel-item { padding-left:7%;padding-right:7%;}.ld_carousel_5d70ddda448fc .carousel-items.row { margin-left:-7%;margin-right:-7%;}}</style>
+            							<style>.ld_testimonial .testimonial-details h5{color:rgb(67, 72, 77);}.ld_testimonial_5d70ddda44a1a .testimonial-details h6{color:rgb(134, 147, 158);}.ld_testimonial .star-rating li{color:rgb(0, 154, 239);}.ld_testimonial.testimonial-quote-filled .testimonial-quote, .ld_testimonial.testimonial-whole-filled{background:rgb(255, 255, 255);}.ld_testimonial:after{background:-webkit-linear-gradient(65deg, rgb(235, 87, 200) 0%, #ff7969 100%);background:linear-gradient(65deg, rgb(235, 87, 200) 0%, #ff7969 100%);}</style>
+            							<div id="ld_carousel_5d70ddda448fc" class="carousel-container carousel-nav-floated carousel-nav-center carousel-nav-middle carousel-nav-xl carousel-nav-solid carousel-nav-circle carousel-nav-shadowed-onhover carousel-dots-style1 ld_carousel_5d70ddda448fc">
+            								<div class="carousel-items row" data-lqd-flickity='{"cellAlign":"center","prevNextButtons":true,"buttonsAppendTo":"self","pageDots":false,"groupCells":true,"wrapAround":true,"pauseAutoPlayOnHover":false,"navArrow":"1","navOffsets":{"prev":"23.25%","next":"23.25%"}}'>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;This service actually give me the chance to plan my term in advance and avoid any clashing between my course studies, work and life!&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Angelina Paseva</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;Super useful website! Made it so much easier to check the location and times of lectures instead of going through the mybham website!&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Chloe Collingridge</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;Amazing that we can now access at least some of our timetable before the uni decide they want to publish it - really helpful having it in my iPhone calendar too. Thank you Tom!&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Sean Maguire</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;Excellent idea! Didn't have to log in every time I wanted to see my timetable or rely on a shoddy screenshot. Great that you can donate to charity too.&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Louis John Cooper</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;Used this calendar last year, very helpful! :)&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Maria Doria</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;A big thank you for sorting out my timetable!! A massive help xx&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Robyn Dawes</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;Thank you very much! Would save me so much time from adding my timetable manually&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Shefali Kelkar</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;Peng&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Matthew Browne</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;Thank you so much for this website, saves so much time by automatically inputting your entire timetable in to your calendar!!&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Amaan Sharih</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;being able to sync with my google calendar made organising uni life so much easier!&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Clementine McIntosh</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;So helpful and amazing &#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Oliver Bambury</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;Thank you for this, Tom! So much better than my.bham. A brilliant idea!&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Emma Bralic Velho</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									<div class="carousel-item">
+            										<div class="testimonial testimonial-whole-filled testimonial-whole-shadowed testimonial-details-top testimonial-avatar-shadowed testimonial-fill-onhover text-left testimonial-details-xl testimonial-avatar-topleft ld_testimonial">
+            											<div class="testimonial-quote">
+            												<blockquote>
+            													<p><span style="font-size: 17px; line-height: 25px; font-weight: 500;">&#8220;I think this is a great idea for an app! Definitely a convenient way to view the university timetable and help me stay more organised throughout the academic year! Thank you!&#8221;</span></p>
+            												</blockquote>
+            											</div>
+            											<div class="testimonial-details">
+            												<div class="testimonial-info">
+            													<h5>Michael Omatsola-Morgan</h5>
+            													<h6 class="font-weight-normal">UoB Student</h6>
+            												</div>
+            												<ul class="star-rating ">
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            													<li><i class="fa fa-star"></i></li>
+            												</ul>
+            											</div>
+            										</div>
+            									</div>
+            									
+            								</div>
+            							</div>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            	</div>
+            </section>
 
 
 
@@ -464,8 +842,11 @@ hassle of logging into my.bham.">
 <script type='text/javascript'>
  $(document).ready(function() {
 
-    $("form").submit(function(event){
+ 	//document.getElementById("show-modal").click();
 
+    $("form").submit(function(event){
+        
+        $('#response').hide();
 		document.getElementById("submit-text").style.display = "none";
 		document.getElementById("loader").style.display = "block";
 
@@ -487,8 +868,8 @@ hassle of logging into my.bham.">
 			    $('#response').text(data.error).show();
 			}
 			else {
-			    $('#response').hide();
-				alert(data.message);
+			    $('#response').text("Done!").show();
+				document.getElementById("show-success").click();
 			}
 
 		});
