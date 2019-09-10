@@ -7,6 +7,7 @@ import pprint
 import time
 import config
 import pytz
+import pickle
 
 logger = config.initilise_logging()
 
@@ -16,17 +17,31 @@ SCOPES = 'https://www.googleapis.com/auth/calendar'
 args = tools.argparser.parse_args()
 args.noauth_local_webserver = True
 
+accountNumPath = "/home/tomhmoses/mysite_ttc/lastAccountNo.pickle"
+
 filePaths = [{"token":"/home/tomhmoses/mysite_ttc/token.json", "creds":"/home/tomhmoses/mysite_ttc/credentials.json"},
             {"token":"/home/tomhmoses/mysite_ttc/token2.json", "creds":"/home/tomhmoses/mysite_ttc/credentials2.json"},
-            {"token":"/home/tomhmoses/mysite_ttc/token3.json", "creds":"/home/tomhmoses/mysite_ttc/credentials3.json"}]
+            {"token":"/home/tomhmoses/mysite_ttc/token3.json", "creds":"/home/tomhmoses/mysite_ttc/credentials3.json"},
+            {"token":"/home/tomhmoses/mysite_ttc/token4.json", "creds":"/home/tomhmoses/mysite_ttc/credentials4.json"},
+            {"token":"/home/tomhmoses/mysite_ttc/token5.json", "creds":"/home/tomhmoses/mysite_ttc/credentials5.json"},
+            {"token":"/home/tomhmoses/mysite_ttc/token6.json", "creds":"/home/tomhmoses/mysite_ttc/credentials6.json"},
+            {"token":"/home/tomhmoses/mysite_ttc/token7.json", "creds":"/home/tomhmoses/mysite_ttc/credentials7.json"},
+            {"token":"/home/tomhmoses/mysite_ttc/token8.json", "creds":"/home/tomhmoses/mysite_ttc/credentials8.json"},
+            {"token":"/home/tomhmoses/mysite_ttc/token9.json", "creds":"/home/tomhmoses/mysite_ttc/credentials9.json"}]
 
 def main(username, email, csv, shortenTitle, customTitle):
-    for account_no in range(len(filePaths)):
+    for count in range(len(filePaths)):
+        account_no = getNextAccount_no()
         try:
             return create_calendar(username, email, csv, shortenTitle, customTitle, account_no)
         except:
             logger.warn("failed with account_no: " + str(account_no))
 
+def getNextAccount_no():
+    account_no = loadPickle(accountNumPath)
+    account_no = (account_no+1)%len(filePaths)
+    savePickle(accountNumPath,account_no)
+    return account_no
 
 def create_calendar(username, email, csv, shortenTitle, customTitle, account_no):
     store = file.Storage(filePaths[account_no]["token"])
@@ -126,7 +141,18 @@ def to_date_time(date_string, time_string):
     dt_string = datetime_in_utc.strftime('%Y-%m-%dT%H:%M:00Z')
     return dt_string
 
+def savePickle(file_name, obj):
+    with open(file_name, 'wb') as fobj:
+        pickle.dump(obj, fobj)
+
+def loadPickle(file_name):
+    with open(file_name, 'rb') as fobj:
+        return pickle.load(fobj)
+
 if __name__ == '__main__':
     print(str(datetime.datetime.now()))
-    csv = "ThisBitIsRemoved\n01/14/2019,01/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With: Professor Loupin. Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science\n06/14/2019,06/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With: Professor Loupin. Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science\n08/14/2019,08/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With: Professor Loupin. Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science"
-    create_calendar("thm2000","thomas@tmoses.co.uk",csv,True,"Test"+str(datetime.datetime.now()),0)
+    #csv = "ThisBitIsRemoved\n01/14/2019,01/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With: Professor Loupin. Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science\n06/14/2019,06/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With: Professor Loupin. Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science\n08/14/2019,08/14/2019,LC Logic & Computation(30180)/Lecture,12:00,13:00,Gisbert Kapp LT2 (E202),With: Professor Loupin. Activity: LC Logic & Computation(30180)/Lecture. Type: Lecture. Department: Computer Science"
+    #create_calendar("thm2000","thomas@tmoses.co.uk",csv,True,"Test"+str(datetime.datetime.now()),5)
+
+    print(getNextAccount_no())
+    print(getNextAccount_no())
