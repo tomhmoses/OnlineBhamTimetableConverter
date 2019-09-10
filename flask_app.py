@@ -24,6 +24,7 @@ BhamCalConverter.resetInUse()
 @app.route("/", methods=["GET"])
 def main():
     if request.method == "GET":
+        BhamCalConverter.trackVisit()
         return render_template("new/index.html")
     else:
         time.sleep(5)
