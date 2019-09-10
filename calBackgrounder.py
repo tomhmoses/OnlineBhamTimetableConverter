@@ -33,9 +33,10 @@ def main():
             customTitle = details["customTitle"]
             print("Making calendar for " + username + ", shortenTitle: " + str(shortenTitle) + ", customTitle: " + str(customTitle))
             linkToCal = BhamGoogleCalendarMaker.main(username, email, csv, shortenTitle, customTitle)
-            print("about to send email")
-            BhamCalEmailSender.sendMail(email, linkToCal)
-            removeFromQueue()
+            if linkToCal:
+                print("about to send email")
+                BhamCalEmailSender.sendMail(email, linkToCal)
+                removeFromQueue()
             #60 second cooldown
             time.sleep(60)
 
