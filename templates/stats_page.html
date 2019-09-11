@@ -15,11 +15,16 @@
         </div>
     </p>
     <p>
-        This project is made of <strong>{{stats["python"]}}</strong> lines of python code and <strong>{{stats["HTML"]}}</strong> lines of HTML.
+        This project is made of <strong>too many</strong> lines of python code and <strong>too many</strong> lines of HTML.
     </p>
     <p>
         Matthew Bilella has used it <strong>{{stats["matthew"]}}</strong> times.
     </p>
-    <h2>
+    <h2>The list</h1>
+    <ol>
+        {% for item in stats["queueList"] %}
+            <li> {{ item }} </li>
+        {% endfor %}
+    </ol>
     <p></p>
 {% endblock %}
