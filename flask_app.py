@@ -36,12 +36,26 @@ def process():
 	username = request.form['username']
 	password = request.form['password']
 
-	message = BhamCalConverter.runFromFlask2019(email, username, password)
+	message, queueLength = BhamCalConverter.runFromFlask2019(email, username, password)
 
 	if message == "done":
-	    return jsonify({'message' : 'Success! Please wait for the processing to be done. This may take up to an hour. If it takes longer than this please contact me so I can fix the issue.'})
+	    return jsonify({'message' : 'Success! Please wait for the processing to be done. This may take up to an hour. If it takes longer than this please contact me so I can fix the issue.','queueLength' : queueLength})
 
 	return jsonify({'error' : message})
+
+@app.route('/jump', methods=['PUT'])
+def queueJump():
+    username = request.form['username']
+    person = request.form['person']
+    password = request.form['password']
+    how = request.form['how']
+    message = BhamCalConverter.queueJump(username, person, password, how)
+    return jsonify({'message' : message})
+
+@app.route("/jumper", methods=["GET"])
+def jumper():
+    return render_template("new/jumper.html")
+
 
 @app.route('/_add_numbers')
 def add_numbers():
