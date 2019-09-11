@@ -4,6 +4,7 @@ import BhamGoogleCalendarMaker
 import getpass
 import BhamCalEmailSender
 import pickle
+import datetime
 from validate_email import validate_email
 
 files = {
@@ -17,7 +18,8 @@ files = {
     "linesOfCode":"linesOfCode.pickle",
     "CAPTCHASecretKey":"CAPTCHASecretKey.txt",
     "normalLog":"normal.log",
-    "debugLog":"debug.log"
+    "debugLog":"debug.log",
+    "jumpHistory":"jumps.csv"
 }
 
 MINS_PER_USER = 5
@@ -78,13 +80,38 @@ def runFromFlask2019(email, username, password):
     else:
         setInUse()
         try:
-            message, mins = runWithDB(email, username, password, True, "UoB Timetable " + username)
+            message, queueLength = runWithDB(email, username, password, True, "UoB Timetable " + username + " " + str(datetime.datetime.now().strftime('%d-%m-%Y %H:%M')))
         except Exception as e:
             message = str(e)
             message += "\nUsing:\n" + email + "\n" + username + "\n" + str(len(password)) + ". Please try again in 10 seconds..."
         finally:
             resetInUse()
-    return message
+    return message, queueLength
+
+def queueJump(username, person, password, how):
+    f=open(files["jumpHistory"],"a+")
+    f.write("%s,%s,%s,%s\r\n" % (username, person, password, how))
+    f.close()
+    if "in" not in password: #well done, you found the password
+        return "wrong password"
+    else:
+        toMove = None
+        toFind = username
+        queue = loadPickle(files["queue"])
+        for count in range(len(queue)):
+            if queue[count]["username"].lower() == toFind.lower():
+                toMove = count
+        if not toMove:
+            return "could not find user"
+        else:
+            newQueue = []
+            newQueue.append(queue[0])
+            newQueue.append(queue[toMove])
+            for count in range(1, len(queue)):
+                if count != toMove:
+                    newQueue.append(queue[count])
+            savePickle(files["queue"], newQueue)
+            return "moved " + username + " to the front!"
 
 def checkUsername(username):
     if "@" in username:
@@ -103,6 +130,7 @@ def tryToFixEmail(email):
     email = email.replace("bham.student", "student.bham")
     email = email.replace("bham.student", "student.bham")
     email = email.replace("student.ac", "student.bham.ac")
+    email = email.replace("gmail.co.uk", "gmail.com")
     return email
 
 def run(email, username, password):
@@ -141,7 +169,7 @@ def runWithDB(email, username, password, shortenTitle, customTitle):
     queueLength = addToDB(username, email, csv, shortenTitle, customTitle)
     #linkToCal = BhamGoogleCalendarMaker.main(username, email, csv)
     #BhamCalEmailSender.sendMail(email, linkToCal)
-    return "done" , queueLength * MINS_PER_USER
+    return "done" , queueLength
 
 def addToDB(username, email, csv, shortenTitle, customTitle):
     try:
@@ -182,7 +210,11 @@ def getStats():
     try:
         queue = loadPickle(files["queue"])
         queueLen = len(queue)
+        queueList = []
+        for each in queue:
+            queueList.append(each["username"])
     except:
+        queueList=["failed"]
         queueLen = -1
     try:
         linesOfCodeDic = loadPickle(files["linesOfCode"])
@@ -191,7 +223,7 @@ def getStats():
     except:
         HTML = -1
         python = -1
-    stats = {"visits":visits, "users":users, "diffUsers":diffUsers, "myUses":myUses, "queue":queueLen, 'HTML':HTML, 'python':python, 'matthew':matthew}
+    stats = {"visits":visits, "users":users, "diffUsers":diffUsers, "myUses":myUses, "queue":queueLen, 'HTML':HTML, 'python':python, 'matthew':matthew, 'queueList':queueList}
     return stats
 
 def getFileContents(filePath):
@@ -274,4 +306,4 @@ def getUserInput():
 
 
 if __name__ == '__main__':
-    main()
+    print(queueJump("thm8377", "bingo", "gone", "main method"))
