@@ -67,13 +67,14 @@ def runFromFlaskWithDB(email, username, password, shortenTitle, customTitle):
     return message, mins
 
 def runFromFlask2019(email, username, password):
+    queueLength = -1
     print("running from flask with username:" + username)
     # validation
     username = checkUsername(username)
     if username == "Invalid username":
-        return "Error: Invalid username!"
+        return "Error: Invalid username!", None
     elif not validate_email(email):
-        return "Error: Invalid email!"
+        return "Error: Invalid email!", None
     if loadPickle(files["inUse"]):
         print("was in use :(")
         message = "Somebody else is using the service right now. Please try again in 10 seconds..."
@@ -306,4 +307,12 @@ def getUserInput():
 
 
 if __name__ == '__main__':
-    print(queueJump("thm8377", "bingo", "gone", "main method"))
+    #print(queueJump("thm8377", "bingo", "gone", "main method"))
+    print(validate_email("good@gmail"))
+
+
+
+
+
+
+
