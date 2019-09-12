@@ -361,7 +361,7 @@ hassle of logging into my.bham.">
 							<header class="fancy-title">
 								<h6 class="text-uppercase">Get started</h6>
 								<h2><strong>Simply</strong> enter your details</h2>
-								<p>Then <strong>wait</strong> for it to be processed. This may take up to 90 seconds.</p>
+								<p>Then <strong>wait</strong> here for initial processing to complete. This may take up to 90 seconds.</p>
 							</header>
 
 						</div><!-- /.lqd-column col-md-12 -->
@@ -374,6 +374,9 @@ hassle of logging into my.bham.">
 										<form id="details_form" class="ld_sf_form pb-25" action="" name="details-form" method="post">
 											<p class="ld_sf_paragraph pr-2">
 												<input type="email" class="ld_sf_text" id="email" name="email" placeholder="Enter your Google Account email address" value="" required title="Enter the email associated with your Google Account, so the timetable can show in your Google Calendar" autocomplete="email">
+											</p>
+											<p id="email-hint" style="display:none;">
+												Yikes! Did you mean <a href='' id='suggested-email' style='text-decoration: underline;'></a>?
 											</p>
 											<p class="ld_sf_paragraph pr-2">
 												<input type="text" class="ld_sf_text" id="username" name="username" placeholder="Enter your UoB Username" value="" pattern="([a-z]|[A-Z]){3,6}\d{3,6}" required title="Enter your UoB Username, e.g. THM837" autocomplete="username">
@@ -1211,8 +1214,32 @@ hassle of logging into my.bham.">
     </div><!-- /#wrap -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ttc.git.tmoses.co.uk/new/assets/js/mailcheck.min.js"></script>
 <script src="https://ttc.git.tmoses.co.uk/new/assets/js/theme-vendors.js"></script>
 <script src="https://ttc.git.tmoses.co.uk/new/assets/js/theme.min.js"></script>
+
+<script>
+	var domains = ['bham.ac.uk','student.bham.ac.uk','gmail.com','googlemail.com'];
+	$('#email').on('blur', function() {
+		$(this).mailcheck({
+			domains: domains,                       // optional
+			suggested: function(element, suggestion) {
+				$('#suggested-email').text(suggestion.full)
+				$('#email-hint').fadeIn(250);
+			},
+			empty: function(element) {
+				$('#email-hint').fadeOut(250);
+			}
+		});
+	});
+
+	$("#suggested-email").click(function(event) {
+		$('#email').val($("#suggested-email").text());
+		$('#email-hint').fadeOut(250);
+		event.preventDefault();
+	});
+</script>
+
 <script type='text/javascript'>
  $(document).ready(function() {
 
