@@ -73,7 +73,7 @@ def runFromFlask2019(email, username, password):
     username = checkUsername(username)
     if username == "Invalid username":
         return "Error: Invalid username!", None
-    elif not validate_email(email):
+    elif not validate_email(email) or "." not in email[email.find("@"):]:
         return "Error: Invalid email!", None
     if loadPickle(files["inUse"]):
         print("was in use :(")
