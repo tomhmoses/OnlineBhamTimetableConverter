@@ -110,11 +110,11 @@ def main(frameHTML):
         for number in [1,3,4,5]:
             csvLine += eventInfoList[number] + ","
         #adds description
-        if eventInfoList[6] != " ":
-            csvLine += "With: " + eventInfoList[6] + ". "
+        if eventInfoList[6].replace(" ","") != "":
+            csvLine += "With: " + eventInfoList[6] + ". ~n"
         csvLine += "Activity: " + eventInfoList[1]
-        csvLine += ". Type: " + eventInfoList[2]
-        csvLine += ". Department: " + eventInfoList[7]
+        csvLine += ". ~nType: " + eventInfoList[2]
+        csvLine += ". ~nDepartment: " + eventInfoList[7]
 
         csv += csvLine
 
