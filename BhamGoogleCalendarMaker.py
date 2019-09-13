@@ -27,7 +27,9 @@ filePaths = [{"token":"/home/tomhmoses/mysite_ttc/token.json", "creds":"/home/to
             {"token":"/home/tomhmoses/mysite_ttc/token6.json", "creds":"/home/tomhmoses/mysite_ttc/credentials6.json"},
             {"token":"/home/tomhmoses/mysite_ttc/token7.json", "creds":"/home/tomhmoses/mysite_ttc/credentials7.json"},
             {"token":"/home/tomhmoses/mysite_ttc/token8.json", "creds":"/home/tomhmoses/mysite_ttc/credentials8.json"},
-            {"token":"/home/tomhmoses/mysite_ttc/token9.json", "creds":"/home/tomhmoses/mysite_ttc/credentials9.json"}]
+            {"token":"/home/tomhmoses/mysite_ttc/token9.json", "creds":"/home/tomhmoses/mysite_ttc/credentials9.json"},
+            {"token":"/home/tomhmoses/mysite_ttc/token10.json", "creds":"/home/tomhmoses/mysite_ttc/credentials10.json"},
+            {"token":"/home/tomhmoses/mysite_ttc/token11.json", "creds":"/home/tomhmoses/mysite_ttc/credentials11.json"}]
 
 def main(username, email, csv, shortenTitle, customTitle):
     for count in range(len(filePaths)):
@@ -36,6 +38,7 @@ def main(username, email, csv, shortenTitle, customTitle):
             return create_calendar(username, email, csv, shortenTitle, customTitle, account_no)
         except:
             logger.warn("failed with account_no: " + str(account_no))
+            time.sleep(20)
 
 def getNextAccount_no():
     account_no = loadPickle(accountNumPath)
@@ -44,12 +47,13 @@ def getNextAccount_no():
     return account_no
 
 def create_calendar(username, email, csv, shortenTitle, customTitle, account_no):
+    logger.info("starting creating calendar for: " + username + " with account number: " + str(account_no))
     store = file.Storage(filePaths[account_no]["token"])
     creds = store.get()
     if not creds or creds.invalid:
         flow = client.flow_from_clientsecrets(filePaths[account_no]["creds"], SCOPES)
         creds = tools.run_flow(flow, store, args)
-    service = build('calendar', 'v3', http=creds.authorize(Http()))
+    service = build('calendar', 'v3', http=creds.authorize(Http())) #maybe , cache_discovery=False
     summary = "UoB Timetable: " + username
     if customTitle != "":
         summary = customTitle
@@ -83,7 +87,7 @@ def create_calendar(username, email, csv, shortenTitle, customTitle, account_no)
             eventDetails = {
                 'summary': details[2],
                 'location': details[5],
-                'description': details[6],
+                'description': details[6].replace("~n","\n"),
                 'start': {
                     'dateTime': to_date_time(details[0], details[3]),
                     'timeZone': timeZone,
