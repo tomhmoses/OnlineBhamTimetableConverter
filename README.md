@@ -8,7 +8,7 @@ To get this to work you may need to change a few string where I mention `bham.ti
 
 
 # Example
-Visit [my pythonanywhere site](https://tomhmoses.pythonanywhere.com/timetable/) to see it on action.
+Visit [my website](https://ttc.tmoses.co.uk) to see it on action.
 
 
 # What happens
