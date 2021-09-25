@@ -11,7 +11,7 @@ import pickle
 #secret_key = BhamCalConverter.getCAPTCHASecretKey()
 
 app = Flask(__name__)
-app.config["DEBUG"] = True
+#app.config["DEBUG"] = True
 
 #app.config.update(dict(
 #    RECAPTCHA_ENABLED = True,
@@ -29,7 +29,8 @@ BhamCalConverter.resetInUse()
 def main():
     if request.method == "GET":
         BhamCalConverter.trackVisit()
-        return render_template("new/index.html")
+        cachedStats = BhamCalConverter.getCachedStats()
+        return render_template("new/index.html", cachedStats = cachedStats)
     else:
         time.sleep(5)
         return "posted"
@@ -222,9 +223,18 @@ def extendsTest():
 #
 #	return Response(generate(), mimetype= 'text/event-stream')
 
+@app.route("/joe/")
+def joe():
+    return render_template("/joe/joe.html", joe_dict = pickle.load( open( "templates/joe/joe_dict.p", "rb" ) ))
+
 @app.route("/ubmc/countdown")
 def ubmc_countdown():
     return render_template("/ubmc/countdown.html", cd_dict = pickle.load( open( "templates/ubmc/cd_dict.p", "rb" ) ))
+
+@app.route("/ubmc/maintenance")
+def ubmc_maintenance():
+    return render_template("/ubmc/maintenance.html")
+
 
 @app.route("/ubmc/set/", methods=["GET", "POST"])
 def ubmc_set():
@@ -232,9 +242,14 @@ def ubmc_set():
         return render_template("/ubmc/set.html")
 
     if request.form["password"] == pickle.load( open( "templates/ubmc/password.p", "rb")):
-        countdown_dict = {"datetime":UBMCDateFormater(request.form["datetime"]),"url":request.form["url"]}
+        countdown_dict = {"datetime":UBMCDateFormater(request.form["datetime"]),"url":request.form["url"],"text":request.form["text"]}
         pickle.dump( countdown_dict, open( "templates/ubmc/cd_dict.p", "wb" ) )
         return "worked, set for: " + UBMCDateFormater(request.form["datetime"]) + "was: " + request.form["datetime"]
+    elif request.form["password"] == "joe":
+        deets = request.form["text"].split(" ")
+        joe_dict = {"margin-top":deets[0],"margin-left":deets[1],"size":deets[2]}
+        pickle.dump( joe_dict, open( "templates/joe/joe_dict.p", "wb" ) )
+        return "set margin-top, margin-left, size to : " + ','.join(deets)
     else:
         return "fail"
 

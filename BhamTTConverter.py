@@ -69,24 +69,24 @@ def main(frameHTML):
     }
 
 
-    #print "lets try and split the table into differnt events"
+    print("lets try and split the table into differnt events")
     #will import the html file as a string
 
-    #print "got the HTML code"
+    #print("got the HTML code"
     #we now have the full html of the body of the page, we need to cut it down.
 
     if debug:
         saveToFile(frameHTML,"debug_frame.txt")
 
     wholeTable = getTableFromFrame(frameHTML)
-    #print "got the table from the HTML code"
+    print("got the table from the HTML code")
 
     if debug:
         saveToFile(wholeTable,"debug_wholeTable.txt")
 
     #splits at row breaks
     listOfRows = wholeTable.replace("</tr></tbody><tr>","</tr><tr>").split("</tr><tr>")
-    #print "split into "+str(len(listOfRows))+" different events"
+    print("split into "+str(len(listOfRows))+" different events")
 
 
     if debug:

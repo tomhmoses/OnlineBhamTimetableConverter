@@ -13,8 +13,9 @@ def getFrameSourceAnywhere(username, password):
 def getFrameSource(username, password):
     print("loading webpage")
     try:
-        loginURL = "https://www.my.bham.ac.uk/cp/home/displaylogin"
+
         actualWebTimeTableURL = """https://onlinetimetables.bham.ac.uk/Timetable/current_academic_year_2/default.aspx"""
+        loginURL = actualWebTimeTableURL
 
         try:
             print("trying to load firefox")
@@ -34,20 +35,19 @@ def getFrameSource(username, password):
         #print("saved screenshot of login page")
 
         #navigates through login page
-        driver.find_element_by_name("user").send_keys(username)
-        driver.find_element_by_name("pass").send_keys(password)
+        driver.find_element_by_name("tUserName").send_keys(username)
+        driver.find_element_by_name("tPassword").send_keys(password)
         #driver.save_screenshot("screenshot0b.png")
         #print("saved screenshot of login page b")
-        driver.find_element_by_css_selector("""img[alt=\"Login\"]""").click()
+        driver.find_element_by_name("bLogin").click()
         #driver.save_screenshot("screenshot0c.png")
         #print("saved screenshot of login page c")
-        try:
-            driver.find_element_by_link_text("my.timetables").click()
+        if "LinkBtn_mystudentset" in driver.page_source:
             print("was able to log in: " + username)
 
             #will just add username to a list of all users so I can track stats.
             logLogin(username)
-        except:
+        else:
             driver.quit()
             print("login error")
             return "Login Error. Please try again...", True
@@ -92,7 +92,7 @@ def getFrameSource(username, password):
         try:
             el = driver.find_element_by_id("lbWeeks")
             for option in el.find_elements_by_tag_name('option'):
-                if option.text == '*All Term Time':
+                if option.text == '*Semester 1':
                     actionChains = ActionChains(driver)
                     actionChains.double_click(option).perform()
                     option.click()
